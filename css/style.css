@@ -1,0 +1,313 @@
+*
+{
+	margin: 0;
+	padding: 0;
+	font-family: 'Fredoka', sans-serif, arial;
+	scroll-behavior: smooth;
+	max-width: 100%;
+}
+body
+{
+	min-height: 100%;
+    background-color: #000;
+    color: #fff;
+}
+.container {
+    width: 100vw;
+    float: left;
+    height: auto;
+    display: table;
+}
+.levo {
+    width:60vw;
+    height: 97vh;
+    background-color: #111;
+    display: inline-block;  
+    font-size: initial;
+    /* IE 7 hack */
+    *zoom:1;
+    *display: inline;
+    vertical-align: middle;
+}
+.desno {
+    width: 40vw;
+    height: 97vh;
+    display: table-cell;
+    vertical-align: middle;
+    position: relative;
+}
+.map{
+    position: relative;
+    margin-top: 10vw;
+    margin-left: 3vw;
+}
+/*----------------------------------------DESNO------------------------------------------*/
+.desno{
+    --animate-duration: 1s;
+}
+.content-desno {
+    width: 28vw;
+    height: 70vh;
+    color: #000;;
+    background-color: #fff;
+    border-radius: 1.6vw;
+    /* Center vertically and horizontally */
+    position: absolute;
+    top: 20%;
+    left: 12%;
+
+    background-color: #fff;
+}
+/*----------------------------------------registracija------------------------------------------*/
+progress {
+    -webkit-appearance: none;
+    border: 0px solid #3e849e;
+    border-radius: 8px;
+    margin: 1vw;
+    width: 22vw;
+}
+::-webkit-progress-bar {
+    background-color: #fff;
+
+    border-radius: 8px;
+}
+::-webkit-progress-value {
+    background-color: #2c3d5b;
+    border-radius: 8px;
+}
+::-moz-progress-bar {
+    background-color: #2c3d5b;
+    border-radius: 8px;
+}
+.login_register_regija {
+    width: 100%;
+    height: 10vh;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 2vh;
+    padding-bottom: 4vh;
+    background-color: #2c3d5b;
+    color: #fff;
+    border-top-left-radius: 1.5vw;
+    border-top-right-radius: 1.5vw;
+}
+.login_register_regija h2{
+    font-size: 2.8em;
+}
+.login_register_regija p{
+    font-size: 1.8em;
+}
+.user_boxa {
+    position: relative;
+    margin-top: 1vh;
+    text-align: center;
+    height: 40vh;
+}
+.inputBx {
+    position: relative;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 27px;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 16px;
+}
+.inputBxPass {
+    font-size: 15px;
+    color: #3e849e;
+    position: relative;
+    width: 18vw;
+    height: 3vw;
+    background: #ebebeb;
+    border-radius: 27px;
+    padding: 0 35px 0 35px;
+
+    outline: none;
+    border: none;
+}
+.inputBx input{
+    font-size: 15px;
+    color: #3e849e;
+    position: relative;
+    width: 18vw;
+    height: 3vw;
+    background: #ebebeb;
+    border-radius: 27px;
+    padding: 0 35px 0 35px;
+
+    outline: none;
+    border: none;
+}
+.inputBx_submit {
+    width: 100%;
+    justify-content: center;
+}
+.inputBx_submit button {
+    padding: 0 20px;
+    width: 22vw;
+    height: 50px;
+    background-color: #2c3d5b;
+    border-radius: 25px;
+    font-size: 15px;
+    color: #fff;
+    text-transform: uppercase;
+
+    border: none;
+}
+.inputBx_submit button:hover {
+    cursor: pointer;
+}
+#regi_forgot_pwd{
+    text-align: right;
+    margin: 1vw;
+    margin-right: 3.4vw;
+}
+#regi_forgot_pwd a{
+    text-decoration: none;
+    color: #3e849e;
+}
+.switchbox_link {
+    text-align: right;
+    margin: 1vw;
+    margin-right: 3.4vw;
+}
+.switchbox_link a{
+    text-decoration: none;
+    color: #3e849e;
+}
+#reg_box1{
+    display: block;
+}
+#reg_box2 {
+    display: none;
+}
+#reg_box3 {
+    display: none;
+}
+.error_reg {
+    color: red;
+    font-size: 0.8vw;
+    position:absolute;
+    left:17.7%;
+    top: -0.5vw;
+    z-index: 10;
+}
+#dateinput {
+    height: 1vw;
+}
+input[type="date"]{
+    background-color: #ebebeb;
+    padding: 14px;
+    /* position: absolute; */
+    /* transform: translate(-50%,-50%); */
+    /* top: 50%; */
+    /* left: 50%; */
+    color: rgba(51, 51, 51, 0.6);
+    font-size: 15px;
+    border: none;
+    outline: none;
+    border-radius: 27px;
+    width: 20vw;
+    
+}
+::-webkit-calendar-picker-indicator{
+    background-color: #ebebeb   ;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+.lastbuttons {
+    margin-top: 20px;
+    width: 45%;
+    background-color: #fff;
+    border-radius: 27px;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 16px;
+    display: inline-block;
+}
+/*----------------------------------------reg_loader------------------------------------------*/
+#reg_loader{
+    height: 120px;
+    width: 120px;
+    box-sizing: border-box;
+    border: 8px solid #2c3d5b;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: -120px;
+    border-radius: 50%;
+    background-color: #fff;
+    animation: move1 1.5s infinite;
+}
+@keyframes move1{
+    50%{
+        left: 120px;
+        z-index: 0;
+    }
+    51%{
+        z-index: 2;
+    }
+    100%{
+        left: -120px;
+        z-index: 2;
+    }
+}
+#reg_loader2{
+    height: 120px;
+    width: 120px;
+    background-color: #2c3d5b;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 120px;
+    right: 0;
+    border-radius: 50%;
+    animation: move2 1.5s infinite;
+}
+@keyframes move2{
+    50%{
+        left: -120px;
+    }
+    100%{
+        left: 120px;
+    }
+}
+/*----------------------------------------login------------------------------------------*/
+#login-box {
+    display: none
+}
+#login_text_bottom {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}/*----------------------------------------pomurska-sijaj------------------------------------------*/
+#pomurska_sijaj {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+#podravska_sijaj {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+/*
+#podravska:hover > #podravska_sijaj {
+    visibility: visible;
+    cursor: pointer;
+}
+#pomurska:hover > #pomurska_sijaj{
+    visibility: visible;
+    cursor: pointer;
+}
+
+ */
+
+/*----------------------------------------input-bx-animate------------------------------------------*/
+
