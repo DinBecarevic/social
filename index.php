@@ -170,7 +170,7 @@
             <div class="user_boxa" id="login-box">
                 <form action="includes/login.inc.php" method="post" id="login_form">
                     <div class="inputBx">
-                        <input type="email" name="email" placeholder="username/email...">
+                        <input type="text" name="email" placeholder="username/email...">
                     </div>
                     <div class="inputBx">
                         <input type="password" name="pass" placeholder="geslo...">

@@ -73,10 +73,10 @@ function createUser($conn, $username, $email, $pwd, $firstname, $lastname, $datu
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     if($regija == "Slovenija") {
-        header("location: ../index.php?error=none");
+        loginUser($conn, $username, $pwd);
     }
     else {
-        header("location: ../../index.php?error=none");
+        loginUser($conn, $username, $pwd);
     }
     exit();
 }
@@ -113,10 +113,18 @@ function loginUser($conn, $username, $pwd) {
     }
     else if ($checkPwd == true) {
         session_start();
-        $_SESSION['userId'] = $uidExists["id"];
-        $_SESSION['userUsername'] = $uidExists["username"];
-        $_SESSION['userEmail'] = $uidExists["email"];
-        header("location: ../profile.php");
+        $_SESSION['S_userId'] = $uidExists["id"];
+        $_SESSION['S_userUsername'] = $uidExists["username"];
+        $_SESSION['S_userFirstName'] = $uidExists["first_name"];
+        $_SESSION['S_userLastName'] = $uidExists["last_name"];
+        $_SESSION['S_userEmail'] = $uidExists["email"];
+        $_SESSION['S_userOpis'] = $uidExists["opis"];
+        $_SESSION['S_userRegija'] = $uidExists["regija"];
+        $_SESSION['S_userMesto'] = $uidExists["mesto_id"];
+        $_SESSION['S_userPronouns'] = $uidExists["pronouns"];
+        $_SESSION['S_userDatumRoj'] = $uidExists["datum_roj"];
+
+        header("location: ../profile.php?logedin");
         exit();
     }
 }
