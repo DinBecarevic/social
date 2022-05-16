@@ -9,7 +9,7 @@
             <img id="map-slika-slovenije" src="media/slovenia-map3-mini.png" alt="slovenia-map2-mini" usemap="#workmap">
             <map id="map_id" name="workmap" >
                 <!-- Pomurska -->
-                <div id="pomurska">
+                <div id="pomurska" onmouseover="sijaj()" onmouseout="sijajout()">
                     <area shape="rect" alt="" coords="796,0,959,106" >
                     <area shape="rect" alt="" coords="824,107,987,133" >
                     <area shape="rect" alt="" coords="849,134,1011,160" >
@@ -115,7 +115,7 @@
                     <!-- -------------------------reg_box1-------------------------->
                     <div id="reg_box1" style=" display: block;">
                         <div class="inputBx">
-                            <input class="checking_email" id="email" type="email" name="email" placeholder="*email...">
+                            <input type="email" pattern="/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" class="checking_email" id="email" name="email" placeholder="*email..." required>
                             <div class="error_email error_reg"></div>
                         </div>
                         <div class="inputBx inputBx_submit">
@@ -150,7 +150,7 @@
                             <input type="text" name="lastname" placeholder="priimek...">
                         </div>
                         <div class="inputBx">
-                            <input type="text" placeholder="datum rojstva..." name="datumroj" id="tempdate" onclick="dateswitch()">
+                            <input min="1997-01-01" max="2030-12-31" type="text" placeholder="datum rojstva..." name="datumroj" id="tempdate" onclick="dateswitch()">
                         </div>
                         <div class="inputBx_submit lastbuttons">
                             <button id="final_sub_back_btn" onclick="nazaj()" type="button">Nazaj</button>

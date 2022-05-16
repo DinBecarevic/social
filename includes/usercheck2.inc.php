@@ -5,7 +5,7 @@ if (isset($_POST['username_id'])) {
     require_once 'dbh.inc.php';
     require_once 'functions.inc.php';
 
-    $username = $_POST["username_id"];
+    $username = mysqli_real_escape_string($conn, $_POST["username_id"]);
     echo $username;
     $email_query = "SELECT * FROM uporabniki WHERE username = '$username'";
     $email_query_run = mysqli_query($conn, $email_query);

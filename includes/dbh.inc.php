@@ -1,5 +1,10 @@
 <?php
 
+# $serverName = "152.89.234.175";
+# $dBUserName = "dinbecar_social";
+# $dBPassword = "GeS€tjmghapd/420";
+# $dBName = "dinbecar_social";
+
 $serverName = "localhost";
 $dBUserName = "root";
 $dBPassword = "";

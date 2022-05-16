@@ -5,6 +5,9 @@ footer {
     background-color: #181717;
     text-align: center;
     --animate-duration: 2s;
+    position: absolute;
+    left: 0;
+    bottom: 0;
 }
 footer p{
     vertical-align: middle;

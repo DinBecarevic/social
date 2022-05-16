@@ -76,7 +76,7 @@ function createUser($conn, $username, $email, $pwd, $firstname, $lastname, $datu
         loginUser($conn, $username, $pwd);
     }
     else {
-        loginUser($conn, $username, $pwd);
+        loginUser2($conn, $username, $pwd);
     }
     exit();
 }
@@ -124,7 +124,44 @@ function loginUser($conn, $username, $pwd) {
         $_SESSION['S_userPronouns'] = $uidExists["pronouns"];
         $_SESSION['S_userDatumRoj'] = $uidExists["datum_roj"];
 
-        header("location: ../profile.php?logedin");
+        $_SESSION['S_userProfileBanner'] = $uidExists["banner_dir"];
+        $_SESSION['S_userProfileImg'] = $uidExists["img_dir"];
+
+        header("location: ../profile.php?user_logged_in");
+        exit();
+    }
+}
+function loginUser2($conn, $username, $pwd) {
+    $uidExists = userExists($conn, $username, $username);
+
+    if ($uidExists === false) {
+        header("location: ../login.php?error=wronglogin");
+        exit();
+    }
+
+    $salt = "m8p#m,^(HYKw[Zv.[:htY_!jf~UTyEyMuGtj&Utrv]j%TYa@v)(.,sr8MXR9Nhw{";
+    $salted = $pwd.$salt;
+    $pwdHased = $uidExists["pwd"];
+    $checkPwd = password_verify($salted, $pwdHased);
+
+    if ($checkPwd === false) {
+        header("location: ../index.php?error=wrongpass");
+        exit();
+    }
+    else if ($checkPwd == true) {
+        session_start();
+        $_SESSION['S_userId'] = $uidExists["id"];
+        $_SESSION['S_userUsername'] = $uidExists["username"];
+        $_SESSION['S_userFirstName'] = $uidExists["first_name"];
+        $_SESSION['S_userLastName'] = $uidExists["last_name"];
+        $_SESSION['S_userEmail'] = $uidExists["email"];
+        $_SESSION['S_userOpis'] = $uidExists["opis"];
+        $_SESSION['S_userRegija'] = $uidExists["regija"];
+        $_SESSION['S_userMesto'] = $uidExists["mesto_id"];
+        $_SESSION['S_userPronouns'] = $uidExists["pronouns"];
+        $_SESSION['S_userDatumRoj'] = $uidExists["datum_roj"];
+
+        header("location: ../../profile.php?user_logged_in");
         exit();
     }
 }

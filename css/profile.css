@@ -1,0 +1,287 @@
+body {
+    height: 100vh;
+}
+
+.outer-profile-container {
+}
+
+.profile-left {
+    width: 50%;
+    height: 99vh;
+    display: inline-block;
+    background: linear-gradient(253deg, #4b6cb7 0%, #182848 100%);
+    position: relative;
+}
+.profile-left #profile-container-left {
+    width: 70%;
+    height: 65vh;
+    padding: 2vw;
+    padding-left: 4vw;
+    margin: auto;
+    margin: 0;
+    color: #ececec;
+    background: rgba(255, 255, 255, 0.2);
+    border-top-left-radius: 2vw;
+    border-bottom-left-radius: 2vw;
+
+    position: absolute;
+    top: 15%;
+    right: 0px;
+}
+
+.profile-right {
+    width: 50%;
+    height: 99vh;
+    display: inline-block;
+    vertical-align: top;
+    background: #fff;
+    align-items: center;
+    position: relative;
+}
+.profile-right #profile-container-right {
+    width: 70%;
+    height: 67vh;
+    padding: 1vw 2vw 2vw 2vw;
+    margin: auto;
+    margin: 0;
+    color: #1e1e1e;
+    background: red;
+
+    border-top-right-radius: 2vw;
+    border-bottom-right-radius: 2vw;
+
+    background: rgb(240,240,240);
+    background: linear-gradient(333deg, rgba(240,240,240,1) 0%, rgba(255,255,255,1) 100%);
+
+    position: absolute;
+    top: 15%;
+
+}
+.profile-right #profile-container-right h2 {
+    font-weight: 100;
+    letter-spacing: 2px;
+}
+#h2-profile {
+    letter-spacing: 0.3em;
+}
+
+.profile-icon {
+    position: relative;
+}
+.dot-profile {
+    height: 100px;
+    width: 100px;
+    position: relative;
+    display: inline-block;
+    margin-left: -25px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    display: inline-block;
+}
+#image-upload{
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.3s;
+}
+.dot-profile:hover #image-upload{
+    visibility: visible;
+    opacity: 1;
+}
+.dot-profile #image-upload{
+    width: 3vw;
+    height: 3vw;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#image-upload img{
+    filter: brightness(0) saturate(100%) invert(46%) sepia(10%) saturate(3042%) hue-rotate(184deg) brightness(86%) contrast(90%);
+}
+#profile-upload-icon-button{
+    height: 100px;
+    width: 100px;
+
+    transition: fade 2s;
+
+    display: inline-block;
+    background-color: rgb(206, 232, 255);
+    border-radius: 50%;
+    display: inline-block;
+    border: none;
+    color: #fff;
+}
+#image-upload>input{
+    display: none;
+}
+/*---------------------banner-----------------*/
+.banner-image {
+    height: 22vh;
+    width: 100vw;
+    position: absolute;
+    top: 0vw;
+    left: 0vw;
+}
+#banner-profile-bg {
+    padding-left: 6vw;
+    height: 22vh;
+    width: 100vw;
+    border-top-left-radius: 2vw;
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.24);
+}
+/*---------------------banner-uplad-svg-----------------*/
+#image-upload_b{
+    visibility: visible;
+    opacity: 0.4;
+    transition: 0.3s;
+    position: absolute;
+    top: 0vw;
+    right: 0.2vw;
+    width: 5vw;
+}
+#image-upload_b:hover {
+    visibility: visible;
+    opacity: 1;
+    width: 6vw;
+}
+#image-upload_b img{
+    filter: brightness(0) saturate(100%) invert(46%) sepia(10%) saturate(3042%) hue-rotate(184deg) brightness(86%) contrast(90%);
+}
+#image-upload_b>input{
+    display: none;
+}
+
+/*--------------------profile-seclet-option---------------------*/
+.profile-select-option {
+
+}
+.select-content h3{
+    font-size: 2em;
+    letter-spacing: 0.15em;
+}
+.select-content{
+    border-top-left-radius: 2vw;
+    border-bottom-left-radius: 2vw;
+    transition: 0.4s;
+    background-color: rgba(171, 190, 255, 0);
+    width: 60vw;
+    padding: 10px;
+    margin-bottom: 1vw;
+    padding-left: 2vw;
+}
+.select-content:hover{
+    transition: 0.4s;
+    background-color: rgba(171, 190, 255, 0.68);
+    cursor: pointer;
+}
+/*--------------------osebni-podatki-container---------------------*/
+#osebni-podatki-container h3{
+    display: inline-block;
+    font-size: 2em;
+}
+#osebni-podatki-container hr{
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+    border: 2px solid #4b6cb7;
+    border-radius: 1vw;
+}
+#spremba-osebnih-podatkov-container, #spremba-gesla-container {
+    display: none;
+}
+#profile-container-right input {
+    font-size: 1em;
+    position: relative;
+    height: 2vw;
+    background: #ebebeb;
+    border-radius: 27px;
+    padding: 0 1.2vw 0 1.2vw;
+    margin-top: 0.4vw;
+
+    outline: none;
+    border: none;
+}
+#profile-container-right textarea {
+    font-size: 1em;
+    position: relative;
+    height: 4vw;
+    width: 30vw;
+    background: #ebebeb;
+    border-radius: 27px;
+    padding: 0 1.2vw 0 1.2vw;
+    margin-top: 0.4vw;
+
+    outline: none;
+    border: none;
+}
+#profile-container-right label {
+    margin-left: 1.2vw;
+    margin-bottom: 1.2vw;
+}
+.osebni-block input{
+    width: 20vw;
+}
+.osebni-inline {
+    display: inline-block;
+}
+.osebni-inline input {
+    width: 14vw;
+}
+#update-osebni-button {
+    margin-left: 1.2vw;
+    display: inline-block;
+    margin-top: 1.2vw;
+    padding: 0 20px;
+    width: 10vw;
+    height: 1.8vw;
+    background-color: #4b6cb7;
+    border-radius: 25px;
+    font-size: 15px;
+    color: #fff;
+    text-transform: uppercase;
+
+    border: none;
+}
+#update-osebni-button:hover {
+    cursor: pointer;
+}
+#osebni-podatki-container select{
+    font-size: 1em;
+    position: relative;
+    height: 2vw;
+    background: #ebebeb;
+    border-radius: 27px;
+    padding: 0 1.2vw 0 1.2vw;
+    margin-top: 0.4vw;
+
+    outline: none;
+    border: none;
+}
+    /*------------------------odjava-button--------------------*/
+#odjava-button {
+    position: absolute;
+    top: 86vh;
+    left: 0.4vw;
+    margin-left: 1.2vw;
+    display: block;
+    margin-top: 1.2vw;
+    padding: 0 20px;
+    width: 8vw;
+    height: 1.2vw;
+    background-color: #4b6cb7;
+    border-radius: 25px;
+    font-size: 0.8em;
+    color: #fff;
+    text-transform: uppercase;
+
+    border: none;
+}
+#odjava-button:hover {
+    cursor: pointer;
+}
+#odjava-link {
+    text-decoration: none;
+    color: white;
+}
+
+/*# sourceMappingURL=profile.css.map */

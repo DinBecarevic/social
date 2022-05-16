@@ -138,7 +138,7 @@ function dateswitch() {
     if($("#tempdate").attr("id") == "tempdate") {
         console.log("dateswitch if")
         input.setAttribute('id', 'dateinput');
-        input.setAttribute("type", "date");
+        input.setAttribute('type', "date");
     }
     return;
 }
@@ -176,4 +176,15 @@ function regsubmit() {
     loader1.style.display = "block";
     loader2.style.display = "block";
     p[0].style.display = "none";
+}
+//-----------profile------------------------------------------
+
+function podatki_select() {
+    var osebni_podatki = document.getElementById("spremba-osebnih-podatkov-container");
+    if(osebni_podatki.style.display = "none") {
+        osebni_podatki.style.display = "block";
+    }
+    else {
+        osebni_podatki.style.display = "none";
+    }
 }
