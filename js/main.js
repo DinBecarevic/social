@@ -181,10 +181,48 @@ function regsubmit() {
 
 function podatki_select() {
     var osebni_podatki = document.getElementById("spremba-osebnih-podatkov-container");
-    if(osebni_podatki.style.display = "none") {
-        osebni_podatki.style.display = "block";
-    }
-    else {
-        osebni_podatki.style.display = "none";
-    }
+    var sprememba_gesla = document.getElementById('spremba-gesla-container');
+    var izbris_profila = document.getElementById('izbris-profila-container');
+    var ostale_info = document.getElementById('ostale-info-container');
+
+    ostale_info.style.display = "none";
+    izbris_profila.style.display = "none";
+    sprememba_gesla.style.display = "none";
+    osebni_podatki.style.display = "block";
+}
+
+function geslo_select() {
+    var osebni_podatki = document.getElementById("spremba-osebnih-podatkov-container");
+    var sprememba_gesla = document.getElementById('spremba-gesla-container');
+    var izbris_profila = document.getElementById('izbris-profila-container');
+    var ostale_info = document.getElementById('ostale-info-container');
+
+    ostale_info.style.display = "none";
+    izbris_profila.style.display = "none";
+    osebni_podatki.style.display = "none";
+    sprememba_gesla.style.display = "block";
+}
+
+function izbris_select() {
+    var osebni_podatki = document.getElementById("spremba-osebnih-podatkov-container");
+    var sprememba_gesla = document.getElementById('spremba-gesla-container');
+    var izbris_profila = document.getElementById('izbris-profila-container');
+    var ostale_info = document.getElementById('ostale-info-container');
+
+    ostale_info.style.display = "none";
+    osebni_podatki.style.display = "none";
+    sprememba_gesla.style.display = "none";
+    izbris_profila.style.display = "block";
+}
+
+function  info_select() {
+    var osebni_podatki = document.getElementById("spremba-osebnih-podatkov-container");
+    var sprememba_gesla = document.getElementById('spremba-gesla-container');
+    var izbris_profila = document.getElementById('izbris-profila-container');
+    var ostale_info = document.getElementById('ostale-info-container');
+
+    osebni_podatki.style.display = "none";
+    sprememba_gesla.style.display = "none";
+    izbris_profila.style.display = "none";
+    ostale_info.style.display = "block";
 }

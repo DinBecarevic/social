@@ -11,6 +11,7 @@ if (isset($_POST['osebni-submit'])) {
     $lastname = mysqli_real_escape_string($conn, $_POST["lastname"]);
     $pronouns = mysqli_real_escape_string($conn, $_POST["pronouns"]);
     $datumroj = mysqli_real_escape_string($conn, $_POST["datumroj"]);
+    $opis = mysqli_real_escape_string($conn, $_POST["opis"]);
     $regija = mysqli_real_escape_string($conn, $_POST["regija"]);
     $mesto = mysqli_real_escape_string($conn, $_POST["mesto"]);
 

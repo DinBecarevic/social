@@ -37,20 +37,20 @@ if (isset($_SESSION['S_userId'])) {
                         <br><br><br>
                         <!-- -----------profile-select-option----------------->
                         <div class='profile-select-option'>
-                            <div class='select-content' id='osebni-podatki-select' onclick='podatki_select()'>
+                            <div class='select-content' onclick='podatki_select()'>
                                 <h3>Osebni Podatki</h3>
                                 <p>Uredi svoje osebne podatke...</p>
                             </div>
-                            <div class='select-content'>
+                            <div class='select-content' onclick='geslo_select()'>
                                 <h3>Spremeba gesla</h3>
                                 <p>Spemeni svoje geslo...</p>
                                 
                             </div>
-                            <div class='select-content'>
+                            <div class='select-content' onclick='izbris_select()'>
                                 <h3>Izbris profila</h3>
                                 <p>Izbriši svoj profil...</p>
                             </div>
-                            <div class='select-content'>
+                            <div class='select-content' onclick='info_select()'>
                                 <h3>Ostale informacije</h3>
                                 <p>Ostale informacije...</p>
                             </div>
@@ -124,8 +124,26 @@ if (isset($_SESSION['S_userId'])) {
                             <h3>Spremeba Gesla</h3>
                             <br>
                             <div id='geslo-container'>
+                            
                             </div>
                         </div>
+                        
+                        <div id='izbris-profila-container'>
+                            <h3>Izbris Profila</h3>
+                            <br>
+                            <div id='izbris-container'>
+                            
+                            </div>
+                        </div>
+                        
+                        <div id='ostale-info-container'>
+                            <h3>Ostale Informacije</h3>
+                            <br>
+                            <div id='ostale-info-container'>
+                            
+                            </div>
+                        </div>
+                        
                         <br>
                     </div>
                     <button id='odjava-button'><a id='odjava-link' href='includes/logout.inc.php'>Odjava</a></button>
