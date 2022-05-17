@@ -1,3 +1,13 @@
+/*---------barve-----------*/
+:root {
+    --bela: #F1F1F1;
+    --crna: #2B2B2B;
+    --hover_modra: rgba(171, 190, 255, 0.68);
+    --svetlo_modra: #4b6cb7;
+    --temno_modra: #182848;
+    --gradient_modra: linear-gradient(253deg, #4b6cb7 0%, #182848 100%);
+}
+/*---------barve-----------*/
 .container {
     background: linear-gradient(253deg, #4b6cb7 0%, #182848 100%);
     width: 100vw;
@@ -8,7 +18,7 @@
 .levo {
     width:60vw;
     height: 97vh;
-    background-color: #111;
+    background: #111;
     display: inline-block;  
     font-size: initial;
     /* IE 7 hack */
@@ -47,7 +57,7 @@
 /*----------------------------------------registracija------------------------------------------*/
 progress {
     -webkit-appearance: none;
-    border: 0px solid #3e849e;
+    border: 0px solid var(--svetlo_modra);
     border-radius: 8px;
     margin: 1vw;
     width: 22vw;
@@ -58,7 +68,7 @@ progress {
     border-radius: 8px;
 }
 ::-webkit-progress-value {
-    background-color: #2c3d5b;
+    background-color: var(--svetlo_modra);
     border-radius: 8px;
 }
 ::-moz-progress-bar {
@@ -72,7 +82,7 @@ progress {
     text-align: center;
     padding-top: 2vh;
     padding-bottom: 4vh;
-    background-color: #2c3d5b;
+    background-color: #4b6cb7;
     color: #fff;
     border-top-left-radius: 1.5vw;
     border-top-right-radius: 1.5vw;
@@ -132,7 +142,7 @@ progress {
     padding: 0 20px;
     width: 22vw;
     height: 50px;
-    background-color: #2c3d5b;
+    background-color: #4b6cb7;
     border-radius: 25px;
     font-size: 15px;
     color: #fff;

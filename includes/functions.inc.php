@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 function emptyInputSignup($username, $email, $pwd, $pwdRepeat) {
     $result;
@@ -34,6 +35,7 @@ function pwdMatch($pwd, $pwdRepeat) {
 }
 
 function userExists($conn, $username, $email) {
+
     $sql = "SELECT * FROM uporabniki WHERE username = ? OR email = ?;";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -164,4 +166,68 @@ function loginUser2($conn, $username, $pwd) {
         header("location: ../../profile.php?user_logged_in");
         exit();
     }
+}
+/* -----------------------------profile-edit-------------------------------------- */
+function emptyInputEdit($username, $email) {
+    $result;
+    if (empty($username) || empty($email)) {
+        $result = true;
+    }
+    else {
+        $result = false;
+    }
+    return $result;
+}
+
+function userExistsProfile($conn, $username, $email) {
+    $oldusername = $_SESSION['S_userUsername'];
+    $oldemail = $_SESSION['S_userEmail'];
+    $sql = "SELECT * FROM uporabniki WHERE (username = ? OR email = ?) AND (username != ? OR email != ?);";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../profile.php?error=stmtfailede");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "ssss", $username, $email, $oldusername, $oldemail);
+    mysqli_stmt_execute($stmt);
+
+    $resultData = mysqli_stmt_get_result($stmt);
+
+    if ($row = mysqli_fetch_assoc($resultData)) {
+        return $row;
+    }
+    else {
+        $result = false;
+        return $result;
+    }
+
+    mysqli_stmt_close($stmt);
+}
+
+function updateUser($conn, $username, $email, $firstname, $lastname, $pronouns, $datumroj, $opis, $regija, $mesto) {
+
+    $_SESSION['S_userUsername'] = $username;
+    $_SESSION['S_userFirstName'] = $firstname;
+    $_SESSION['S_userLastName'] = $lastname;
+    $_SESSION['S_userEmail'] = $email;
+    $_SESSION['S_userOpis'] = $opis;
+    $_SESSION['S_userRegija'] = $regija;
+    $_SESSION['S_userMesto'] = $mesto;
+    $_SESSION['S_userPronouns'] = $pronouns;
+    $_SESSION['S_userDatumRoj'] = $datumroj;
+
+    $sql = "UPDATE uporabniki SET username = ?, email = ?, first_name = ?, last_name = ?, pronouns = ?, datum_roj = ?, opis = ?, regija = ?, mesto = ? WHERE (id = ".$_SESSION['S_userId'].");";
+
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../profile.php?error=stmtfailede");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "sssssssss", $username, $email, $firstname, $lastname, $pronouns, $datumroj, $opis, $regija, $mesto);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    header("location: ../profile.php?user_updated");
+    exit();
 }

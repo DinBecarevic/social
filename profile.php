@@ -9,23 +9,21 @@ if (isset($_SESSION['S_userId'])) {
     echo "  <div class='outer-profile-container'>
                 <div class='profile-left'>
                     <div id='profile-container-left'>
-                        <div class='profile-banner'>
-                            <div class='banner-image'>
-                                <span id='banner-profile-bg'></span>
-                                
-                                <div id='image-upload_b'>
-                                    <label for='profile-upload-banner-button'>
-                                        <img src='media/upload_icon.svg' alt='upload_icon.svg'>
-                                    </label>
-                                    <input type='file' id='profile-upload-banner-button'></input>
-                                </div>
-                                
+                        <div class='banner-image'>
+                            <span id='banner-profile-bg' style='background-image: url(".$_SESSION['S_userProfileBanner'].")'></span>
+                            <div id='image-upload_b'>
+                                <label for='profile-upload-banner-button'>
+                                    <img src='media/upload_icon.svg' alt='upload_icon.svg'>
+                                </label>
+                                <input type='file' id='profile-upload-banner-button'></input>
                             </div>
                         </div>
+                        
                         <h2 id='h2-profile'>" . $_SESSION['S_userUsername'] . "</h2>
+                        
                         <br>
                         <div class='profile-icon'>
-                            <span id='dot-profile_id' class='dot-profile'>
+                            <span id='dot-profile_id' class='dot-profile' style='background-image: url(".$_SESSION['S_userProfileImg'].")'>
                                 <div id='image-upload'>
                                     <label for='profile-upload-icon-button'>
                                         <img src='media/upload_icon.svg' alt='upload_icon.svg'>
@@ -34,7 +32,7 @@ if (isset($_SESSION['S_userId'])) {
                                 </div>
                             </span>
                         </div>
-                        <br><br><br>
+                        
                         <!-- -----------profile-select-option----------------->
                         <div class='profile-select-option'>
                             <div class='select-content' onclick='podatki_select()'>
@@ -54,6 +52,7 @@ if (isset($_SESSION['S_userId'])) {
                                 <h3>Ostale informacije</h3>
                                 <p>Ostale informacije...</p>
                             </div>
+                            <button id='odjava-button'><a id='odjava-link' href='includes/logout.inc.php'>Odjava</a></button>
                         </div>
                         <!-- -------------------------------------------------->
                         
@@ -68,11 +67,11 @@ if (isset($_SESSION['S_userId'])) {
                                 <form action='includes/sprememba-osebnih.inc.php' method='POST'>
                                     <h3>Osebni Podatki</h3> <button type='submit' id='update-osebni-button' name='osebni-submit'>Shrani</button><hr>
                                     <div class='osebni-block'>
-                                        <label>Uporabniško ime</label><br>
+                                        <label>*Uporabniško ime</label><br>
                                         <input type='text' name='username' value='" . $_SESSION['S_userUsername'] . "' id='username-input'>
                                     </div><br>
                                     <div class='osebni-block'>
-                                        <label>Email</label><br>
+                                        <label>*Email</label><br>
                                         <input type='email' name='email' value='" . $_SESSION['S_userEmail'] . "' id='username-input'>
                                     </div><br>
                                     <div class='osebni-inline'>
@@ -84,7 +83,7 @@ if (isset($_SESSION['S_userId'])) {
                                         <input type='text' name='lastname' value='" . $_SESSION['S_userLastName'] . "' id='username-input'>
                                     </div><br><br>
                                     <div class='osebni-inline'>
-                                        <label>Pronouns</label><br>
+                                        <label>Zaimek</label><br>
                                         <input type='text' name='pronouns' value='" . $_SESSION['S_userPronouns'] . "' id='username-input'>
                                     </div>
                                     <div class='osebni-inline'>
@@ -96,9 +95,10 @@ if (isset($_SESSION['S_userId'])) {
                                         <textarea name='opis' value='' id='username-input' rows='4' cols='70'>" . $_SESSION['S_userOpis'] . "</textarea>
                                     </div><br>
                                     <div class='osebni-inline'>
-                                        <label>Regija</label><br>
+                                        <label>*Regija</label><br>
                                         <select name='regija' id='username-input'>
                                             <option value='" . $_SESSION['S_userRegija'] . "' selected>" . $_SESSION['S_userRegija'] . "</option>
+                                            <option value='Slovenija'>Slovenija</option>
                                             <option value='Pomurska'>Pomurska</option>
                                             <option value='Podravska'>Podravska</option>
                                             <option value='Koroska'>Koroska</option>
@@ -146,7 +146,6 @@ if (isset($_SESSION['S_userId'])) {
                         
                         <br>
                     </div>
-                    <button id='odjava-button'><a id='odjava-link' href='includes/logout.inc.php'>Odjava</a></button>
                 </div>
             </div>  
             ";

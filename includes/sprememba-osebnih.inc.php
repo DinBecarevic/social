@@ -15,20 +15,16 @@ if (isset($_POST['osebni-submit'])) {
     $regija = mysqli_real_escape_string($conn, $_POST["regija"]);
     $mesto = mysqli_real_escape_string($conn, $_POST["mesto"]);
 
-    if (emptyInputSignup($username, $email, $pwd, $pwdRepeat) !== false) {
+    if (emptyInputEdit($username, $email) !== false) {
         header("location: ../index.php?error=emptyinput");
         exit();
     }
-    if (pwdMatch($pwd, $pwdRepeat) !== false) {
-        header("location: ../index.php?error=pwddontmatch");
+    if (userExistsProfile($conn, $username, $email) !== false) {
+        header("location: ../profile.php?error=usernameoremailtaken");
         exit();
     }
-    if (userExists($conn, $username, $email) !== false) {
-        header("location: ../index.php?error=usernametaken");
-        exit();
-    }
-    createUser($conn, $username, $email, $pwd, $firstname, $lastname, $datumroj, $regija);
+    updateUser($conn, $username, $email, $firstname, $lastname, $pronouns, $datumroj, $opis, $regija, $mesto);
 } else {
-    header("location: ../index.php");
+    header("location: ../profile.php");
     exit();
 }
