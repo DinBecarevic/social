@@ -216,7 +216,7 @@ width: 30vw;}
     display: inline-block;
     font-size: 2.2vw;
 }
-#osebni-podatki-container hr{
+#spremembe-hr{
     margin-top: 1vw;
     margin-bottom: 1vw;
     border: 2px solid var(--svetlo_modra);
@@ -297,7 +297,17 @@ width: 30vw;}
     outline: none;
     border: none;
 }
-    /*------------------------odjava-button--------------------*/
+/*------------------------spremema-gesla-container--------------------*/
+.trenutno-geslo-block input{
+    width: 20vw;
+}
+.trenutno-geslo-inline {
+    display: inline-block;
+}
+.trenutno-geslo-inline input{
+    width: 12vw;
+}
+/*------------------------odjava-button--------------------*/
 #odjava-button {
     position: absolute;
     top: 65vh;

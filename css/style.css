@@ -18,7 +18,7 @@
 .levo {
     width:60vw;
     height: 97vh;
-    background: #111;
+    /*background: #111;*/
     display: inline-block;  
     font-size: initial;
     /* IE 7 hack */
@@ -27,7 +27,7 @@
     vertical-align: middle;
 }
 .desno {
-    background-color: #111;
+    /*background-color: rgba(110, 144, 229, 0.05);*/
     width: 40vw;
     height: 97vh;
     display: table-cell;
@@ -227,7 +227,7 @@ input[type="date"]{
     height: 120px;
     width: 120px;
     box-sizing: border-box;
-    border: 8px solid #2c3d5b;
+    border: 8px solid var(--svetlo_modra);
     position: absolute;
     margin: auto;
     top: 0;
@@ -254,7 +254,7 @@ input[type="date"]{
 #reg_loader2{
     height: 120px;
     width: 120px;
-    background-color: #2c3d5b;
+    background-color: var(--svetlo_modra);
     position: absolute;
     margin: auto;
     top: 0;
@@ -280,30 +280,227 @@ input[type="date"]{
     position: absolute;
     bottom: 0;
     right: 0;
-}/*----------------------------------------pomurska-sijaj------------------------------------------*/
+}
+/*----------------------------------------pomurska-sijaj------------------------------------------*/
 #pomurska_sijaj {
     visibility: hidden;
     position: absolute;
     top: 0;
-    left: 0;
+    z-index: -1;
 }
+#pomurska_sijaj:hover {
+    visibility: visible;
+}
+#pomurska:hover + #pomurska_sijaj{
+    visibility: visible;
+}
+#pomurska:hover {
+    cursor: pointer;
+}
+/*----------------------------------------podravska-sijaj------------------------------------------*/
+
 #podravska_sijaj {
     visibility: hidden;
     position: absolute;
     top: 0;
-    left: 0;
+    z-index: -1;
 }
-/*
-#podravska:hover > #podravska_sijaj {
+#podravska_sijaj:hover {
+    visibility: visible;
+}
+#podravska:hover + #podravska_sijaj{
+    visibility: visible;
+}
+#podravska:hover {
+    cursor: pointer;
+}
+/*----------------------------------------obalno-kraska-sijaj------------------------------------------*/
+
+#obalnokraska-sijaj {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+}
+#obalnokraska-sijaj:hover {
+    visibility: visible;
+}
+#obalno-kraska:hover + #obalnokraska-sijaj{
+    visibility: visible;
+}
+#obalno-kraska:hover {
+    cursor: pointer;
+}
+/*----------------------------------------koroska-sijaj------------------------------------------*/
+
+#koroska_sijaj {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+}
+#koroska_sijaj:hover {
     visibility: visible;
     cursor: pointer;
 }
-#pomurska:hover > #pomurska_sijaj{
+#koroska:hover + #koroska_sijaj{
     visibility: visible;
     cursor: pointer;
 }
+#koroska:hover {
+    cursor: pointer;
+}
+/*----------------------------------------savinjska-sijaj------------------------------------------*/
 
- */
+#savinjska_sijaj {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+}
+#savinjska_sijaj:hover {
+    visibility: visible;
+    cursor: pointer;
+}
+#savinjska:hover + #savinjska_sijaj{
+    visibility: visible;
+    cursor: pointer;
+}
+#savinjska:hover {
+    cursor: pointer;
+}
+/*----------------------------------------zasavska-sijaj------------------------------------------*/
 
+#zasavska_sijaj {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+}
+#zasavska_sijaj:hover {
+    visibility: visible;
+    cursor: pointer;
+}
+#zasavska:hover + #zasavska_sijaj{
+    visibility: visible;
+    cursor: pointer;
+}
+#zasavska:hover {
+    cursor: pointer;
+}
+/*----------------------------------------posavska-sijaj------------------------------------------*/
+
+#posavska_sijaj {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+}
+#posavska_sijaj:hover {
+    visibility: visible;
+    cursor: pointer;
+}
+#posavska:hover + #posavska_sijaj{
+    visibility: visible;
+    cursor: pointer;
+}
+#posavska:hover {
+    cursor: pointer;
+}
+/*----------------------------------------jugo-vzhodna-sijaj------------------------------------------*/
+
+#jugovzhodna-sijaj {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+}
+#jugovzhodna-sijaj:hover {
+    visibility: visible;
+    cursor: pointer;
+}
+#jugo-vzhodna-slo:hover + #jugovzhodna-sijaj{
+    visibility: visible;
+    cursor: pointer;
+}
+#jugo-vzhodna-slo:hover {
+    cursor: pointer;
+}
+/*----------------------------------------primorsko-notranjska-sijaj------------------------------------------*/
+
+#primorskonotranjska_sijaj {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+}
+#primorskonotranjska_sijaj:hover {
+    visibility: visible;
+    cursor: pointer;
+}
+#primorsko-notranjska:hover + #primorskonotranjska_sijaj{
+    visibility: visible;
+    cursor: pointer;
+}
+#primorsko-notranjska:hover {
+    cursor: pointer;
+}
+/*----------------------------------------goriska-sijaj------------------------------------------*/
+
+#goriska_sijaj {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+}
+#goriska_sijaj:hover {
+    visibility: visible;
+    cursor: pointer;
+}
+#goriska:hover + #goriska_sijaj{
+    visibility: visible;
+    cursor: pointer;
+}
+#goriska:hover {
+    cursor: pointer;
+}
+/*----------------------------------------gorenjska-sijaj------------------------------------------*/
+
+#gorenjska_sijaj {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+}
+#gorenjska_sijaj:hover {
+    visibility: visible;
+    cursor: pointer;
+}
+#gorenjska:hover + #gorenjska_sijaj{
+    visibility: visible;
+    cursor: pointer;
+}
+#gorenjska:hover {
+    cursor: pointer;
+}
+/*----------------------------------------osrednjeslovenska-sijaj------------------------------------------*/
+
+#osrednjeslovenska_sijaj {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+}
+#osrednjeslovenska_sijaj:hover {
+    visibility: visible;
+    cursor: pointer;
+}
+#osrednje-slovenska:hover + #osrednjeslovenska_sijaj{
+    visibility: visible;
+    cursor: pointer;
+}
+#osrednje-slovenska:hover {
+    cursor: pointer;
+}
 /*----------------------------------------input-bx-animate------------------------------------------*/
 

@@ -6,15 +6,15 @@
     <div class="levo">
         <!-- ------MAP-------- -->
         <div class="map animate__animated animate__jackInTheBox" >
-            <img id="map-slika-slovenije" src="media/slovenia-map3-mini.png" alt="slovenia-map2-mini" usemap="#workmap">
+            <img id="map-slika-slovenije" src="media/slovenia-map8-mini.png" alt="slovenia-map2-mini" usemap="#workmap">
             <map id="map_id" name="workmap" >
                 <!-- Pomurska -->
-                <div id="pomurska" onmouseover="sijaj()" onmouseout="sijajout()">
+                <div id="pomurska">
                     <area shape="rect" alt="" coords="796,0,959,106" >
                     <area shape="rect" alt="" coords="824,107,987,133" >
                     <area shape="rect" alt="" coords="849,134,1011,160" >
                 </div>
-                <img src="media/pomurska.png" alt="pomurska" id="pomurska_sijaj">
+                <img src="media/pomurska-sijaj.png" alt="pomurska" id="pomurska_sijaj">
                 <!-- Podravska -->
                 <div id="podravska" >
                     <area shape="rect" alt="" coords="659,53,795,213" >
@@ -25,12 +25,13 @@
                     <area shape="rect" alt="" coords="629,105,658,187" >
                     <area shape="rect" alt="" coords="767,244,793,270" >
                 </div>
-                <img src="media/podravska.png" alt="pomurska" id="podravska_sijaj">
+                <img src="media/podravska2-sijaj.png" alt="podravska" id="podravska_sijaj">
                 <!-- Koroška -->
                 <div id="koroska">
                     <area shape="rect" alt="" coords="438,105,628,187" >
                     <area shape="rect" alt="" coords="528,81,658,104" >
                 </div>
+                <img src="media/koroska-sijaj.png" alt="koroska" id="koroska_sijaj">
                 <!-- Savinjska -->
                 <div id="savinjska">
                     <area shape="rect" alt="" coords="383,162,437,212" >
@@ -40,28 +41,33 @@
                     <area shape="rect" alt="" coords="548,271,713,298" >
                     <area shape="rect" alt="" coords="576,299,726,326" >
                 </div>
+                <img src="media/savinjska-sijaj.png" alt="savinjska" id="savinjska_sijaj">
                 <!-- Zasavska -->
                 <div id="zasavska">
                     <area shape="rect" alt="" coords="466,271,547,298">
                     <area shape="rect" alt="" coords="438,299,575,326">
                     <area shape="rect" alt="" coords="491,327,547,354">
                 </div>
+                <img src="media/zasavska-sijaj.png" alt="zasavska" id="zasavska_sijaj">
                 <!-- Posavska -->
                 <div id="posavska">
                     <area shape="rect" alt="" coords="548,327,739,354">
                     <area shape="rect" alt="" coords="576,355,739,382">
                     <area shape="rect" alt="" coords="631,383,739,433">
                 </div>
+                <img src="media/posavska-sijaj.png" alt="posavska" id="posavska_sijaj">
                 <!-- jugo-vzhodna-slo -->
                 <div id="jugo-vzhodna-slo">
                     <area shape="rect" alt="" coords="466,383,630,573">
                     <area shape="rect" alt="" coords="491,355,575,382">
                     <area shape="rect" alt="" coords="357,439,465,573">
                 </div>
+                <img src="media/jugovzhodna-sijaj.png" alt="jugo-vzhodna-slo" id="jugovzhodna-sijaj">
                 <!-- Primorsko-notranjska -->
                 <div id="primorsko-notranjska">
                     <area shape="rect" alt="" coords="219,409,356,573">
                 </div>
+                <img src="media/primorskonotranjska-sijaj.png" alt="primorsko-notranjska" id="primorskonotranjska_sijaj">
                 <!-- Goriska -->
                 <div id="goriska">
                     <area shape="rect" alt="" coords="23,327,218,438">
@@ -70,10 +76,12 @@
                     <area shape="rect" alt="" coords="26,190,134,219">
                     <area shape="rect" alt="" coords="50,160,78,189">
                 </div>
+                <img src="media/goriska-sijaj.png" alt="goriska" id="goriska_sijaj">
                 <!-- obalno-kraska -->
                 <div id="obalno-kraska">
                     <area shape="rect" alt="" coords="50,439,218,599">
                 </div>
+                <img src="media/obalnokraska-sijaj.png" alt="obalno-kraska" id="obalnokraska-sijaj">
                 <!-- gorenjska -->
                 <div id="gorenjska">
                     <area shape="rect" alt="" coords="188,164,298,326">
@@ -84,6 +92,7 @@
                     <area shape="rect" alt="" coords="299,192,382,270">
                     <area shape="rect" alt="" coords="299,271,329,299">
                 </div>
+                <img src="media/gorenjska-sijaj.png" alt="gorenjska" id="gorenjska_sijaj">
                 <!-- osrednje-slovenska -->
                 <div id="osrednje-slovenska">
                     <area shape="rect" alt="" coords="383,213,410,242">
@@ -95,6 +104,7 @@
                     <area shape="rect" alt="" coords="219,383,465,408">
                     <area shape="rect" alt="" coords="357,409,465,438">
                 </div>
+                <img src="media/osrednjeslovenska-sijaj.png" alt="osrednjeslovenska" id="osrednjeslovenska_sijaj">
         </map>
         </div>
     </div>

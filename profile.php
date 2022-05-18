@@ -65,7 +65,7 @@ if (isset($_SESSION['S_userId'])) {
                             <div id='osebni-podatki-container'>
                             
                                 <form action='includes/sprememba-osebnih.inc.php' method='POST'>
-                                    <h3>Osebni Podatki</h3> <button type='submit' id='update-osebni-button' name='osebni-submit'>Shrani</button><hr>
+                                    <h3>Osebni Podatki</h3> <button type='submit' id='update-osebni-button' name='osebni-submit'>Shrani</button><hr id='spremembe-hr'>
                                     <div class='osebni-block'>
                                         <label>*Uporabniško ime</label><br>
                                         <input type='text' name='username' value='" . $_SESSION['S_userUsername'] . "' id='username-input'>
@@ -121,10 +121,22 @@ if (isset($_SESSION['S_userId'])) {
                         </div>
                         
                         <div id='spremba-gesla-container'>
-                            <h3>Spremeba Gesla</h3>
-                            <br>
                             <div id='geslo-container'>
-                            
+                                <form action='includes/spremba-gesla.inc.php' method='post'>
+                                    <h3>Spremeba Gesla</h3> <button type='submit' id='sprememba-gesla-button' name='sprememba-gesla-submit'>Shrani</button><hr id='spremembe-hr'>
+                                    <div class='trenutno-geslo-block'>
+                                        <label>*Trenutno geslo</label><br>
+                                        <input type='password' name='current-pwd' placeholder='trenutno geslo...' id='username-input'>
+                                    </div><br>
+                                    <div class='trenutno-geslo-inline'>
+                                        <label>*Novo geslo</label><br>
+                                        <input type='password' name='new-pwd' placeholder='novo geslo...' id='username-input'>
+                                    </div>
+                                    <div class='trenutno-geslo-inline'>
+                                        <label>*Ponovi novo geslo</label><br>
+                                        <input type='password' name='new-pwd-repeat' placeholder='novo geslo...' id='username-input'>
+                                    </div><br>
+                                </form>
                             </div>
                         </div>
                         
