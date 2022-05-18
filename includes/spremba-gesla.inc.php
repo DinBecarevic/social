@@ -2,20 +2,25 @@
 
 if (isset($_POST['sprememba-gesla-submit'])) {
 
-    $old_pwd = $_POST['current-pwd'];
-    $pwd = $_POST['new-pwd'];
-    $pwd_repeat = $_POST['new-pwd-repeat'];
-
     require_once 'dbh.inc.php';
     require_once 'functions.inc.php';
 
-    if (emptyInputLogin($email, $pwd) !== false) {
-        header("location: ../index.php?error=emptyinput");
+    $old_pwd = mysqli_real_escape_string($conn, $_POST['current-pwd']);
+    $pwd = mysqli_real_escape_string($conn, $_POST['new-pwd']);
+    $pwdRepeat = mysqli_real_escape_string($conn, $_POST['new-pwd-repeat']);
+
+    if (emptyInputChangePwd($old_pwd, $pwd, $pwdRepeat) !== false) {
+        header("location: ../profile.php?error=emptyinput");
         exit();
     }
-    loginUser($conn, $email, $pwd);
+    if (pwdMatch($pwd, $pwdRepeat) !== false) {
+        header("location: ../profile.php?error=pwddontmatch");
+        exit();
+    }
+
+    changePwd($conn, $old_pwd, $pwd);
 }
 else {
-    header("location: ../index.php?error=fail");
+    header("location: ../profile.php?error=fail");
     exit();
 }

@@ -8,27 +8,65 @@ include_once 'includes/dbh.inc.php';
 if (isset($_SESSION['S_userId'])) {
     echo "  <div class='outer-profile-container'>
                 <div class='profile-left'>
-                    <div id='profile-container-left'>
-                        <div class='banner-image'>
+                    <div id='profile-container-left'>";
+    echo "                <div class='banner-image'>
                             <span id='banner-profile-bg' style='background-image: url(".$_SESSION['S_userProfileBanner'].")'></span>
                             <div id='image-upload_b'>
-                                <label for='profile-upload-banner-button'>
-                                    <img src='media/upload_icon.svg' alt='upload_icon.svg'>
-                                </label>
-                                <input type='file' id='profile-upload-banner-button'></input>
+                            
+                                <form id='upload-banner-form' action='includes/upload-banner.inc.php' method='post' enctype='multipart/form-data'>
+                                    <input type='file' name='banner-image' id='profile-upload-banner-button' onchange='upload_banner_upload_submit()'></input>
+                                    <label for='profile-upload-banner-button'>
+                                        <img src='media/upload_icon.svg' alt='upload_icon.svg'>
+                                    </label>
+                                    <div id='upload-banner-popup'>
+                                        <button id='upload-banner-submit-button' name='bannerSubmit' type='submit'>Shrani</button>
+                                    </div>
+                                </form>
+                                
                             </div>
-                        </div>
-                        
-                        <h2 id='h2-profile'>" . $_SESSION['S_userUsername'] . "</h2>
+                        </div>";
+
+                        if (isset($_GET['error'])) {
+                            if ($_GET['error'] == 'FileNotSupported') {
+                                echo "<p class='error-message'>Ta vrsta datoteke ni podprta...</p>";
+                            }
+                            else if ($_GET['error'] == 'FileUploadError') {
+                                echo "<p class='error-message'>Zgodila se je napaka pri objavljanu slike...</p>";
+                            }
+                            else if ($_GET['error'] == 'FileTooBig') {
+                                echo "<p class='error-message'>Datoteka presega makismalno velikost 10mb...</p>";
+                            }
+                            echo "<script type='text/javascript'>
+                                            setTimeout(function() {
+                                                var errors = document.getElementsByClassName('error-message');
+                                                try {
+                                                    errors[0].style.opacity = '0';
+                                                } catch (e) {}
+                                                try {
+                                                    errors[1].style.opacity = '0';
+                                                } catch (e) {}
+                                                try {
+                                                    errors[2].style.opacity = '0';
+                                                } catch (e) {}
+                                            }, 3000);
+                                      </script>";
+                        }
+
+    echo "              <h2 id='h2-profile'>" . $_SESSION['S_userUsername'] . "</h2>
                         
                         <br>
                         <div class='profile-icon'>
                             <span id='dot-profile_id' class='dot-profile' style='background-image: url(".$_SESSION['S_userProfileImg'].")'>
                                 <div id='image-upload'>
-                                    <label for='profile-upload-icon-button'>
-                                        <img src='media/upload_icon.svg' alt='upload_icon.svg'>
-                                    </label>
-                                    <input type='file' id='profile-upload-icon-button'></input>
+                                    <form id='upload-profileicon-form' action='includes/upload-profileicon.inc.php' method='post' enctype='multipart/form-data'>
+                                        <input type='file' name='icon-image' id='profile-upload-icon-button' onchange='upload_profileicon_upload_submit()'></input>
+                                        <label for='profile-upload-icon-button'>
+                                            <img src='media/upload_icon.svg' alt='upload_icon.svg'>
+                                        </label>
+                                        <div id='upload-profileicon-popup'>
+                                            <button id='upload-profileicon-submit-button' name='iconSubmit' type='submit'>Shrani</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </span>
                         </div>
@@ -65,38 +103,38 @@ if (isset($_SESSION['S_userId'])) {
                             <div id='osebni-podatki-container'>
                             
                                 <form action='includes/sprememba-osebnih.inc.php' method='POST'>
-                                    <h3>Osebni Podatki</h3> <button type='submit' id='update-osebni-button' name='osebni-submit'>Shrani</button><hr id='spremembe-hr'>
+                                    <h3>Osebni Podatki</h3> <button type='submit' class='update-osebni-button' name='osebni-submit'>Shrani</button><hr id='spremembe-hr'>
                                     <div class='osebni-block'>
                                         <label>*Uporabniško ime</label><br>
-                                        <input type='text' name='username' value='" . $_SESSION['S_userUsername'] . "' id='username-input'>
+                                        <input type='text' name='username' value='" . $_SESSION['S_userUsername'] . "' class='username-input'>
                                     </div><br>
                                     <div class='osebni-block'>
                                         <label>*Email</label><br>
-                                        <input type='email' name='email' value='" . $_SESSION['S_userEmail'] . "' id='username-input'>
+                                        <input type='email' name='email' value='" . $_SESSION['S_userEmail'] . "' class='username-input'>
                                     </div><br>
                                     <div class='osebni-inline'>
                                         <label>Ime</label><br>
-                                        <input type='text' name='firstname' value='" . $_SESSION['S_userFirstName'] . "' id='username-input'>
+                                        <input type='text' name='firstname' value='" . $_SESSION['S_userFirstName'] . "' class='username-input'>
                                     </div>
                                     <div class='osebni-inline'>
                                         <label>Priimek</label><br>
-                                        <input type='text' name='lastname' value='" . $_SESSION['S_userLastName'] . "' id='username-input'>
+                                        <input type='text' name='lastname' value='" . $_SESSION['S_userLastName'] . "' class='username-input'>
                                     </div><br><br>
                                     <div class='osebni-inline'>
                                         <label>Zaimek</label><br>
-                                        <input type='text' name='pronouns' value='" . $_SESSION['S_userPronouns'] . "' id='username-input'>
+                                        <input type='text' name='pronouns' value='" . $_SESSION['S_userPronouns'] . "' class='username-input'>
                                     </div>
                                     <div class='osebni-inline'>
                                         <label>Datum rojstva</label><br>
-                                        <input type='date' name='datumroj' value=" . $_SESSION['S_userDatumRoj'] . " id='username-input'>
+                                        <input type='date' name='datumroj' value=" . $_SESSION['S_userDatumRoj'] . " class='username-input'>
                                     </div><br><br>
                                     <div class='osebni-block'>
                                         <label>Opis</label><br>
-                                        <textarea name='opis' value='' id='username-input' rows='4' cols='70'>" . $_SESSION['S_userOpis'] . "</textarea>
+                                        <textarea name='opis' value='' class='username-input' rows='4' cols='70'>" . $_SESSION['S_userOpis'] . "</textarea>
                                     </div><br>
                                     <div class='osebni-inline'>
                                         <label>*Regija</label><br>
-                                        <select name='regija' id='username-input'>
+                                        <select name='regija' class='username-input'>
                                             <option value='" . $_SESSION['S_userRegija'] . "' selected>" . $_SESSION['S_userRegija'] . "</option>
                                             <option value='Slovenija'>Slovenija</option>
                                             <option value='Pomurska'>Pomurska</option>
@@ -114,7 +152,7 @@ if (isset($_SESSION['S_userId'])) {
                                     </div>
                                     <div class='osebni-inline'>
                                         <label>Mesto</label><br>
-                                        <input type='text' name='mesto' value='" . $_SESSION['S_userMesto'] . "' id='username-input'>
+                                        <input type='text' name='mesto' value='" . $_SESSION['S_userMesto'] . "' class='username-input'>
                                     </div>
                                 </form>
                             </div>
@@ -123,18 +161,18 @@ if (isset($_SESSION['S_userId'])) {
                         <div id='spremba-gesla-container'>
                             <div id='geslo-container'>
                                 <form action='includes/spremba-gesla.inc.php' method='post'>
-                                    <h3>Spremeba Gesla</h3> <button type='submit' id='sprememba-gesla-button' name='sprememba-gesla-submit'>Shrani</button><hr id='spremembe-hr'>
+                                    <h3>Spremeba Gesla</h3> <button type='submit' class='update-osebni-button' name='sprememba-gesla-submit'>Shrani</button><hr id='spremembe-hr'>
                                     <div class='trenutno-geslo-block'>
                                         <label>*Trenutno geslo</label><br>
-                                        <input type='password' name='current-pwd' placeholder='trenutno geslo...' id='username-input'>
+                                        <input type='password' name='current-pwd' placeholder='trenutno geslo...' class='username-input'>
                                     </div><br>
                                     <div class='trenutno-geslo-inline'>
                                         <label>*Novo geslo</label><br>
-                                        <input type='password' name='new-pwd' placeholder='novo geslo...' id='username-input'>
+                                        <input type='password' name='new-pwd' placeholder='novo geslo...' class='username-input'>
                                     </div>
                                     <div class='trenutno-geslo-inline'>
                                         <label>*Ponovi novo geslo</label><br>
-                                        <input type='password' name='new-pwd-repeat' placeholder='novo geslo...' id='username-input'>
+                                        <input type='password' name='new-pwd-repeat' placeholder='novo geslo...' class='username-input'>
                                     </div><br>
                                 </form>
                             </div>

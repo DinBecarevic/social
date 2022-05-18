@@ -231,3 +231,80 @@ function updateUser($conn, $username, $email, $firstname, $lastname, $pronouns, 
     header("location: ../profile.php?user_updated");
     exit();
 }
+function emptyInputChangePwd($old_pwd, $pwd, $pwdRepeat) {
+    $result;
+    if (empty($old_pwd) || empty($pwd) || empty($pwdRepeat)) {
+        $result = true;
+    }
+    else {
+        $result = false;
+    }
+    return $result;
+}
+function changePwd($conn, $old_pwd, $pwd) {
+    $username = $_SESSION['S_userUsername'];
+    $uidExists = userExists($conn, $username, $username);
+
+    $salt = "m8p#m,^(HYKw[Zv.[:htY_!jf~UTyEyMuGtj&Utrv]j%TYa@v)(.,sr8MXR9Nhw{";
+    $salted = $old_pwd.$salt;
+    $pwdHased = $uidExists["pwd"];
+    $checkPwd = password_verify($salted, $pwdHased);
+
+    if ($checkPwd === false) {
+        header("location: ../profile.php?error=oldwrongpass");
+        exit();
+    }
+
+    $sql = "UPDATE uporabniki SET pwd = ? WHERE id = ".$_SESSION['S_userId'].";";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../profile.php?error=stmtfailed");
+        exit();
+    }
+
+    $salt = "m8p#m,^(HYKw[Zv.[:htY_!jf~UTyEyMuGtj&Utrv]j%TYa@v)(.,sr8MXR9Nhw{";
+    $salted = $pwd.$salt;
+    $hashedPwd = password_hash($salted, PASSWORD_DEFAULT);
+
+    mysqli_stmt_bind_param($stmt, "s", $hashedPwd);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    header("location: ../profile.php?error=pwdSpremenjen");
+    exit();
+}
+function updateBanner($conn, $fileDestinationDatabase) {
+
+    $_SESSION['S_userProfileBanner'] = $fileDestinationDatabase;
+
+    $sql = "UPDATE uporabniki SET banner_dir = ? WHERE (id = ".$_SESSION['S_userId'].");";
+
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../profile.php?error=stmtfailed");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "s", $fileDestinationDatabase);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    header("location: ../profile.php?user_banner_updated");
+    exit();
+}
+function updateIcon($conn, $fileDestinationDatabase) {
+
+    $_SESSION['S_userProfileImg'] = $fileDestinationDatabase;
+
+    $sql = "UPDATE uporabniki SET img_dir = ? WHERE (id = ".$_SESSION['S_userId'].");";
+
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../profile.php?error=stmtfailed");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "s", $fileDestinationDatabase);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    header("location: ../profile.php?user_icon_updated");
+    exit();
+}

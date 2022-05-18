@@ -226,3 +226,15 @@ function  info_select() {
     izbris_profila.style.display = "none";
     ostale_info.style.display = "block";
 }
+//-----------profile-banner------------------------------------------
+function upload_banner_upload_submit() {
+    document.getElementById("upload-banner-submit-button").click();
+}
+//-----------profile-icon------------------------------------------
+function upload_profileicon_upload_submit() {
+    document.getElementById("upload-profileicon-submit-button").click();
+}
+
+setTimeout(function() {
+    document.getElementById("enas").style.display = 'none';
+}, 3000);

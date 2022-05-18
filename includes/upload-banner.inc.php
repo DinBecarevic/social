@@ -1,0 +1,53 @@
+<?php
+
+if (isset($_POST['bannerSubmit'])) {
+
+    session_start();
+
+    require_once 'dbh.inc.php';
+    require_once 'functions.inc.php';
+
+    $file = $_FILES['banner-image'];
+    print_r($file);
+    $fileName = $file['name'];
+    $fileTmpName = $file['tmp_name'];
+    $fileSize = $file['size'];
+    $fileError = $file['error'];
+    $fileType = $file['type'];
+
+    //pridobi končnico datoteke (naprimer .png)
+    $fileExt = explode('.', $fileName);
+    //pretvori $fileExt v spodnje črke ce bi končnica slučajno bila .PNG, end() uzame samo PNG
+    $fileActualExtension = strtolower(end($fileExt));
+
+    $allowed = array('jpg', 'jpeg', 'jfif', 'png', 'gif');
+
+    //preveri če je objavljena slika dovoljena
+    if (in_array($fileActualExtension, $allowed)) {
+        if($fileError === 0) {
+            if ($fileSize < 10000000) {
+                //končno ime slike je username_banner.png
+                $fileNameNew = $_SESSION['S_userUsername'].'_banner.'.$fileActualExtension;
+                //sharnimo directory slike v spremenljivko
+                $fileDestination = '../slike/banner/'.$fileNameNew;
+                //sliko prestavimo
+                move_uploaded_file($fileTmpName, $fileDestination);
+
+                //updatamo se databazo...
+                $fileDestinationDatabase = 'slike/banner/'.$fileNameNew;
+                updateBanner($conn, $fileDestinationDatabase);
+                header("location: ../profile.php?error=bannerUploadSuccess");
+            } else {
+                header("location: ../profile.php?error=FileTooBig");
+            }
+        } else {
+            header("location: ../profile.php?error=FileUploadError");
+        }
+    } else {
+        header("location: ../profile.php?error=FileNotSupported");
+    }
+}
+else {
+    header("location: ../profile.php?error=fail");
+    exit();
+}

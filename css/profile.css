@@ -80,7 +80,7 @@ body {
     width: 14vh;
     position: relative;
     margin-left: -25px;
-    background-color: var(--bela);
+    /* background-color: var(--bela); */
     border-radius: 50%;
     display: inline-block;
 
@@ -267,7 +267,7 @@ width: 30vw;}
 .osebni-inline input {
     width: 14vw;
 }
-#update-osebni-button {
+.update-osebni-button {
     margin-left: 1.2vw;
     display: inline-block;
     /* margin-top: 1.2vw; */
@@ -282,7 +282,7 @@ width: 30vw;}
 
     border: none;
 }
-#update-osebni-button:hover {
+.update-osebni-button:hover {
     cursor: pointer;
 }
 #osebni-podatki-container select{
@@ -306,6 +306,29 @@ width: 30vw;}
 }
 .trenutno-geslo-inline input{
     width: 12vw;
+}
+/*------------------------upload-banner/profile-error-mesage--------------------*/
+.error-message {
+    color: #ff0000;
+    font-size: 1.5em;
+    position: absolute;
+    top: -3.2vh;
+    right: 1vh;
+    transition: 0.5s;
+}
+/*------------------------upload-banner--------------------*/
+#upload-banner-popup {
+    display: none;
+}
+#profile-upload-banner-button {
+    display: none;
+}
+/*------------------------upload-icon--------------------*/
+#profile-upload-icon-button {
+    display: none;
+}
+#upload-profileicon-popup {
+    display: none;
 }
 /*------------------------odjava-button--------------------*/
 #odjava-button {
