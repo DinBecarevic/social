@@ -316,6 +316,14 @@ width: 30vw;}
     right: 1vh;
     transition: 0.5s;
 }
+.success-message {
+    color: #00ff00;
+    font-size: 1.5em;
+    position: absolute;
+    top: -3.2vh;
+    right: 1vh;
+    transition: 0.5s;
+}
 /*------------------------upload-banner--------------------*/
 #upload-banner-popup {
     display: none;
@@ -329,6 +337,34 @@ width: 30vw;}
 }
 #upload-profileicon-popup {
     display: none;
+}
+/*------------------------izbris-profila-container--------------------*/
+.izbris-profila-block {
+    margin-top: 4vh;
+}
+.izbris-profila-block2{
+    margin-top: 2vh;
+}
+.izbris-profila-block label {
+    font-size: 1.4em;
+}
+#izbris-radio-select{
+    margin: 1vw;
+    margin-left: 2vw;
+    width: 20vw;
+}
+#spremembe-hr2 {
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+    border: 2px solid var(--crna);
+    border-radius: 1vw;
+}
+.izbris-profila-block2 a {
+    text-decoration: none;
+    color: var(--svetlo_modra);
+}
+.izbris-profila-block2 h4 {
+    font-size: 1.4em;
 }
 /*------------------------odjava-button--------------------*/
 #odjava-button {

@@ -238,3 +238,4 @@ function upload_profileicon_upload_submit() {
 setTimeout(function() {
     document.getElementById("enas").style.display = 'none';
 }, 3000);
+//-----------izbris-profila------------------------------------------

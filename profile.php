@@ -27,6 +27,7 @@ if (isset($_SESSION['S_userId'])) {
                         </div>";
 
                         if (isset($_GET['error'])) {
+                            //error-messages
                             if ($_GET['error'] == 'FileNotSupported') {
                                 echo "<p class='error-message'>Ta vrsta datoteke ni podprta...</p>";
                             }
@@ -36,9 +37,29 @@ if (isset($_SESSION['S_userId'])) {
                             else if ($_GET['error'] == 'FileTooBig') {
                                 echo "<p class='error-message'>Datoteka presega makismalno velikost 10mb...</p>";
                             }
+                            else if ($_GET['error'] == 'stmtfailed') {
+                                echo "<p class='error-message'>Napaka...</p>";
+                            }
+                            else if ($_GET['error'] == 'oldwrongpass') {
+                                echo "<p class='error-message'>Staro geslo ste napisali napacno...</p>";
+                            }
+                            else if ($_GET['error'] == 'pwddontmatch') {
+                                echo "<p class='error-message'>Novi gesli se ne ujemata...</p>";
+                            }
+                            else if ($_GET['error'] == 'emptyinput') {
+                                echo "<p class='error-message'>Polja so prazna...</p>";
+                            }
+                        }
+                        if (isset($_GET['success'])) {
+                            if ($_GET['success'] == 'user_logged_in') {
+                                echo "<p class='success-message'>Pozdravljeni...</p>";
+                            }
+                        }
                             echo "<script type='text/javascript'>
                                             setTimeout(function() {
                                                 var errors = document.getElementsByClassName('error-message');
+                                                var success = document.getElementsByClassName('success-message');
+                                                
                                                 try {
                                                     errors[0].style.opacity = '0';
                                                 } catch (e) {}
@@ -48,9 +69,25 @@ if (isset($_SESSION['S_userId'])) {
                                                 try {
                                                     errors[2].style.opacity = '0';
                                                 } catch (e) {}
+                                                try {
+                                                    errors[3].style.opacity = '0';
+                                                } catch (e) {}
+                                                try {
+                                                    errors[4].style.opacity = '0';
+                                                } catch (e) {}
+                                                try {
+                                                    errors[5].style.opacity = '0';
+                                                } catch (e) {}
+                                                try {
+                                                    errors[6].style.opacity = '0';
+                                                } catch (e) {}
+                                                //success message
+                                                try {
+                                                    success[0].style.opacity = '0';
+                                                } catch (e) {}
+                                                
                                             }, 3000);
                                       </script>";
-                        }
 
     echo "              <h2 id='h2-profile'>" . $_SESSION['S_userUsername'] . "</h2>
                         
@@ -179,10 +216,22 @@ if (isset($_SESSION['S_userId'])) {
                         </div>
                         
                         <div id='izbris-profila-container'>
-                            <h3>Izbris Profila</h3>
-                            <br>
                             <div id='izbris-container'>
-                            
+                                <form action='includes/izbris-profila.inc.php' method='post'>
+                                    <h3>Izbris Profila</h3> <button type='submit' class='update-osebni-button' name='izbris-profila-submit'>Shrani</button><hr id='spremembe-hr'>
+                                    <div class='izbris-profila-block'>
+                                        <label>Ste prepricani, da želite izbrisati profil?</label><br>
+                                        <select name='izbris-radio-select' id='izbris-radio-select'>
+                                            <option value='no' selected>Ne</option>
+                                            <option value='yes'>Da</option>
+                                        </select>
+                                    </div>
+                                    <div class='izbris-profila-block2'>
+                                        <hr id='spremembe-hr2'>
+                                        <h4>Poglejte si <a id='izris-ostal-info' href='#ostale-info' onclick='info_select()'>Ostale Informacije</a> pred izbrisom profila...</h4>
+                                        <p>Preberite si informacije o zasebnosti uporabniških racunov in še vec...</p>
+                                    </div><br>
+                                </form>
                             </div>
                         </div>
                         

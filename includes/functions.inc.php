@@ -129,7 +129,7 @@ function loginUser($conn, $username, $pwd) {
         $_SESSION['S_userProfileBanner'] = $uidExists["banner_dir"];
         $_SESSION['S_userProfileImg'] = $uidExists["img_dir"];
 
-        header("location: ../profile.php?user_logged_in");
+        header("location: ../profile.php?success=user_logged_in");
         exit();
     }
 }
@@ -163,7 +163,7 @@ function loginUser2($conn, $username, $pwd) {
         $_SESSION['S_userPronouns'] = $uidExists["pronouns"];
         $_SESSION['S_userDatumRoj'] = $uidExists["datum_roj"];
 
-        header("location: ../../profile.php?user_logged_in");
+        header("location: ../../profile.php?success=user_logged_in");
         exit();
     }
 }
@@ -185,7 +185,7 @@ function userExistsProfile($conn, $username, $email) {
     $sql = "SELECT * FROM uporabniki WHERE (username = ? OR email = ?) AND (username != ? OR email != ?);";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location: ../profile.php?error=stmtfailede");
+        header("location: ../profile.php?error=stmtfailed");
         exit();
     }
 
@@ -221,7 +221,7 @@ function updateUser($conn, $username, $email, $firstname, $lastname, $pronouns, 
 
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location: ../profile.php?error=stmtfailede");
+        header("location: ../profile.php?error=stmtfailed");
         exit();
     }
 
@@ -306,5 +306,21 @@ function updateIcon($conn, $fileDestinationDatabase) {
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     header("location: ../profile.php?user_icon_updated");
+    exit();
+}
+function deleteAcc($conn, $choice) {
+    $userId = $_SESSION['S_userId'];
+    $sql = "DELETE FROM uporabniki WHERE id = ?";
+
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../profile.php?error=stmtfailed");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "s", $userId);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    header("location: logout.inc.php?uporabnik_zbrisan");
     exit();
 }
