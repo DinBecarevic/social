@@ -27,7 +27,7 @@ if (isset($_SESSION['S_userId'])) {
                         </div>";
 
                         if (isset($_GET['error'])) {
-                            //error-messages
+                            //error-messages :(
                             if ($_GET['error'] == 'FileNotSupported') {
                                 echo "<p class='error-message'>Ta vrsta datoteke ni podprta...</p>";
                             }
