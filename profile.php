@@ -81,7 +81,7 @@ if (isset($_SESSION['S_userId'])) {
                                                 try {
                                                     errors[6].style.opacity = '0';
                                                 } catch (e) {}
-                                                //success message
+                                                //success messages :D
                                                 try {
                                                     success[0].style.opacity = '0';
                                                 } catch (e) {}

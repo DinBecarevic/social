@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="cc852506-4c08-4f78-a895-815630e80ea8" name="Changes" comment="node_module in loginv8 removed">
+      <change beforePath="$PROJECT_DIR$/profile.php" beforeDir="false" afterPath="$PROJECT_DIR$/profile.php" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/css/footer.css" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/css/header.css" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/css/profile.css" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/css/style.css" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/js/imageMapResizer.min.js" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/js/main.js" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/js/user_check.js" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration">
+    <include_path>
+      <path value="$PROJECT_DIR$" />
+    </include_path>
+  </component>
+  <component name="ProjectId" id="2751emuq0B8DkAnrhHLryIICyHi" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;discord-application&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\social_media\social\includes" />
+      <recent name="C:\xampp\htdocs\social_media\social\includes\Podravska" />
+      <recent name="C:\xampp\htdocs\social_media\social\includes\Pomurska" />
+      <recent name="C:\xampp\htdocs\social_media\social\includes\Savinjska" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\social_media\social\includes" />
+      <recent name="C:\xampp\htdocs\social_media\social" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="scss" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="scss" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.scss" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cc852506-4c08-4f78-a895-815630e80ea8" name="Changes" comment="" />
+      <created>1648595231465</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1648595231465</updated>
+      <workItem from="1648595233638" duration="975000" />
+      <workItem from="1648596263075" duration="3242000" />
+      <workItem from="1648620841866" duration="3970000" />
+      <workItem from="1648629726786" duration="2264000" />
+      <workItem from="1648641263762" duration="575000" />
+      <workItem from="1648664019302" duration="38000" />
+      <workItem from="1648664079480" duration="9251000" />
+      <workItem from="1648707074863" duration="3065000" />
+      <workItem from="1648715380081" duration="2568000" />
+      <workItem from="1648804914424" duration="1248000" />
+      <workItem from="1649313823434" duration="12630000" />
+      <workItem from="1649363866732" duration="4928000" />
+      <workItem from="1649409910829" duration="5148000" />
+      <workItem from="1649418666689" duration="1206000" />
+      <workItem from="1649419897969" duration="889000" />
+      <workItem from="1649420807549" duration="265000" />
+      <workItem from="1649421093118" duration="19992000" />
+      <workItem from="1649523775370" duration="716000" />
+      <workItem from="1649761362246" duration="599000" />
+      <workItem from="1649763397633" duration="1545000" />
+      <workItem from="1649802721949" duration="1707000" />
+      <workItem from="1649839170997" duration="916000" />
+      <workItem from="1649842747124" duration="6161000" />
+      <workItem from="1649897591131" duration="1221000" />
+      <workItem from="1650010070278" duration="29818000" />
+      <workItem from="1650348435638" duration="1892000" />
+      <workItem from="1650543608651" duration="460000" />
+      <workItem from="1650546969607" duration="798000" />
+      <workItem from="1650867510272" duration="5668000" />
+      <workItem from="1650881207672" duration="616000" />
+      <workItem from="1650899789682" duration="14019000" />
+      <workItem from="1652076551977" duration="167000" />
+      <workItem from="1652076822421" duration="4813000" />
+      <workItem from="1652258389252" duration="10599000" />
+      <workItem from="1652341648997" duration="2612000" />
+      <workItem from="1652350762497" duration="2813000" />
+      <workItem from="1652387514210" duration="1988000" />
+      <workItem from="1652433214435" duration="856000" />
+      <workItem from="1652434493153" duration="3829000" />
+      <workItem from="1652681486962" duration="4678000" />
+      <workItem from="1652686232912" duration="4141000" />
+      <workItem from="1652782379496" duration="5784000" />
+      <workItem from="1652806292945" duration="17546000" />
+      <workItem from="1652858101818" duration="311000" />
+      <workItem from="1652860318129" duration="9244000" />
+      <workItem from="1652888604757" duration="4292000" />
+      <workItem from="1652893442190" duration="14579000" />
+      <workItem from="1652940588714" duration="6134000" />
+      <workItem from="1652950850443" duration="1324000" />
+      <workItem from="1652990062429" duration="440000" />
+      <workItem from="1652990525768" duration="957000" />
+    </task>
+    <task id="LOCAL-00001" summary="Commit2">
+      <created>1650547148893</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1650547148893</updated>
+    </task>
+    <task id="LOCAL-00002" summary="izpis profila(session) in logout">
+      <created>1650881444162</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1650881444162</updated>
+    </task>
+    <task id="LOCAL-00003" summary="urejanje izgleda profila">
+      <created>1652690354340</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1652690354340</updated>
+    </task>
+    <task id="LOCAL-00004" summary="prodile.php in profile.css">
+      <created>1652784821840</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1652784821841</updated>
+    </task>
+    <task id="LOCAL-00005" summary="edit osebnih podatkov dela&#10;(slika/banner še ne...)">
+      <created>1652827414232</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1652827414232</updated>
+    </task>
+    <task id="LOCAL-00006" summary="index.php mapa glow...&#10;(sprememba gesla še ni dokončana...)">
+      <created>1652871394361</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1652871394362</updated>
+    </task>
+    <task id="LOCAL-00007" summary="banner &amp; profile pic + pwd change&#10;(uporabnik lahko spremeni geslo, uporabnik lahko obavi banner in profile pic :D)">
+      <created>1652917337822</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1652917337822</updated>
+    </task>
+    <task id="LOCAL-00008" summary="error/success sporocila">
+      <created>1652990116031</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1652990116031</updated>
+    </task>
+    <task id="LOCAL-00009" summary="slike">
+      <created>1652990344424</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1652990344424</updated>
+    </task>
+    <task id="LOCAL-00010" summary="node_module in loginv8 removed">
+      <created>1652991183462</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1652991183462</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Commit2" />
+    <MESSAGE value="izpis profila(session) in logout" />
+    <MESSAGE value="urejanje izgleda profila" />
+    <MESSAGE value="prodile.php in profile.css" />
+    <MESSAGE value="edit osebnih podatkov dela&#10;(slika/banner še ne...)" />
+    <MESSAGE value="index.php mapa glow...&#10;(sprememba gesla še ni dokončana...)" />
+    <MESSAGE value="banner &amp; profile pic + pwd change&#10;(uporabnik lahko spremeni geslo, uporabnik lahko obavi banner in profile pic :D)" />
+    <MESSAGE value="error/success sporocila" />
+    <MESSAGE value="slike" />
+    <MESSAGE value="node_module in loginv8 removed" />
+    <option name="LAST_COMMIT_MESSAGE" value="node_module in loginv8 removed" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
