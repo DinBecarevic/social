@@ -11,7 +11,7 @@ if (isset($_POST['izbris-profila-submit'])) {
         deleteAcc($conn, $choice);
     }
     else {
-        header("location: ../profile.php?error=selected_ne");
+        header("location: ../profile.php?success=selected_ne");
         exit();
     }
 }

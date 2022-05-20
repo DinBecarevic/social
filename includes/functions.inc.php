@@ -100,7 +100,7 @@ function loginUser($conn, $username, $pwd) {
     $uidExists = userExists($conn, $username, $username);
 
     if ($uidExists === false) {
-        header("location: ../login.php?error=wronglogin");
+        header("location: ../index.php?error=wronglogin_login");
         exit();
     }
 
@@ -110,7 +110,7 @@ function loginUser($conn, $username, $pwd) {
     $checkPwd = password_verify($salted, $pwdHased);
 
     if ($checkPwd === false) {
-        header("location: ../index.php?error=wrongpass");
+        header("location: ../index.php?error=wrongpass_login");
         exit();
     }
     else if ($checkPwd == true) {
@@ -162,6 +162,9 @@ function loginUser2($conn, $username, $pwd) {
         $_SESSION['S_userMesto'] = $uidExists["mesto_id"];
         $_SESSION['S_userPronouns'] = $uidExists["pronouns"];
         $_SESSION['S_userDatumRoj'] = $uidExists["datum_roj"];
+
+        $_SESSION['S_userProfileBanner'] = $uidExists["banner_dir"];
+        $_SESSION['S_userProfileImg'] = $uidExists["img_dir"];
 
         header("location: ../../profile.php?success=user_logged_in");
         exit();
@@ -217,7 +220,7 @@ function updateUser($conn, $username, $email, $firstname, $lastname, $pronouns, 
     $_SESSION['S_userPronouns'] = $pronouns;
     $_SESSION['S_userDatumRoj'] = $datumroj;
 
-    $sql = "UPDATE uporabniki SET username = ?, email = ?, first_name = ?, last_name = ?, pronouns = ?, datum_roj = ?, opis = ?, regija = ?, mesto = ? WHERE (id = ".$_SESSION['S_userId'].");";
+    $sql = "UPDATE uporabniki SET username = ?, email = ?, first_name = ?, last_name = ?, pronouns = ?, datum_roj = ?, opis = ?, regija = ?, mesto = ?, update_date = CURRENT_TIMESTAMP WHERE (id = ".$_SESSION['S_userId'].");";
 
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {

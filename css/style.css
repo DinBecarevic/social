@@ -72,7 +72,7 @@ progress {
     border-radius: 8px;
 }
 ::-moz-progress-bar {
-    background-color: #2c3d5b;
+    background-color: var(--svetlo_modra);
     border-radius: 8px;
 }
 .login_register_regija {
@@ -283,6 +283,8 @@ input[type="date"]{
 }
 /*----------------------------------------pomurska-sijaj------------------------------------------*/
 #pomurska_sijaj {
+    transition: 0.4s;
+    opacity: 0;
     visibility: hidden;
     position: absolute;
     top: 0;
@@ -292,6 +294,7 @@ input[type="date"]{
     visibility: visible;
 }
 #pomurska:hover + #pomurska_sijaj{
+    opacity: 1;
     visibility: visible;
 }
 #pomurska:hover {
@@ -300,6 +303,8 @@ input[type="date"]{
 /*----------------------------------------podravska-sijaj------------------------------------------*/
 
 #podravska_sijaj {
+    transition: 0.4s;
+    opacity: 0;
     visibility: hidden;
     position: absolute;
     top: 0;
@@ -309,6 +314,7 @@ input[type="date"]{
     visibility: visible;
 }
 #podravska:hover + #podravska_sijaj{
+    opacity: 1;
     visibility: visible;
 }
 #podravska:hover {
@@ -317,6 +323,8 @@ input[type="date"]{
 /*----------------------------------------obalno-kraska-sijaj------------------------------------------*/
 
 #obalnokraska-sijaj {
+    transition: 0.4s;
+    opacity: 0;
     visibility: hidden;
     position: absolute;
     top: 0;
@@ -326,6 +334,7 @@ input[type="date"]{
     visibility: visible;
 }
 #obalno-kraska:hover + #obalnokraska-sijaj{
+    opacity: 1;
     visibility: visible;
 }
 #obalno-kraska:hover {
@@ -334,6 +343,8 @@ input[type="date"]{
 /*----------------------------------------koroska-sijaj------------------------------------------*/
 
 #koroska_sijaj {
+    transition: 0.4s;
+    opacity: 0;
     visibility: hidden;
     position: absolute;
     top: 0;
@@ -344,6 +355,7 @@ input[type="date"]{
     cursor: pointer;
 }
 #koroska:hover + #koroska_sijaj{
+    opacity: 1;
     visibility: visible;
     cursor: pointer;
 }
@@ -353,6 +365,8 @@ input[type="date"]{
 /*----------------------------------------savinjska-sijaj------------------------------------------*/
 
 #savinjska_sijaj {
+    transition: 0.4s;
+    opacity: 0;
     visibility: hidden;
     position: absolute;
     top: 0;
@@ -363,6 +377,7 @@ input[type="date"]{
     cursor: pointer;
 }
 #savinjska:hover + #savinjska_sijaj{
+    opacity: 1;
     visibility: visible;
     cursor: pointer;
 }
@@ -372,6 +387,8 @@ input[type="date"]{
 /*----------------------------------------zasavska-sijaj------------------------------------------*/
 
 #zasavska_sijaj {
+    transition: 0.4s;
+    opacity: 0;
     visibility: hidden;
     position: absolute;
     top: 0;
@@ -382,6 +399,7 @@ input[type="date"]{
     cursor: pointer;
 }
 #zasavska:hover + #zasavska_sijaj{
+    opacity: 1;
     visibility: visible;
     cursor: pointer;
 }
@@ -391,6 +409,8 @@ input[type="date"]{
 /*----------------------------------------posavska-sijaj------------------------------------------*/
 
 #posavska_sijaj {
+    transition: 0.4s;
+    opacity: 0;
     visibility: hidden;
     position: absolute;
     top: 0;
@@ -401,6 +421,7 @@ input[type="date"]{
     cursor: pointer;
 }
 #posavska:hover + #posavska_sijaj{
+    opacity: 1;
     visibility: visible;
     cursor: pointer;
 }
@@ -410,6 +431,8 @@ input[type="date"]{
 /*----------------------------------------jugo-vzhodna-sijaj------------------------------------------*/
 
 #jugovzhodna-sijaj {
+    transition: 0.4s;
+    opacity: 0;
     visibility: hidden;
     position: absolute;
     top: 0;
@@ -420,6 +443,7 @@ input[type="date"]{
     cursor: pointer;
 }
 #jugo-vzhodna-slo:hover + #jugovzhodna-sijaj{
+    opacity: 1;
     visibility: visible;
     cursor: pointer;
 }
@@ -429,6 +453,8 @@ input[type="date"]{
 /*----------------------------------------primorsko-notranjska-sijaj------------------------------------------*/
 
 #primorskonotranjska_sijaj {
+    transition: 0.4s;
+    opacity: 0;
     visibility: hidden;
     position: absolute;
     top: 0;
@@ -439,6 +465,7 @@ input[type="date"]{
     cursor: pointer;
 }
 #primorsko-notranjska:hover + #primorskonotranjska_sijaj{
+    opacity: 1;
     visibility: visible;
     cursor: pointer;
 }
@@ -448,6 +475,8 @@ input[type="date"]{
 /*----------------------------------------goriska-sijaj------------------------------------------*/
 
 #goriska_sijaj {
+    transition: 0.4s;
+    opacity: 0;
     visibility: hidden;
     position: absolute;
     top: 0;
@@ -459,6 +488,7 @@ input[type="date"]{
 }
 #goriska:hover + #goriska_sijaj{
     visibility: visible;
+    opacity: 1;
     cursor: pointer;
 }
 #goriska:hover {
@@ -467,6 +497,8 @@ input[type="date"]{
 /*----------------------------------------gorenjska-sijaj------------------------------------------*/
 
 #gorenjska_sijaj {
+    transition: 0.4s;
+    opacity: 0;
     visibility: hidden;
     position: absolute;
     top: 0;
@@ -477,6 +509,7 @@ input[type="date"]{
     cursor: pointer;
 }
 #gorenjska:hover + #gorenjska_sijaj{
+    opacity: 1;
     visibility: visible;
     cursor: pointer;
 }
@@ -486,6 +519,8 @@ input[type="date"]{
 /*----------------------------------------osrednjeslovenska-sijaj------------------------------------------*/
 
 #osrednjeslovenska_sijaj {
+    transition: 0.4s;
+    opacity: 0;
     visibility: hidden;
     position: absolute;
     top: 0;
@@ -496,11 +531,30 @@ input[type="date"]{
     cursor: pointer;
 }
 #osrednje-slovenska:hover + #osrednjeslovenska_sijaj{
+    opacity: 1;
     visibility: visible;
     cursor: pointer;
 }
 #osrednje-slovenska:hover {
     cursor: pointer;
+}
+
+/*------------------------upload-banner/profile-error-mesage--------------------*/
+.error-message-index {
+    color: #ff0000;
+    font-size: 1.5em;
+    position: absolute;
+    top: -3.2vh;
+    left: 1vh;
+    transition: 0.5s;
+}
+.success-message-index {
+    color: #00ff00;
+    font-size: 1.5em;
+    position: absolute;
+    top: -3.2vh;
+    right: 1vh;
+    transition: 0.5s;
 }
 /*----------------------------------------input-bx-animate------------------------------------------*/
 

@@ -54,6 +54,9 @@ if (isset($_SESSION['S_userId'])) {
                             if ($_GET['success'] == 'user_logged_in') {
                                 echo "<p class='success-message'>Pozdravljeni...</p>";
                             }
+                            else if ($_GET['success'] == 'selected_ne') {
+                                echo "<p class='success-message'>Profil se ni izbrisal :D</p>";
+                            }
                         }
                             echo "<script type='text/javascript'>
                                             setTimeout(function() {
@@ -84,6 +87,9 @@ if (isset($_SESSION['S_userId'])) {
                                                 //success messages :D
                                                 try {
                                                     success[0].style.opacity = '0';
+                                                } catch (e) {}
+                                                try {
+                                                    errors[1].style.opacity = '0';
                                                 } catch (e) {}
                                                 
                                             }, 3000);

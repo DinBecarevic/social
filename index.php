@@ -113,6 +113,7 @@
 
     <div class="desno">
         <div class="content-desno">
+
         <div class="login_register_regija">
             <h2>Tvoja regija</h2>
             <p id="desc">Slovenija</p>
@@ -191,10 +192,77 @@
                 </form>
                 <div id="login_text_bottom">
                     <p id="regi_forgot_pwd">Si pozabil <a href="#">geslo?</a></p>
-                    <p class="switchbox_link">A še nimaš racuna? <a href="#" onclick="switchbox()">Registriraj se...</a></p>
+                    <p class="switchbox_link">A še nimaš racuna? <a href="#" onclick="switchbox()" id="switchbox-prijava-link">Registriraj se...</a></p>
                 </div>
             </div>
         </div>
+
+            <?php
+            if (isset($_GET['error'])) {
+                $path = $_SERVER['REQUEST_URI'];
+                //primer: localhost:8080/social2/index.php?error=emptyinput_login
+
+                //dobimo zadnjih 6 crk url-ja da lahko potem preverimo ce gre za login error (gledamo po $_GET)
+                $login = substr($path, -6); //dobimo: _login
+
+                //uzemamo use po znaku =
+                $vrsta_errorja = substr($path, strpos($path, "=") + 1); //dobimo: emptyinput_login
+
+                //uzemamo use pred znakom _
+                $vrsta_errorja2 = strtok($vrsta_errorja, '_'); //dobimo: emptyinput
+
+                //error-messages :(
+                if ($_GET['error'] == 'emptyinput') {
+                    echo "<p class='error-message-index'>Polja so prazna...</p>";
+                }
+                else if ($_GET['error'] == 'fail') {
+                    echo "<p class='error-message-index'>Napaka...</p>";
+                }
+                else if ($_GET['error'] == 'pwddontmatch') {
+                    echo "<p class='error-message-index'>Napisani gesli se ne ujemata...</p>";
+                }
+                else if ($_GET['error'] == 'usernametaken') {
+                    echo "<p class='error-message-index'>Uporabniško ime/email je že zasedeno...</p>";
+                }
+                //login-errors, rederecta na login
+                else if ($_GET['error'] == $vrsta_errorja2.$login) {
+                    if ($_GET['error'] == 'emptyinput_login') {
+                        echo "<p class='error-message-index'>Polja so prazna...</p>";
+                    }
+                    else if ($_GET['error'] == 'wronglogin_login') {
+                        echo "<p class='error-message-index'>Uporabnik ne obstaja...</p>";
+                    }
+                    else if ($_GET['error'] == 'wrongpass_login') {
+                        echo "<p class='error-message-index'>Napačno geslo...</p>";
+                    }
+                    echo "<script type='text/javascript'>
+                            setTimeout(function() {
+                                var a = document.getElementById('switchbox-prijava-link');
+                                a.click();
+                                }, 0);
+                              </script>";
+                }
+            }
+            echo "<script type='text/javascript'>
+                setTimeout(function() {
+                    var errors = document.getElementsByClassName('error-message-index');
+                    //var success = document.getElementsByClassName('success-message-index');
+                    //error-messages :(
+                    try {
+                        errors[0].style.opacity = '0';
+                    } catch (e) {}
+                    try {
+                        errors[1].style.opacity = '0';
+                    } catch (e) {}
+                    try {
+                        errors[2].style.opacity = '0';
+                    } catch (e) {}
+                    //success messages :D
+                    
+                    }, 3000);
+                  </script>";
+            ?>
+
         </div>
     </div>
 </div>
