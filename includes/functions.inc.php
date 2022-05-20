@@ -231,7 +231,7 @@ function updateUser($conn, $username, $email, $firstname, $lastname, $pronouns, 
     mysqli_stmt_bind_param($stmt, "sssssssss", $username, $email, $firstname, $lastname, $pronouns, $datumroj, $opis, $regija, $mesto);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
-    header("location: ../profile.php?user_updated");
+    header("location: ../profile.php?success=user_updated");
     exit();
 }
 function emptyInputChangePwd($old_pwd, $pwd, $pwdRepeat) {
@@ -272,7 +272,7 @@ function changePwd($conn, $old_pwd, $pwd) {
     mysqli_stmt_bind_param($stmt, "s", $hashedPwd);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
-    header("location: ../profile.php?error=pwdSpremenjen");
+    header("location: ../profile.php?success=pwdSpremenjen");
     exit();
 }
 function updateBanner($conn, $fileDestinationDatabase) {

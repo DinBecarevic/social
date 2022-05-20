@@ -57,6 +57,12 @@ if (isset($_SESSION['S_userId'])) {
                             else if ($_GET['success'] == 'selected_ne') {
                                 echo "<p class='success-message'>Profil se ni izbrisal :D</p>";
                             }
+                            else if ($_GET['success'] == 'pwdSpremenjen') {
+                                echo "<p class='success-message'>Geslo spremenjeno :D</p>";
+                            }
+                            else if ($_GET['success'] == 'user_updated') {
+                                echo "<p class='success-message'>Podatki spremenjeni :D</p>";
+                            }
                         }
                             echo "<script type='text/javascript'>
                                             setTimeout(function() {
@@ -89,8 +95,15 @@ if (isset($_SESSION['S_userId'])) {
                                                     success[0].style.opacity = '0';
                                                 } catch (e) {}
                                                 try {
-                                                    errors[1].style.opacity = '0';
+                                                    success[1].style.opacity = '0';
                                                 } catch (e) {}
+                                                try {
+                                                    success[2].style.opacity = '0';
+                                                } catch (e) {}
+                                                try {
+                                                    success[3].style.opacity = '0';
+                                                } catch (e) {}
+                                                
                                                 
                                             }, 3000);
                                       </script>";
