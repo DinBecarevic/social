@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="70b05b2b-f615-450f-9c45-1346b83dc681" name="Changes" comment="test GitHub laptop to pc">
+    <list default="true" id="70b05b2b-f615-450f-9c45-1346b83dc681" name="Changes" comment="nevem">
+      <change afterPath="$PROJECT_DIR$/css/home.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/home.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/home.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/functions.inc.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/functions.inc.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile.php" beforeDir="false" afterPath="$PROJECT_DIR$/profile.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/footer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/header.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +20,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="CSS File" />
         <option value="JavaScript File" />
       </list>
     </option>
@@ -55,14 +59,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "WebServerToolWindowFactoryState": "false",
+    "list.type.of.created.stylesheet": "CSS",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\social_media\social\includes" />
@@ -95,7 +100,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="cc852506-4c08-4f78-a895-815630e80ea8" name="Changes" comment="" />
+      <changelist id="70b05b2b-f615-450f-9c45-1346b83dc681" name="Changes" comment="nevem" />
       <created>1648595231465</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -151,6 +156,9 @@
       <workItem from="1652950850443" duration="1324000" />
       <workItem from="1652990062429" duration="440000" />
       <workItem from="1652990525768" duration="957000" />
+      <workItem from="1653070661596" duration="49000" />
+      <workItem from="1653463061422" duration="629000" />
+      <workItem from="1653467840745" duration="7606000" />
     </task>
     <task id="LOCAL-00001" summary="Commit2">
       <created>1650547148893</created>
@@ -228,7 +236,14 @@
       <option name="presentableId" value="LOCAL−00011" />
       <updated>1652992157708</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="nevem">
+      <created>1653043415771</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1653043415771</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -257,7 +272,8 @@
     <MESSAGE value="slike" />
     <MESSAGE value="node_module in loginv8 removed" />
     <MESSAGE value="test GitHub pc to laptop" />
-    <option name="LAST_COMMIT_MESSAGE" value="test GitHub pc to laptop" />
+    <MESSAGE value="nevem" />
+    <option name="LAST_COMMIT_MESSAGE" value="nevem" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
