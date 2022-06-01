@@ -37,17 +37,17 @@ if (isset($_POST['iconSubmit'])) {
                 //updatamo se databazo...
                 $fileDestinationDatabase = 'slike/img/' . $fileNameNew;
                 updateIcon($conn, $fileDestinationDatabase);
-                header("location: ../profile.php?error=iconUploadSuccess");
+                header("location: ../profil.php?error=iconUploadSuccess");
             } else {
-                header("location: ../profile.php?error=FileTooBig");
+                header("location: ../profil.php?error=FileTooBig");
             }
         } else {
-            header("location: ../profile.php?error=FileUploadError");
+            header("location: ../profil.php?error=FileUploadError");
         }
     } else {
-        header("location: ../profile.php?error=FileNotSupported");
+        header("location: ../profil.php?error=FileNotSupported");
     }
 } else {
-    header("location: ../profile.php?error=fail");
+    header("location: ../profil.php?error=fail");
     exit();
 }

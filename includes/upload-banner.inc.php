@@ -36,18 +36,18 @@ if (isset($_POST['bannerSubmit'])) {
                 //updatamo se databazo...
                 $fileDestinationDatabase = 'slike/banner/'.$fileNameNew;
                 updateBanner($conn, $fileDestinationDatabase);
-                header("location: ../profile.php?error=bannerUploadSuccess");
+                header("location: ../profil.php?error=bannerUploadSuccess");
             } else {
-                header("location: ../profile.php?error=FileTooBig");
+                header("location: ../profil.php?error=FileTooBig");
             }
         } else {
-            header("location: ../profile.php?error=FileUploadError");
+            header("location: ../profil.php?error=FileUploadError");
         }
     } else {
-        header("location: ../profile.php?error=FileNotSupported");
+        header("location: ../profil.php?error=FileNotSupported");
     }
 }
 else {
-    header("location: ../profile.php?error=fail");
+    header("location: ../profil.php?error=fail");
     exit();
 }

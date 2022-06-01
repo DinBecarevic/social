@@ -11,11 +11,11 @@ if (isset($_POST['izbris-profila-submit'])) {
         deleteAcc($conn, $choice);
     }
     else {
-        header("location: ../profile.php?success=selected_ne");
+        header("location: ../profil.php?success=selected_ne");
         exit();
     }
 }
 else {
-    header("location: ../profile.php?error=fail");
+    header("location: ../profil.php?error=fail");
     exit();
 }

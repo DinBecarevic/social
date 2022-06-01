@@ -10,17 +10,17 @@ if (isset($_POST['sprememba-gesla-submit'])) {
     $pwdRepeat = mysqli_real_escape_string($conn, $_POST['new-pwd-repeat']);
 
     if (emptyInputChangePwd($old_pwd, $pwd, $pwdRepeat) !== false) {
-        header("location: ../profile.php?error=emptyinput");
+        header("location: ../profil.php?error=emptyinput");
         exit();
     }
     if (pwdMatch($pwd, $pwdRepeat) !== false) {
-        header("location: ../profile.php?error=pwddontmatch");
+        header("location: ../profil.php?error=pwddontmatch");
         exit();
     }
 
     changePwd($conn, $old_pwd, $pwd);
 }
 else {
-    header("location: ../profile.php?error=fail");
+    header("location: ../profil.php?error=fail");
     exit();
 }

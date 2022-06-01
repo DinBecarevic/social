@@ -2,6 +2,7 @@
 include_once 'header.php';
 include_once 'includes/dbh.inc.php';
 ?>
+<div class="home-background">
 <div class="navigation">
     <div class="menuToggle"></div>
     <ul>
@@ -54,16 +55,34 @@ include_once 'includes/dbh.inc.php';
         <div id="home-pozdrav">
             <h3>Pozdravljeni!</h3>
             <h4>na najboljšem Slovenskem socialnem omrežju...</h4><br>
-            <p>Delite svoja mnenja, trenutke, slike in še več preprosto in popolnoma brezplacno :D</p>
+            <span class="icon"><a href="objavi.php"><ion-icon name="create-outline"></ion-icon></a></span>
+            <p>Delite svoja mnenja, trenutke, slike in še vec, preprosto in popolnoma brezplacno :D</p>
+        </div>
+    </div>
+    <div class="home-content">
+        <div id="home-info">
+            <h3>Regije</h3>
+            <h4>predstavljajo velik del tega socialnega omrežja</h4><br>
+            <span class="icon"><a href="regije.php"><ion-icon name="map-outline"></a></ion-icon></span>
+            <p>Opredelite se po svoji regiji ter spremljajte samo lokalne dogodke...</p>
+        </div>
+    </div>
+    <div class="home-content">
+        <div id="home-more">
+            <h3>Informacije</h3>
+            <h4>,vec o spletni stani lahko zveste na <a  id="info-link" href="info.php">info...</a></h4><br>
+            <span><a href="info.php"><ion-icon name="information-circle-outline"></ion-icon></a></span>
+            <p>Delite svoja mnenja, trenutke, slike in še vec preprosto in popolnoma brezplacno :D</p>
         </div>
     </div>
 
-</div>
 
+
+</div>
+</div>
 
 
 <?php
 include_once 'footer.php';
 ?>
 <script src="js/main.js"></script>
-<script src="js/home.js"></script>

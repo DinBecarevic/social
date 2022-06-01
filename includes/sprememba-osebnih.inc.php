@@ -20,11 +20,11 @@ if (isset($_POST['osebni-submit'])) {
         exit();
     }
     if (userExistsProfile($conn, $username, $email) !== false) {
-        header("location: ../profile.php?error=usernameoremailtaken");
+        header("location: ../profil.php?error=usernameoremailtaken");
         exit();
     }
     updateUser($conn, $username, $email, $firstname, $lastname, $pronouns, $datumroj, $opis, $regija, $mesto);
 } else {
-    header("location: ../profile.php");
+    header("location: ../profil.php");
     exit();
 }

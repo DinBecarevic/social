@@ -129,7 +129,7 @@ function loginUser($conn, $username, $pwd) {
         $_SESSION['S_userProfileBanner'] = $uidExists["banner_dir"];
         $_SESSION['S_userProfileImg'] = $uidExists["img_dir"];
 
-        header("location: ../profile.php?success=user_logged_in");
+        header("location: ../profil.php?success=user_logged_in");
         exit();
     }
 }
@@ -166,11 +166,11 @@ function loginUser2($conn, $username, $pwd) {
         $_SESSION['S_userProfileBanner'] = $uidExists["banner_dir"];
         $_SESSION['S_userProfileImg'] = $uidExists["img_dir"];
 
-        header("location: ../../profile.php?success=user_logged_in");
+        header("location: ../../profil.php?success=user_logged_in");
         exit();
     }
 }
-/* -----------------------------profile-edit-------------------------------------- */
+/* -----------------------------profil-edit-------------------------------------- */
 function emptyInputEdit($username, $email) {
     $result;
     if (empty($username) || empty($email)) {
@@ -188,7 +188,7 @@ function userExistsProfile($conn, $username, $email) {
     $sql = "SELECT * FROM uporabniki WHERE (username = ? OR email = ?) AND (username != ? OR email != ?);";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location: ../profile.php?error=stmtfailed");
+        header("location: ../profil.php?error=stmtfailed");
         exit();
     }
 
@@ -224,14 +224,14 @@ function updateUser($conn, $username, $email, $firstname, $lastname, $pronouns, 
 
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location: ../profile.php?error=stmtfailed");
+        header("location: ../profil.php?error=stmtfailed");
         exit();
     }
 
     mysqli_stmt_bind_param($stmt, "sssssssss", $username, $email, $firstname, $lastname, $pronouns, $datumroj, $opis, $regija, $mesto);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
-    header("location: ../profile.php?success=user_updated");
+    header("location: ../profil.php?success=user_updated");
     exit();
 }
 function emptyInputChangePwd($old_pwd, $pwd, $pwdRepeat) {
@@ -254,14 +254,14 @@ function changePwd($conn, $old_pwd, $pwd) {
     $checkPwd = password_verify($salted, $pwdHased);
 
     if ($checkPwd === false) {
-        header("location: ../profile.php?error=oldwrongpass");
+        header("location: ../profil.php?error=oldwrongpass");
         exit();
     }
 
     $sql = "UPDATE uporabniki SET pwd = ? WHERE id = ".$_SESSION['S_userId'].";";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location: ../profile.php?error=stmtfailed");
+        header("location: ../profil.php?error=stmtfailed");
         exit();
     }
 
@@ -272,7 +272,7 @@ function changePwd($conn, $old_pwd, $pwd) {
     mysqli_stmt_bind_param($stmt, "s", $hashedPwd);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
-    header("location: ../profile.php?success=pwdSpremenjen");
+    header("location: ../profil.php?success=pwdSpremenjen");
     exit();
 }
 function updateBanner($conn, $fileDestinationDatabase) {
@@ -283,14 +283,14 @@ function updateBanner($conn, $fileDestinationDatabase) {
 
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location: ../profile.php?error=stmtfailed");
+        header("location: ../profil.php?error=stmtfailed");
         exit();
     }
 
     mysqli_stmt_bind_param($stmt, "s", $fileDestinationDatabase);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
-    header("location: ../profile.php?user_banner_updated");
+    header("location: ../profil.php?user_banner_updated");
     exit();
 }
 function updateIcon($conn, $fileDestinationDatabase) {
@@ -301,14 +301,14 @@ function updateIcon($conn, $fileDestinationDatabase) {
 
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location: ../profile.php?error=stmtfailed");
+        header("location: ../profil.php?error=stmtfailed");
         exit();
     }
 
     mysqli_stmt_bind_param($stmt, "s", $fileDestinationDatabase);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
-    header("location: ../profile.php?user_icon_updated");
+    header("location: ../profil.php?user_icon_updated");
     exit();
 }
 function deleteAcc($conn, $choice) {
@@ -317,7 +317,7 @@ function deleteAcc($conn, $choice) {
 
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location: ../profile.php?error=stmtfailed");
+        header("location: ../profil.php?error=stmtfailed");
         exit();
     }
 
@@ -325,5 +325,24 @@ function deleteAcc($conn, $choice) {
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     header("location: logout.inc.php?uporabnik_zbrisan");
+    exit();
+}
+
+/* -----------------------------objave-------------------------------------- */
+
+function objaviObjavo($conn, $vsebina, $regija, $is_image) {
+    $uporabnik_id = $_SESSION['S_userId'];
+
+    $sql = "INSERT INTO objave (uporabnik_id, vsebina, regija, is_image) VALUES (?, ?, ?, ?);";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../social.php?error=stmtfailed");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "ssss", $uporabnik_id, $vsebina, $regija, $is_image);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    header("location: ../social.php?objava-objavljena");
     exit();
 }

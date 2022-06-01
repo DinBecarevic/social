@@ -1,0 +1,129 @@
+/*---------barve-----------*/
+:root {
+    --bela: #F1F1F1;
+    --crna: #2B2B2B;
+    --hover_modra: rgba(171, 190, 255, 0.68);
+    --svetlo_modra: #4b6cb7;
+    --temno_modra: #182848;
+    --gradient_modra: linear-gradient(253deg, #4b6cb7 0%, #182848 100%);
+}
+/*---------barve-----------*/
+.social-background {
+    width: 100%;
+    height: 97vh;
+    background: linear-gradient(210deg, #4b6cb7 0%, #182848 100%);
+    z-index: -30;
+}
+
+#objvava-container {
+    top: 2vh;
+    left: 30vh;
+    position: absolute;
+    width: 80vw;
+    height: 93vh;
+    border-radius: 8px;
+    background-color: var(--bela);
+}
+/*---------------------------------------------objava-box----------------------*/
+.objava-box {
+    background-color: var(--bela);
+    margin: 2vh;
+    padding: 1vh;
+    background: var(--gradient_modra);
+    overflow: hidden;
+    border-radius: 2vh;
+    width: 90%;
+/* height: 30vh; */}
+.user-img-circle {
+    height: 10vh;
+    width: 10vh;
+    position: relative;
+    /* background-color: var(--bela); */
+    border-radius: 50%;
+    display: inline-block;
+    transition: 0.4s;
+    opacity: 1;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+
+    display: inline-block;
+    margin: 1vh;
+    border: 2px solid var(--bela);
+}
+#objava-textarea {
+    display: inline-block;
+}
+.objava-input {
+    font-size: 1em;
+    height: 3.2vw;
+    width: 40vw;
+    background: #ebebeb;
+    color: var(--temno_modra);
+    border-radius: 27px;
+    padding: 0.4vw 1.2vw 0.4vw 1.2vw;
+    margin-bottom: 1.6vh;
+    resize: none;
+    outline: none;
+    border: none;
+
+    display: inline-block;
+}
+.objava-dodatno {
+    display: inline-block;
+    position: absolute;
+    top: 4vh;
+}
+#objava-slike-button {
+    width: 10vh;
+    height: 3vh;
+    margin-left: 2vh;
+
+    min-width: 55px;
+    height: 55px;
+    line-height: 60px;
+    transition: 0.5s;
+    border-radius: 10px;
+    font-size: 2.8em;
+
+    float: left;
+}
+#objava-slike-button ion-icon {
+    transition: 0.3s;
+    color: var(--hover_modra);
+}
+#objava-slike-button ion-icon:hover {
+    font-size: 1.1em;
+    transform: translateY(-3px) translateX(-3px);
+    cursor: pointer;
+    transition: 0.3s;
+}
+.username-input {
+    margin-left: 2vh;
+    float: left;
+    clear: left;
+}
+.username-input select {
+    padding: 0.3vh;
+    font-size: 1em;
+    background-color: var(--svetlo_modra);
+    color: var(--bela);
+    border: 2px solid var(--svetlo_modra);
+    border-radius: 20px;
+    width: 10.2vw;
+}
+
+#objava-button {
+    display: block;
+    padding: 0 20px;
+    width: 8vw;
+    height: 1.8vw;
+    background-color: var(--svetlo_modra);
+    border-radius: 25px;
+    font-size: 15px;
+    color: var(--bela);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border: none;
+}

@@ -5,7 +5,7 @@ footer {
     background-color: #181717;
     text-align: center;
     --animate-duration: 2s;
-    position: absolute;
+    /* position: absolute; */
     left: 0;
     bottom: 0;
 }
