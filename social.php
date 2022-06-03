@@ -1,5 +1,7 @@
 <?php
 include_once 'header.php';
+session_abort();
+include_once 'includes/functions.inc.php';
 include_once 'includes/dbh.inc.php';
 ?>
 <?php
@@ -88,6 +90,9 @@ echo '          <div id="objava-textarea">
 
         </div>
     </div>
+    <div class="objave-box">';
+    getComments($conn);
+echo '    </div>
 </div>';
 }
 

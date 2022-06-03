@@ -340,9 +340,50 @@ function objaviObjavo($conn, $vsebina, $regija, $is_image) {
         exit();
     }
 
+
     mysqli_stmt_bind_param($stmt, "ssss", $uporabnik_id, $vsebina, $regija, $is_image);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     header("location: ../social.php?objava-objavljena");
     exit();
+}
+
+function getComments($conn) {
+    $sql = "SELECT * FROM objave";
+    $result = $conn->query($sql);
+    while ($row = $result->fetch_assoc()) {
+        $upo_id = $row['uporabnik_id'];
+        $sql2 = "SELECT username FROM uporabniki WHERE id='$upo_id'";
+        $result2 = $conn->query($sql2);
+
+        if ($row2 = $result2->fetch_assoc()) {
+            echo "<div class='comment-box'><p>";
+            echo    $row2['username'], '&nbsp;&nbsp;&nbsp;', $row['created_date']."<br><br>";
+            echo    nl2br($row['vsebina']);
+            echo "</p>";
+            if (isset($_SESSION['S_userId'])) {
+//                if ($_SESSION['S_userId'] == $row['uporabnik_id']) {
+//                    echo "<form class='delete-form' method='POST' action='".deleteComments($conn)."'>";
+//                    echo    "<input type='hidden' name='comment_id' value='".$row['id']."'>
+//                             <input type='hidden' name='user_id' value='".$row['uporabnik_id']."'>
+//                             <input type='hidden' name='date' value='".$row['date']."'>
+//                             <input type='hidden' name='sporocila' value='".$row['sporocila']."'>
+//                            <button type='submit' name='komentar_odstrani'>Odstrani</button>
+//                        </form>
+//                        <!-- ----------------------------------------------------------------- -->
+//                    	<form class='edit-form' method='POST' action='editcomment.php'>
+//                            <input type='hidden' name='id' value='".$row['id']."'>
+//                            <input type='hidden' name='uporabnik_id' value='".$row['uporabnik_id']."'>
+//                            <input type='hidden' name='date' value='".$row['date']."'>
+//                            <input type='hidden' name='sporocila' value='".$row['sporocila']."'>
+//                            <button name='komentar_edit'>Edit</button>
+//                        </form>";
+//                }
+                echo "ti si kreator";
+            }
+            echo "</div>";
+        }
+
+
+    }
 }
