@@ -60,17 +60,22 @@ include_once 'includes/functions.inc.php';
                     <?php
                     $objava_id = $_POST['id'];
                     $old_objava = $_POST['sporocila'];
+
+                    $old_objava = mysqli_real_escape_string($conn, htmlspecialchars($old_objava));
+                    $old_objava = str_replace(array("\\\\r\\\\n","\\r\\n"),"\r",$old_objava);
                     echo "
                         <textarea type='text' name='new-objava' class='edit-objava-texarea'>$old_objava</textarea>
                         <input type='hidden' name='objava_id' value='$objava_id'>";
                     ?>
-                    <button type='submit' name='editObjava-btn' id="edit-objava-button">Uredi</button>
+                    <button type='submit' name='editObjava-btn' class="edit-objava-button">Uredi</button>
                 </form>
-                <?php
-                getComment($conn, $objava_id);
-                ?>
+                <a href="social.php"><button type='button' class="edit-objava-button" id="nazaj-objava-button"><ion-icon name="return-down-back-outline"></ion-icon><p>Nazaj</p></button></a>
             </div>
         </div>
+        <h4>Predogled</h4>
+        <?php
+        getComment($conn, $objava_id);
+        ?>
     </div>
 </div>
 
@@ -79,3 +84,5 @@ include_once 'includes/functions.inc.php';
 include_once 'footer.php';
 ?>
 <script src="js/main.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="js/live-editObjava.js"></script>

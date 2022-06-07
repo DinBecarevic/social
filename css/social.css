@@ -135,9 +135,19 @@
     height: 70vh;
 }
 .scroll-comments::-webkit-scrollbar {
-    width: 0px;
-    background: transparent; /* make scrollbar transparent */
+    width: 10px;
 }
+.scroll-comments::-webkit-scrollbar-track {
+    background-color: var(--svetlo_modra);
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+.scroll-comments::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 6px var(--hover_modra);
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
 .comment-box {
     color: var(--crna);
     margin: 2vh;
@@ -150,6 +160,8 @@
     width: 100%;
     border: 1px solid var(--svetlo_modra);
     border-radius: 8px;
+    position: absolute;
+    bottom: 0;
 }
 .objava-user-image {
     float: left;
@@ -226,6 +238,23 @@
     font-size: 0.9em;
     transform: translateY(-22px) translateX(10px);
 }
+.oznaka-urejeno2 {
+    display: inline-block;
+    color: #6B6B6BFF;
+    border-bottom: 1px dashed #6B6B6BFF;
+    font-size: 0.9em;
+    transform: translateY(-23px) translateX(0px);
+
+    opacity: 0;
+    transition: 0.3s;
+    visibility: hidden;
+}
+.oznaka-urejeno:hover + .oznaka-urejeno2 {
+    opacity: 1;
+    visibility: visible;
+    transition: 0.3s;
+    transform: translateY(-23px) translateX(16px);
+}
 .oznaka-urejeno ion-icon {
     font-size: 1em;
     transform: translateY(2px);
@@ -253,7 +282,7 @@
     border-radius: 8px;
     padding: 20px;
     color: var(--bela);
-    margin-bottom: 2vw;
+    margin-bottom: 1vw;
     margin-top: 2vh;
     margin-right: 2vw;
     position: relative;
@@ -263,7 +292,7 @@
     letter-spacing: 2px;
     text-transform: uppercase;
 }
-#edit-objava-button {
+.edit-objava-button {
     display: block;
     padding: 0 20px;
     width: 8vw;
@@ -277,15 +306,43 @@
     border: none;
     transition: 0.3s;
 }
-#edit-objava-button:hover {
+.edit-objava-button:hover {
     cursor: pointer;
     background-color: var(--hover_modra);
     transition: 0.3s;
     border: 2px solid var(--bela);
     color: var(--bela);
 }
-#edit-old-objava {
+.edit-old-objava {
     display: inline-block;
+}
+#nazaj-objava-button {
+    position: absolute;
+    bottom: 0px;
+    left: 160px;
+    margin-top: 10px;
+    background-color: var(--svetlo_modra);
+    color: var(--bela)
+}
+#nazaj-objava-button div {
+    display: inline-block;
+    width: 2em;
+    height: 2em;
+}
+#nazaj-objava-button ion-icon {
+    display: inline-block;
+    font-size: 2em;
+    transform: translateY(5px) translateX(-15px);
+}
+#nazaj-objava-button p {
+    display: inline-block;
+    transform: translateY(-7px) translateX(-10px);
+}
+#home-pozdrav {
+    position: relative;
+}
+#home-pozdrav a {
+    text-decoration: none;
 }
 #edit-container {
     color: var(--crna);
@@ -296,9 +353,33 @@
     display: inline-block;
     margin-top: 20px;
     width: 78vw;
-    height: 80vh;
+    height: 75vh;
     padding: 10px 20px 10px 20px;
     border-radius: 10px;
     z-index: 1;
+}
+#edit-container h4 {
+    letter-spacing: 2px;
+    font-size: 1.2em;
+    color: var(--svetlo_modra);
+    padding-bottom: 5px;
+    border-bottom: 2px solid var(--svetlo_modra);
+    text-transform: uppercase;
+}
+#objava-box {
+    color: var(--crna);
+    margin: 2vh;
+    padding: 1vh 1vh 0vh 1vh;
+    overflow: auto;
+    overflow-x: hidden;
+    position: relative;
+}
+.comment-paragraph-edit {
+    width: 70vw;
+    display: block;
+    word-wrap: break-word;
+    min-height: 4vh;
+    max-height: 14vh;
+    overflow-x: hidden;
 }
 

@@ -349,7 +349,7 @@ function objaviObjavo($conn, $vsebina, $regija, $is_image) {
 }
 
 function getComments($conn) {
-    $sql = "SELECT id, uporabnik_id, vsebina, DATE_FORMAT(created_date,'%b %e, %Y | %h:%i'), regija, is_image, update_date, is_edited FROM objave order by created_date DESC";
+    $sql = "SELECT id, uporabnik_id, vsebina, DATE_FORMAT(created_date,'%b %e, %Y | %H:%i'), regija, is_image, DATE_FORMAT(update_date,'%b %e, %Y | %H:%i'), is_edited FROM objave order by created_date DESC";
     $result = $conn->query($sql);
     while ($row = $result->fetch_assoc()) {
         $upo_id = $row['uporabnik_id'];
@@ -360,10 +360,11 @@ function getComments($conn) {
         if ($row2 = $result2->fetch_assoc()) {
             $usr_img = $row2['img_dir'];
             $is_edited = $row['is_edited'];
-            $refactored_date = $row["DATE_FORMAT(created_date,'%b %e, %Y | %h:%i')"];
+            $refactored_date = $row["DATE_FORMAT(created_date,'%b %e, %Y | %H:%i')"];
 
             //preden izpišemo vsebino naredimo mysqli_real_escape_string in strip_tag da se znebimo borebitni nezačeleni vsebini...
-            $vsebina = mysqli_real_escape_string($conn, $row['vsebina']);
+            $vsebina = mysqli_real_escape_string($conn, htmlspecialchars($row['vsebina']));
+            $vsebina = str_replace(array("\\\\r\\\\n","\\r\\n"),"<br>",$vsebina);
 
             echo "<div class='comment-box'>";
             echo   "<img class='objava-user-image' src='$usr_img'></img>";
@@ -371,11 +372,13 @@ function getComments($conn) {
             echo        "<span class='comment-info'>";
             echo            "<p class='username-color'>", $row2['username'], "</p>", '&nbsp;&nbsp;&nbsp;', $refactored_date."<br><br>";
             echo        "</span>";
-            if ($is_edited == 1) {
+            if ($is_edited > 0) {
+                $edited_time = $row["DATE_FORMAT(update_date,'%b %e, %Y | %H:%i')"];
                 echo    "<p class='oznaka-urejeno'><ion-icon name='bookmark'></ion-icon>urejeno...</p>";
+                echo    "<p class='oznaka-urejeno2'>$edited_time</p>";
             }
             echo     "<p class='comment-paragraph'>";
-            echo        nl2br($vsebina);
+            echo        $vsebina;
             echo    "</p>";
             echo    "</div>";
             echo    "<hr>";
@@ -402,9 +405,20 @@ function getComments($conn) {
 
 
 function getComment($conn, $objava_id) {
-    $objava_id = $_POST['objava_id'];
-    $sql = "SELECT id, uporabnik_id, vsebina, DATE_FORMAT(created_date,'%b %e, %Y | %h:%i'), regija, is_image, update_date, is_edited FROM objave order by created_date DESC WHERE id = ";
-    $result = $conn->query($sql);
+    $sql = "SELECT id, uporabnik_id, vsebina, DATE_FORMAT(created_date,'%b %e, %Y | %H:%i'), regija, is_image, DATE_FORMAT(update_date,'%b %e, %Y | %H:%i'), is_edited FROM objave WHERE id = ? ORDER BY created_date DESC ";
+
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: social.php?error=stmtfailed");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "s", $objava_id);
+    mysqli_stmt_execute($stmt);
+
+    $result = mysqli_stmt_get_result($stmt);
+    mysqli_stmt_close($stmt);
+
     while ($row = $result->fetch_assoc()) {
         $upo_id = $row['uporabnik_id'];
         $sql2 = "SELECT username, img_dir FROM uporabniki WHERE id='$upo_id'";
@@ -414,39 +428,29 @@ function getComment($conn, $objava_id) {
         if ($row2 = $result2->fetch_assoc()) {
             $usr_img = $row2['img_dir'];
             $is_edited = $row['is_edited'];
-            $refactored_date = $row["DATE_FORMAT(created_date,'%b %e, %Y | %h:%i')"];
+            $refactored_date = $row["DATE_FORMAT(created_date,'%b %e, %Y | %H:%i')"];
 
             //preden izpišemo vsebino naredimo mysqli_real_escape_string in strip_tag da se znebimo borebitni nezačeleni vsebini...
-            $vsebina = mysqli_real_escape_string($conn, $row['vsebina']);
+            $vsebina = mysqli_real_escape_string($conn, htmlspecialchars($row['vsebina']));
+            $vsebina = str_replace(array("\\\\r\\\\n","\\r\\n"),"<br>",$vsebina);
 
-            echo "<div class='comment-box'>";
+
+            echo "<div id='objava-box'>";
             echo   "<img class='objava-user-image' src='$usr_img'></img>";
             echo    "<div class='comment-possision'>";
             echo        "<span class='comment-info'>";
             echo            "<p class='username-color'>", $row2['username'], "</p>", '&nbsp;&nbsp;&nbsp;', $refactored_date."<br><br>";
             echo        "</span>";
-            if ($is_edited == 1) {
+            if ($is_edited > 0) {
+                $edited_time = $row["DATE_FORMAT(update_date,'%b %e, %Y | %H:%i')"];
                 echo    "<p class='oznaka-urejeno'><ion-icon name='bookmark'></ion-icon>urejeno...</p>";
+                echo    "<p class='oznaka-urejeno2'>$edited_time</p>";
             }
-            echo     "<p class='comment-paragraph'>";
-            echo        nl2br($vsebina);
+            echo     "<p class='comment-paragraph-edit'>";
+            echo        $vsebina;
             echo    "</p>";
             echo    "</div>";
-            echo    "<hr>";
-            if (isset($_SESSION['S_userId'])) {
-                if ($_SESSION['S_userId'] == $row['uporabnik_id']) {
-                    echo "<form class='delete-comment-form' method='POST' action='includes/deleteObjava.inc.php'>";
-                    echo    "<input type='hidden' name='comment_id' value='".$row['id']."'>
-                            <button class='delete-objava-btn' type='submit' name='komentar_odstrani'>Odstrani</button>
-                        </form>
-                        <!-- ----------------------------------------------------------------- -->
-                    	<form class='edit-comment-form' method='POST' action='editObjava.php'>
-                            <input type='hidden' name='id' value='".$row['id']."'>
-                            <input type='hidden' name='sporocila' value='".$row['vsebina']."'>
-                            <button class='edit-objava-btn' name='komentar_edit'>Uredi</button>
-                        </form>";
-                }
-            }
+
             echo "</div>";
         }
 
