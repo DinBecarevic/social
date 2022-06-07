@@ -349,37 +349,49 @@ function objaviObjavo($conn, $vsebina, $regija, $is_image) {
 }
 
 function getComments($conn) {
-    $sql = "SELECT * FROM objave";
+    $sql = "SELECT id, uporabnik_id, vsebina, DATE_FORMAT(created_date,'%b %e, %Y | %h:%i'), regija, is_image, update_date, is_edited FROM objave order by created_date DESC";
     $result = $conn->query($sql);
     while ($row = $result->fetch_assoc()) {
         $upo_id = $row['uporabnik_id'];
-        $sql2 = "SELECT username FROM uporabniki WHERE id='$upo_id'";
+        $sql2 = "SELECT username, img_dir FROM uporabniki WHERE id='$upo_id'";
         $result2 = $conn->query($sql2);
 
+
         if ($row2 = $result2->fetch_assoc()) {
-            echo "<div class='comment-box'><p>";
-            echo    $row2['username'], '&nbsp;&nbsp;&nbsp;', $row['created_date']."<br><br>";
-            echo    nl2br($row['vsebina']);
-            echo "</p>";
+            $usr_img = $row2['img_dir'];
+            $is_edited = $row['is_edited'];
+            $refactored_date = $row["DATE_FORMAT(created_date,'%b %e, %Y | %h:%i')"];
+
+            //preden izpišemo vsebino naredimo mysqli_real_escape_string in strip_tag da se znebimo borebitni nezačeleni vsebini...
+            $vsebina = mysqli_real_escape_string($conn, $row['vsebina']);
+
+            echo "<div class='comment-box'>";
+            echo   "<img class='objava-user-image' src='$usr_img'></img>";
+            echo    "<div class='comment-possision'>";
+            echo        "<span class='comment-info'>";
+            echo            "<p class='username-color'>", $row2['username'], "</p>", '&nbsp;&nbsp;&nbsp;', $refactored_date."<br><br>";
+            echo        "</span>";
+            if ($is_edited == 1) {
+                echo    "<p class='oznaka-urejeno'><ion-icon name='bookmark'></ion-icon>urejeno...</p>";
+            }
+            echo     "<p class='comment-paragraph'>";
+            echo        nl2br($vsebina);
+            echo    "</p>";
+            echo    "</div>";
+            echo    "<hr>";
             if (isset($_SESSION['S_userId'])) {
-//                if ($_SESSION['S_userId'] == $row['uporabnik_id']) {
-//                    echo "<form class='delete-form' method='POST' action='".deleteComments($conn)."'>";
-//                    echo    "<input type='hidden' name='comment_id' value='".$row['id']."'>
-//                             <input type='hidden' name='user_id' value='".$row['uporabnik_id']."'>
-//                             <input type='hidden' name='date' value='".$row['date']."'>
-//                             <input type='hidden' name='sporocila' value='".$row['sporocila']."'>
-//                            <button type='submit' name='komentar_odstrani'>Odstrani</button>
-//                        </form>
-//                        <!-- ----------------------------------------------------------------- -->
-//                    	<form class='edit-form' method='POST' action='editcomment.php'>
-//                            <input type='hidden' name='id' value='".$row['id']."'>
-//                            <input type='hidden' name='uporabnik_id' value='".$row['uporabnik_id']."'>
-//                            <input type='hidden' name='date' value='".$row['date']."'>
-//                            <input type='hidden' name='sporocila' value='".$row['sporocila']."'>
-//                            <button name='komentar_edit'>Edit</button>
-//                        </form>";
-//                }
-                echo "ti si kreator";
+                if ($_SESSION['S_userId'] == $row['uporabnik_id']) {
+                    echo "<form class='delete-comment-form' method='POST' action='includes/deleteObjava.inc.php'>";
+                    echo    "<input type='hidden' name='comment_id' value='".$row['id']."'>
+                            <button class='delete-objava-btn' type='submit' name='komentar_odstrani'>Odstrani</button>
+                        </form>
+                        <!-- ----------------------------------------------------------------- -->
+                    	<form class='edit-comment-form' method='POST' action='editObjava.php'>
+                            <input type='hidden' name='id' value='".$row['id']."'>
+                            <input type='hidden' name='sporocila' value='".$row['vsebina']."'>
+                            <button class='edit-objava-btn' name='komentar_edit'>Uredi</button>
+                        </form>";
+               }
             }
             echo "</div>";
         }
@@ -387,3 +399,59 @@ function getComments($conn) {
 
     }
 }
+
+
+function getComment($conn, $objava_id) {
+    $objava_id = $_POST['objava_id'];
+    $sql = "SELECT id, uporabnik_id, vsebina, DATE_FORMAT(created_date,'%b %e, %Y | %h:%i'), regija, is_image, update_date, is_edited FROM objave order by created_date DESC WHERE id = ";
+    $result = $conn->query($sql);
+    while ($row = $result->fetch_assoc()) {
+        $upo_id = $row['uporabnik_id'];
+        $sql2 = "SELECT username, img_dir FROM uporabniki WHERE id='$upo_id'";
+        $result2 = $conn->query($sql2);
+
+
+        if ($row2 = $result2->fetch_assoc()) {
+            $usr_img = $row2['img_dir'];
+            $is_edited = $row['is_edited'];
+            $refactored_date = $row["DATE_FORMAT(created_date,'%b %e, %Y | %h:%i')"];
+
+            //preden izpišemo vsebino naredimo mysqli_real_escape_string in strip_tag da se znebimo borebitni nezačeleni vsebini...
+            $vsebina = mysqli_real_escape_string($conn, $row['vsebina']);
+
+            echo "<div class='comment-box'>";
+            echo   "<img class='objava-user-image' src='$usr_img'></img>";
+            echo    "<div class='comment-possision'>";
+            echo        "<span class='comment-info'>";
+            echo            "<p class='username-color'>", $row2['username'], "</p>", '&nbsp;&nbsp;&nbsp;', $refactored_date."<br><br>";
+            echo        "</span>";
+            if ($is_edited == 1) {
+                echo    "<p class='oznaka-urejeno'><ion-icon name='bookmark'></ion-icon>urejeno...</p>";
+            }
+            echo     "<p class='comment-paragraph'>";
+            echo        nl2br($vsebina);
+            echo    "</p>";
+            echo    "</div>";
+            echo    "<hr>";
+            if (isset($_SESSION['S_userId'])) {
+                if ($_SESSION['S_userId'] == $row['uporabnik_id']) {
+                    echo "<form class='delete-comment-form' method='POST' action='includes/deleteObjava.inc.php'>";
+                    echo    "<input type='hidden' name='comment_id' value='".$row['id']."'>
+                            <button class='delete-objava-btn' type='submit' name='komentar_odstrani'>Odstrani</button>
+                        </form>
+                        <!-- ----------------------------------------------------------------- -->
+                    	<form class='edit-comment-form' method='POST' action='editObjava.php'>
+                            <input type='hidden' name='id' value='".$row['id']."'>
+                            <input type='hidden' name='sporocila' value='".$row['vsebina']."'>
+                            <button class='edit-objava-btn' name='komentar_edit'>Uredi</button>
+                        </form>";
+                }
+            }
+            echo "</div>";
+        }
+
+
+    }
+}
+
+

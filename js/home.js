@@ -22,5 +22,6 @@ list.forEach((item) =>
 item.addEventListener('click', activeLink))
 
 
+//---------------------social.php -> scroll-anywhere-------------------
 
 

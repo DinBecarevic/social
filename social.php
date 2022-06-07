@@ -8,7 +8,7 @@ include_once 'includes/dbh.inc.php';
 if (isset($_SESSION["S_userId"])) {
 
 echo '
-<div class="social-background">
+<div class="social-background" id="scroll-social">
     <div class="navigation">
         <div class="menuToggle"></div>
         <ul>
@@ -86,12 +86,18 @@ echo '          <div id="objava-textarea">
                 </div>
                 <button type="submit" name="objava-submit" id="objava-button">objavi</button>
                 </form>
+
             </div>
 
-        </div>
+            
     </div>
+    <div class="scroll-comments" id="scroll-comments-anywhere">';
+
+        getComments($conn);
+    echo ' </div>
+    </div>
+    
     <div class="objave-box">';
-    getComments($conn);
 echo '    </div>
 </div>';
 }
