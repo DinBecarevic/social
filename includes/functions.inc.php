@@ -396,6 +396,61 @@ function getComments($conn) {
                         </form>";
                }
             }
+            echo "<div class='like-form-div'><form class='like-comment-form' method='POST' action='includes/likeObjava.inc.php'>";
+            echo    "<input type='hidden' name='comment_id' value='".$row['id']."'>";
+
+//            dobimo podatke o vsecku da vidimo ce si ze lajku :D
+            $id_objave = $row['id'];
+            $userId = $_SESSION['S_userId'];
+
+            $sql3 = "SELECT * FROM vsecki WHERE (id_objave = ?) AND (id_uporabnika = ?)";
+            $stmt = mysqli_stmt_init($conn);
+            if (!mysqli_stmt_prepare($stmt, $sql3)) {
+                header("location: ../social.php?error=stmtfailed");
+                exit();
+            }
+
+            mysqli_stmt_bind_param($stmt, "ss", $id_objave, $userId);
+            mysqli_stmt_execute($stmt);
+
+            //dobimo podatke
+            $resultData3 = mysqli_stmt_get_result($stmt);
+
+            //če je uporabnik že vseckal je vsecek vizualno polen...
+            if ($row = mysqli_fetch_assoc($resultData3)) {
+                echo "<button class='like-objava-btn' type='submit' name='komentar_like'><ion-icon name='heart'></ion-icon></button>";
+            }
+            //če je uporabnik že vseckal je vsecek vizualno prazen...
+            else {
+                echo "<button class='like-objava-btn' type='submit' name='komentar_like'><ion-icon name='heart-outline'></ion-icon></button>";
+            }
+            mysqli_stmt_close($stmt);
+
+            //--------------------------------------------------------------------------------
+            // dobimo podatke o številu všečkov
+            $sql4 = "SELECT COUNT(*) FROM vsecki WHERE (id_objave = ?)";
+            $stmt = mysqli_stmt_init($conn);
+            if (!mysqli_stmt_prepare($stmt, $sql4)) {
+                header("location: ../social.php?error=stmtfailed");
+                exit();
+            }
+
+            mysqli_stmt_bind_param($stmt, "s", $id_objave);
+            mysqli_stmt_execute($stmt);
+
+            //dobimo podatke
+            $resultData4 = mysqli_stmt_get_result($stmt);
+            if ($row = mysqli_fetch_assoc($resultData4)) {
+                $st_vseckov = $row['COUNT(*)'];
+            }
+            mysqli_stmt_close($stmt);
+
+            echo "      </form>
+                        <span class='st_vsekov'>$st_vseckov</span>
+                    </div>
+                    <div class='comment-form-div'>
+                        <a href='../social/komentiraj.php?id=$id_objave'><button class='comment-objava-btn'><ion-icon name='chatbox-outline'></ion-icon></button></a>
+                    </div>";
             echo "</div>";
         }
 

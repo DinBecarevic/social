@@ -173,7 +173,7 @@
 .comment-possision {
     float: left;
     margin-left: 2vh;
-    margin-bottom: 4vh;
+    margin-bottom: 1vh;
 }
 .comment-paragraph {
     width: 70vw;
@@ -258,6 +258,60 @@
 .oznaka-urejeno ion-icon {
     font-size: 1em;
     transform: translateY(2px);
+}
+.like-objava-btn {
+    display: block;
+    border-radius: 50%;
+    border: none;
+    margin: 10px;
+    font-size: 2em;
+
+    background-color: transparent;
+    color: var(--bela);
+}
+.like-comment-form {
+    width: 60px;
+    margin: 0;
+    display: inline-block;
+}
+.like-form-div {
+    width: 100px;
+    position: relative;
+}
+.like-comment-form ion-icon {
+    color: var(--svetlo_modra);
+    transition: .3s;
+}
+.like-comment-form ion-icon:hover {
+    cursor: pointer;
+    transition: .3s;
+    opacity: .7;
+}
+.st_vsekov {
+    position: absolute;
+    left: 45px;
+    bottom: 25px;
+}
+
+.comment-form-div {
+    width: 50px;
+    position: relative;
+}
+.comment-objava-btn {
+
+    display: block;
+    border-radius: 50%;
+    border: none;
+    margin: 10px;
+    font-size: 2em;
+
+    background-color: transparent;
+    color: var(--svetlo_modra);
+}
+.comment-objava-btn ion-icon:hover {
+    cursor: pointer;
+    transition: .3s;
+    opacity: .7;
 }
 /*------------------------------edit-comment--------------------*/
 .edit-objava-texarea {

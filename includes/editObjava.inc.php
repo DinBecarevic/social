@@ -21,3 +21,7 @@ if (isset($_POST['editObjava-btn'])) {
     header("location: ../social.php?objava-urejena");
     exit();
 }
+else {
+    header("location: ../social.php");
+    exit();
+}

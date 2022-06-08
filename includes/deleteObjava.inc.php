@@ -3,7 +3,6 @@ echo "<p>serbus</p>";
 
 if (isset($_POST['komentar_odstrani'])) {
     session_start();
-    echo "<p>serbus2</p>";
     require_once 'dbh.inc.php';
 
     $userUsername = $_SESSION['S_userId'];
@@ -20,5 +19,9 @@ if (isset($_POST['komentar_odstrani'])) {
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     header("location: ../social.php?objava-zbrisana");
+    exit();
+}
+else {
+    header("location: ../social.php");
     exit();
 }
