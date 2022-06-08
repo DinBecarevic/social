@@ -264,7 +264,7 @@
     border-radius: 50%;
     border: none;
     margin: 10px;
-    font-size: 2em;
+    font-size: 1.6em;
 
     background-color: transparent;
     color: var(--bela);
@@ -275,8 +275,9 @@
     display: inline-block;
 }
 .like-form-div {
-    width: 100px;
+    width: 50px;
     position: relative;
+    display: inline-block;
 }
 .like-comment-form ion-icon {
     color: var(--svetlo_modra);
@@ -289,13 +290,15 @@
 }
 .st_vsekov {
     position: absolute;
-    left: 45px;
-    bottom: 25px;
+    left: 40px;
+    bottom: 19px;
+    font-size: 1em;
 }
 
 .comment-form-div {
     width: 50px;
     position: relative;
+    display: inline-block;
 }
 .comment-objava-btn {
 
@@ -303,7 +306,7 @@
     border-radius: 50%;
     border: none;
     margin: 10px;
-    font-size: 2em;
+    font-size: 1.6em;
 
     background-color: transparent;
     color: var(--svetlo_modra);
@@ -327,6 +330,7 @@
     outline: none;
     border: none;
     font-size: .9em;
+    margin-bottom: 2vh;
 }
 .edit-comment-box {
     background-image: url(../slike/banner/default.png);
@@ -437,3 +441,134 @@
     overflow-x: hidden;
 }
 
+/*----------------komentarji----------------*/
+
+.komentarji-container {
+    color: var(--crna);
+    background-color: #fff;
+    position: relative;
+    left: 290px;
+    margin-right: 50px;
+    display: inline-block;
+    margin-top: 20px;
+    width: 78vw;
+    padding: 10px 20px 10px 20px;
+    border-radius: 10px;
+    z-index: 1;
+    padding-bottom: 3vh;
+    margin-bottom: 3vh;
+}
+#komentar-hr {
+    border: 2px solid var(--crna);
+    border-radius: 8px;
+}
+
+#komentirajObjavo-div {
+    margin: -5px 20px 20px 20px;
+    padding: 10px;
+}
+#komentirajObjavo-div h4 {
+    font-size: 1.4em;
+    color: var(--temno_modra);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 1000;
+
+    height: 5vh;
+    position: relative;
+}
+#komentirajObjavo-div h4 span {
+    display: inline-block;
+    position: absolute;
+    bottom: 0;
+}
+#komentirajObjavo-div h4 ion-icon {
+    transform: translateY(2px) translateX(-5px);
+    font-size: 1.4em;
+    transition: .3s;
+
+    position: absolute;
+    bottom: 0;
+    left: 270px;
+}
+#komentirajObjavo-div h4 ion-icon:hover {
+    transform: translateY(-15px) translateX(-5px);
+    font-size: 1.5em;
+    transition: .3s;
+}
+#komentiraj-objavo-hr {
+    border: 1px solid var(--svetlo_modra);
+    border-radius: 8px;
+    width: 35%;
+    margin: 5px 5px 5px 0px;
+}
+.komentar-small-hr {
+    width: 100%;
+    border: 1px solid var(--hover_modra);
+    border-radius: 8px;
+    position: absolute;
+    bottom: -5px;
+    margin: 10px 5px 5px 0px;
+}
+#komentirajObjavo-div textarea {
+    font-size: 1em;
+    height: 4.2vw;
+    width: 50vw;
+    background: #ebebeb;
+    color: var(--temno_modra);
+    border-radius: 27px;
+    padding: 0.4vw 1.2vw 0.4vw 1.2vw;
+    margin-bottom: 1.6vh;
+    resize: none;
+    outline: none;
+    border: none;
+}
+#komentirajObjavo-div button {
+    display: inline-block;
+    position: absolute;
+    bottom: 0;
+    left: 350px;
+    padding: 0 20px;
+    width: 8vw;
+    height: 1.8vw;
+    background-color: var(--temno_modra);
+    border-radius: 25px;
+    font-size: 15px;
+    color: var(--bela);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border: none;
+    transition: 0.3s;
+}
+#komentirajObjavo-div button:hover {
+    cursor: pointer;
+    background-color: var(--svetlo_modra);
+    transition: 0.3s;
+    color: var(--bela);
+    width: 8.1vw;
+    height: 1.9vw;
+    transform: translateY(3px) translateX(-3px);
+}
+/*---------------------komentarji-izpis-----------------*/
+#izpis-komentarjev-box {
+    overflow: scroll;
+    overflow-x: scroll;
+    overflow-x: hidden;
+    height: 70vh;
+}
+.komentar-user-image {
+    float: left;
+    width: 4vh;
+    height: 4vh;
+    border-radius: 50%;
+    border: 2px solid var(--svetlo_modra);
+}
+.komentar-box {
+    color: var(--crna);
+    margin: 2vh;
+    padding: 1vh 1vh 0vh 1vh;
+    overflow: auto;
+    overflow-x: auto;
+    overflow-x: hidden;
+    position: relative;
+}

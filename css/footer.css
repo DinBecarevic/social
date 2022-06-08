@@ -6,8 +6,10 @@ footer {
     text-align: center;
     --animate-duration: 2s;
     /* position: absolute; */
+    position: relative;
     left: 0;
     bottom: 0;
+    margin-top: -3vh;
 }
 footer p{
     vertical-align: middle;

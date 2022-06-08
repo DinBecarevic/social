@@ -8,13 +8,13 @@ include_once 'includes/functions.inc.php';
     <div class="navigation">
         <div class="menuToggle"></div>
         <ul>
-            <li class="list" style="--clr:#4b6cb7;">
+            <li class="list active" style="--clr:#4b6cb7;">
                 <a href="#">
                     <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
                     <span class="text">Home</span>
                 </a>
             </li>
-            <li class="list active" style="--clr:#4b6cb7;">
+            <li class="list" style="--clr:#4b6cb7;">
                 <a href="#">
                     <span class="icon"><ion-icon name="create-outline"></ion-icon></span>
                     <span class="text">Social</span>
@@ -52,27 +52,13 @@ include_once 'includes/functions.inc.php';
             </li>
         </ul>
     </div>
-    <div class="komentarji-container">
+    <div id="uporabnik-container01">
+            <div id="uporabnik-box01">
         <?php
-        $objava_id = $_GET['id'];
-        getComment($conn, $objava_id);
-        echo "<hr id='komentar-hr'>
-            <div id='komentirajObjavo-div'>
-                <form action='includes/komentirajObjavo.inc.php' method='post' id='komentirajObjavoId'>
-                    <h4><span>komentiraj objavo</span> <ion-icon name='arrow-up-outline'></ion-icon><button type='submit' name='komentirajObjavo-btn'>Komentiraj</button></h4>
-                    <hr id='komentiraj-objavo-hr'>
-                    <textarea name='komentar_vsebina' cols='80' rows='5' placeholder='Komentiraj...'></textarea>
-                    <input type='hidden' name='url' value='$objava_id'>
-                </form>
-            </div>"
+        $user_username = $_GET['uporabnik'];
+        getUserProfile($conn, $user_username);
         ?>
-        <?php
-        $objava_id = $_GET['id'];
-        echo "<div id='izpis-komantarjev-box'>";
-        getComentKomentarje($conn, $objava_id);
-        echo "</div>";
-        ?>
-    </div>
+            </div>
     </div>
 </div>
 

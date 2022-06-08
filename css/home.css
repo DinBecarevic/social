@@ -10,7 +10,7 @@
 /*---------barve-----------*/
 .home-background {
     width: 100%;
-    height: 97vh;
+    min-height: 97vh;
     background: linear-gradient(210deg, #4b6cb7 0%, #182848 100%);
     z-index: -30;
 }

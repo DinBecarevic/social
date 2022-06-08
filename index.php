@@ -161,7 +161,7 @@
                             <input type="text" name="lastname" placeholder="priimek...">
                         </div>
                         <div class="inputBx">
-                            <input min="1997-01-01" max="2030-12-31" type="text" placeholder="datum rojstva..." name="datumroj" id="tempdate" onclick="dateswitch()">
+                            <input min="1920-01-01" max="2030-12-31" type="text" placeholder="datum rojstva..." name="datumroj" id="tempdate" onclick="dateswitch()">
                         </div>
                         <div class="inputBx_submit lastbuttons">
                             <button id="final_sub_back_btn" onclick="nazaj()" type="button">Nazaj</button>

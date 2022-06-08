@@ -1,0 +1,130 @@
+/*---------barve-----------*/
+:root {
+    --bela: #F1F1F1;
+    --crna: #2B2B2B;
+    --hover_modra: rgba(171, 190, 255, 0.68);
+    --svetlo_modra: #4b6cb7;
+    --temno_modra: #182848;
+    --gradient_modra: linear-gradient(253deg, #4b6cb7 0%, #182848 100%);
+}
+/*---------barve-----------*/
+#uporabnik-container01 {
+    color: var(--crna);
+    background-color: transparent;
+    position: relative;
+    left: 290px;
+    margin-right: 50px;
+    display: inline-block;
+    margin-top: 20px;
+    width: 78vw;
+    padding: 10px 20px 10px 20px;
+    border-radius: 10px;
+    z-index: 1;
+}
+#uporabnik-box01 {
+    padding: 10vh 5vh 5vh 5vh;
+}
+.uporabnik-card {
+    position: relative;
+    width: 350px;
+    height: 190px;
+    background-color: var(--hover_modra);
+    border-radius: 20px;
+    box-shadow: 0 35px 80px rgba(0, 0, 0, 0.15);
+    transition:0.5s;
+}
+.uporabnik-card:hover {
+    height:450px;
+}
+.uporabnik-imgBx {
+    position: absolute;
+    left: 50%;
+    top: -50px;
+    transform: translateX(-50%);
+    width: 150px;
+    height:150px;
+    background-color: var(--bela);
+    border-radius: 20px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0,0.35);
+    overflow: hidden;
+    transition: 0.5s;
+}
+.uporabnik-card:hover .uporabnik-imgBx {
+    width: 250px;
+    height:250px;
+}
+.uporabnik-imgBx img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.uporabnik-card .uporabnik-content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    overflow: hidden;
+}
+.uporabnik-card .uporabnik-content .uporabnik-details {
+    padding: 40px;
+    text-align: center;
+    width: 100%;
+    transition: .5s;
+    transform: translateY(150px);
+}
+.uporabnik-card:hover .uporabnik-content .uporabnik-details {
+    transform: translateY(0px);
+}
+.uporabnik-card .uporabnik-content .uporabnik-details h2 {
+    font-size: 1.25em;
+    font-weight: 600;
+    color: var(--crna);
+    line-height: 1.2rem;
+}
+.uporabnik-card .uporabnik-content .uporabnik-details h2 span {
+    font-size: 0.75em;
+    font-weight: 500;
+    opacity: .5;
+}
+.uporabnik-card .uporabnik-content .uporabnik-details .uporabnik-data {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+.uporabnik-card .uporabnik-content .uporabnik-details .uporabnik-data h3 {
+    font-size: 1em;
+    color: #1e1e1e;
+    line-height: 1.2em;
+    font-weight: 600;
+}
+.uporabnik-card .uporabnik-content .uporabnik-details .uporabnik-data h3 span {
+    font-size: 0.85em;
+    font-weight: 400;
+    opacity: 0.5;
+}
+
+.uporabnik-card .uporabnik-content .uporabnik-details .uporabnik-actionBtn {
+    display: flex;
+    justify-content: space-between;
+    /* gap: 20px; */
+}
+.uporabnik-card .uporabnik-content .uporabnik-details .uporabnik-actionBtn button {
+    padding: 10px 30px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    font-weight: 500;
+    background: var(--temno_modra);
+    color: var(--bela);
+    cursor: pointer;
+}
+.uporabnik-card .uporabnik-content .uporabnik-details .uporabnik-actionBtn button:nth-child(2) {
+    color: var(--svetlo_modra);
+    background: var(--bela);
+}

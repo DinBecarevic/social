@@ -2,15 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="70b05b2b-f615-450f-9c45-1346b83dc681" name="Changes" comment="error messagi...&#10;(error message ob prijavi in uporabniku avtomatsko nazaj naloži login formo...)">
-      <change afterPath="$PROJECT_DIR$/includes/likeObjava.inc.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/komentiraj.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7__06__2022_19_24__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7__06__2022_19_24__Changes_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/css/uporabnik.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/includes/deleteKomentar.inc.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/includes/komentirajObjavo.inc.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/includes/likeObjavaKomantar.inc.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/includes/slediUporabniku.inc.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uporabnik.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/footer.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/footer.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/header.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/home.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/css/social.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/social.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/deleteObjava.inc.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/deleteObjava.inc.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/editObjava.inc.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/editObjava.inc.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/header.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/includes/functions.inc.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/functions.inc.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/komentiraj.php" beforeDir="false" afterPath="$PROJECT_DIR$/komentiraj.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profil.php" beforeDir="false" afterPath="$PROJECT_DIR$/profil.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +31,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -61,16 +69,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "S:/DOWNOLOAD/xampp/htdocs/social",
+    "list.type.of.created.stylesheet": "CSS",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\social_media\social\includes" />
@@ -103,7 +113,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="cc852506-4c08-4f78-a895-815630e80ea8" name="Changes" comment="" />
+      <changelist id="70b05b2b-f615-450f-9c45-1346b83dc681" name="Changes" comment="error messagi...&#10;(error message ob prijavi in uporabniku avtomatsko nazaj naloži login formo...)" />
       <created>1648595231465</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -159,6 +169,7 @@
       <workItem from="1652950850443" duration="1324000" />
       <workItem from="1652990062429" duration="440000" />
       <workItem from="1652990525768" duration="957000" />
+      <workItem from="1654687759688" duration="21135000" />
     </task>
     <task id="LOCAL-00001" summary="Commit2">
       <created>1650547148893</created>
