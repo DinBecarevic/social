@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="css/home.css">
     <link rel="stylesheet" type="text/css" href="css/social.css">
     <link rel="stylesheet" type="text/css" href="css/uporabnik.css">
+    <link rel="stylesheet" type="text/css" href="css/prijatelji.css">
 	<link rel="stylesheet" type="text/css" href="css/header.css">
 	<link rel="stylesheet" type="text/css" href="css/footer.css">
 

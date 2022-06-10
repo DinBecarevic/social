@@ -2,22 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="70b05b2b-f615-450f-9c45-1346b83dc681" name="Changes" comment="error messagi...&#10;(error message ob prijavi in uporabniku avtomatsko nazaj naloži login formo...)">
-      <change afterPath="$PROJECT_DIR$/css/uporabnik.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/includes/deleteKomentar.inc.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/includes/komentirajObjavo.inc.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/includes/likeObjavaKomantar.inc.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/includes/slediUporabniku.inc.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uporabnik.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/css/prijatelji.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/includes/DodajPrijatelja.inc.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/includes/OdstraniPrijatelja.inc.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/includes/UnSlediUporabniku.inc.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/prijatelji.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/footer.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/footer.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/header.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/home.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/social.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/social.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/uporabnik.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/uporabnik.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/editObjava.php" beforeDir="false" afterPath="$PROJECT_DIR$/editObjava.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home.php" beforeDir="false" afterPath="$PROJECT_DIR$/home.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/includes/functions.inc.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/functions.inc.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/komentiraj.php" beforeDir="false" afterPath="$PROJECT_DIR$/komentiraj.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/profil.php" beforeDir="false" afterPath="$PROJECT_DIR$/profil.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/regije.php" beforeDir="false" afterPath="$PROJECT_DIR$/regije.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/social.php" beforeDir="false" afterPath="$PROJECT_DIR$/social.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uporabnik.php" beforeDir="false" afterPath="$PROJECT_DIR$/uporabnik.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,18 +69,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "S:/DOWNOLOAD/xampp/htdocs/social",
-    "list.type.of.created.stylesheet": "CSS",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;S:/DOWNOLOAD/xampp/htdocs/social&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\social_media\social\includes" />

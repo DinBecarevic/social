@@ -599,6 +599,7 @@ function getComentKomentarje($conn, $objava_id)
             mysqli_stmt_execute($stmt);
 
             //dobimo podatke
+
             $resultData3 = mysqli_stmt_get_result($stmt);
 
             //če je uporabnik že vseckal je vsecek vizualno polen...
@@ -611,7 +612,7 @@ function getComentKomentarje($conn, $objava_id)
             }
             mysqli_stmt_close($stmt);
 
-            //--------------------------------------------------------------------------------
+            //--------------------------$resultData3 = mysqli_stmt_get_result($stmt);------------------------------------------------------
             // dobimo podatke o številu všečkov
             $sql4 = "SELECT COUNT(*) FROM vsecki_komentarji WHERE (id_komentarja = ?)";
             $stmt = mysqli_stmt_init($conn);
@@ -669,7 +670,6 @@ function getUserProfile($conn, $user_username) {
     mysqli_stmt_execute($stmt);
 
     $result = mysqli_stmt_get_result($stmt);
-    mysqli_stmt_close($stmt);
 
     while ($row = $result->fetch_assoc()) {
         $id = $row['id'];
@@ -700,19 +700,111 @@ function getUserProfile($conn, $user_username) {
                         <h3>343<br><span>Sledilcev</span></h3>
                         <h3>343<br><span>Sledi</span></h3>
                     </div>    
-                    <div class='uporabnik-actionBtn'>
-                        <form action='includes/slediUporabniku.inc.php' method='post'>
-                            <input type='hidden' name='user_id' value='$id'>
-                            <input type='hidden' name='url_username' value='$username'>                         
-                            <button type='submit' name='slediUporabniku-btn'>Sledi</button>
-                        </form>
-                        
-                        <button>Dodaj Prijatelja</button>
+                    <div class='uporabnik-actionBtn'>";
+
+                            //dobimo podatke če porabnik že sledi tej določeni osebi...
+                            $sql2 = "SELECT * FROM sledilci WHERE (uporabnik_id = ?) AND (sledilec_id = ?)";
+                            $stmt = mysqli_stmt_init($conn);
+                            if (!mysqli_stmt_prepare($stmt, $sql2)) {
+                                header("location: ../home.php?error=stmtfailed");
+                                exit();
+                            }
+
+
+                            $userId = $_SESSION['S_userId'];
+                            mysqli_stmt_bind_param($stmt, "ss", $id, $userId);
+                            mysqli_stmt_execute($stmt);
+
+                            $result2 = mysqli_stmt_get_result($stmt);
+
+                            if ($row2 = mysqli_fetch_assoc($result2)) {
+                                echo "
+                                    <form action='includes/UnSlediUporabniku.inc.php' method='post'>
+                                    <button class='follow-user-css-btn' type='submit' name='UnSlediUporabniku-btn' style='margin-right: 5px'>Unfollow</button>";
+                            }
+                            else {
+                                echo "
+                                    <form action='includes/slediUporabniku.inc.php' method='post'>
+                                    <button class='follow-user-css-btn' type='submit' name='slediUporabniku-btn'>Sledi</button>";
+                            }
+
+                        echo "
+                               <input type='hidden' name='user_id' value='$id'>
+                               <input type='hidden' name='url_username' value='$username'>
+                           </form>";
+
+
+
+                            //dobimo podatke če je uporabnik že prijatelj z to določeno osebo...
+                            $sql3 = "SELECT * FROM prijatelji WHERE (id_user = ?) AND (id_friend = ?)";
+                            $stmt = mysqli_stmt_init($conn);
+                            if (!mysqli_stmt_prepare($stmt, $sql3)) {
+                                header("location: ../home.php?error=stmtfailed");
+                                exit();
+                            }
+
+                            mysqli_stmt_bind_param($stmt, "ss", $userId, $id);
+                            mysqli_stmt_execute($stmt);
+
+                            $result3 = mysqli_stmt_get_result($stmt);
+
+                            if ($row3 = mysqli_fetch_assoc($result3)) {
+                                echo "
+                                    <form action='includes/OdstraniPrijatelja.inc.php' method='post'>
+                                    <button type='submit' name='OdstraniPrijatelja-btn' class='dodaj-prijatelja-css-btn' style='background: rgba(241,241,241,0.55); padding: 10px 2px;'>Odstrani Prijatelja</button>";
+                            }
+                            else {
+                                echo "
+                                    <form action='includes/DodajPrijatelja.inc.php' method='post'>
+                                    <button type='submit' name='DodajPrijatelja-btn' class='dodaj-prijatelja-css-btn'>Dodaj Prijatelja</button>";
+                            }
+                            mysqli_stmt_close($stmt);
+
+                        echo "
+                               <input type='hidden' name='user_id' value='$id'>
+                               <input type='hidden' name='url_username' value='$username'>
+                           </form>";
+
+                        echo "
                     </div>    
                 </div>
             </div>
         </div>
         ";
+    }
+}
+
+
+function getFriendRequests($conn) {
+    $sql = "SELECT * FROM prijatelji WHERE (id_friend = ?) AND (status = 'non-checked')";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../home.php?error=stmtfailed");
+        exit();
+    }
+
+    $userId = $_SESSION['S_userId'];
+    mysqli_stmt_bind_param($stmt, "s", $userId);
+    mysqli_stmt_execute($stmt);
+
+    $result = mysqli_stmt_get_result($stmt);
+
+    while ($row = $result->fetch_assoc()) {
+        $id = $row['id'];
+        $id_user = $row['id_user'];
+        $id_friend = $row['id_friend'];
+        $status = $row['status'];
+        $added_date = $row['added_date'];
+
+        echo "<div class='firend-requesti-boxi'>";
+        if ($row = mysqli_fetch_assoc($result)) {
+            echo "";
+        }
+        else {
+            echo "";
+        }
+        mysqli_stmt_close($stmt);
+        echo "</div>";
     }
 }
 

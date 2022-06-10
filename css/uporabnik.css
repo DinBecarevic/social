@@ -113,7 +113,7 @@
     justify-content: space-between;
     /* gap: 20px; */
 }
-.uporabnik-card .uporabnik-content .uporabnik-details .uporabnik-actionBtn button {
+.follow-user-css-btn {
     padding: 10px 30px;
     border-radius: 5px;
     border: none;
@@ -124,7 +124,15 @@
     color: var(--bela);
     cursor: pointer;
 }
-.uporabnik-card .uporabnik-content .uporabnik-details .uporabnik-actionBtn button:nth-child(2) {
+.dodaj-prijatelja-css-btn {
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    font-weight: 500;
+    cursor: pointer;
+
     color: var(--svetlo_modra);
     background: var(--bela);
+    padding: 10px 10px;
 }

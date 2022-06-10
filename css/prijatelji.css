@@ -1,0 +1,28 @@
+/*---------barve-----------*/
+:root {
+    --bela: #F1F1F1;
+    --crna: #2B2B2B;
+    --hover_modra: rgba(171, 190, 255, 0.68);
+    --svetlo_modra: #4b6cb7;
+    --temno_modra: #182848;
+    --gradient_modra: linear-gradient(253deg, #4b6cb7 0%, #182848 100%);
+}
+/*---------barve-----------*/
+
+
+#prijatelji-container01 {
+    color: var(--crna);
+    background-color: transparent;
+    position: relative;
+    left: 290px;
+    margin-right: 50px;
+    display: inline-block;
+    margin-top: 20px;
+    width: 78vw;
+    padding: 10px 20px 10px 20px;
+    border-radius: 10px;
+    z-index: 1;
+}
+#requesti-box01 {
+    padding: 10vh 5vh 5vh 5vh;
+}

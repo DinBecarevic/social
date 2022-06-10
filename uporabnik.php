@@ -8,7 +8,7 @@ include_once 'includes/functions.inc.php';
     <div class="navigation">
         <div class="menuToggle"></div>
         <ul>
-            <li class="list active" style="--clr:#4b6cb7;">
+            <li class="list" style="--clr:#4b6cb7;">
                 <a href="#">
                     <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
                     <span class="text">Home</span>
@@ -26,10 +26,10 @@ include_once 'includes/functions.inc.php';
                     <span class="text">Regije</span>
                 </a>
             </li>
-            <li class="list" style="--clr:#4b6cb7;">
+            <li class="list active" style="--clr:#4b6cb7;">
                 <a href="#">
                     <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
-                    <span class="text">Skupine</span>
+                    <span class="text">Prijatelji</span>
                 </a>
             </li>
             <li class="list" style="--clr:#4b6cb7;">

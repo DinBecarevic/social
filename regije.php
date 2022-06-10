@@ -27,7 +27,7 @@ include_once 'includes/dbh.inc.php';
             <li class="list" style="--clr:#4b6cb7;">
                 <a href="#">
                     <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
-                    <span class="text">Skupine</span>
+                    <span class="text">Prijatelji</span>
                 </a>
             </li>
             <li class="list" style="--clr:#4b6cb7;">
