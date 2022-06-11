@@ -136,3 +136,12 @@
     background: var(--bela);
     padding: 10px 10px;
 }
+
+
+#rejected-info {
+    position: absolute;
+    left: 0;
+    color: var(--crna);
+    opacity: .7;
+    font-size: 0.9em;
+}
