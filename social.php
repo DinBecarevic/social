@@ -1,7 +1,7 @@
 <?php
-include_once 'header.php';
-session_abort();
 include_once 'includes/functions.inc.php';
+session_abort();
+include_once 'header.php';
 include_once 'includes/dbh.inc.php';
 ?>
 <?php

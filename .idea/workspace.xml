@@ -1,13 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="70b05b2b-f615-450f-9c45-1346b83dc681" name="Changes" comment="vseckanje, komentiranje, vseckanje komentarjev, delo na public profilih uporabnikov...">
-      <change afterPath="$PROJECT_DIR$/includes/friendRequest.inc.php" afterDir="false" />
+    <list default="true" id="70b05b2b-f615-450f-9c45-1346b83dc681" name="Changes" comment="prijateljstva...">
+      <change afterPath="$PROJECT_DIR$/chat.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/css/pogovori.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/includes/cookiedata.inc.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/niste-prijavljeni.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pogovori.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/discord.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/discord.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/css/prijatelji.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/prijatelji.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/profile.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/social.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/social.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/css/uporabnik.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/uporabnik.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/OdstraniPrijatelja.inc.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/OdstraniPrijatelja.inc.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/editObjava.php" beforeDir="false" afterPath="$PROJECT_DIR$/editObjava.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/header2.php" beforeDir="false" afterPath="$PROJECT_DIR$/header2.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home.php" beforeDir="false" afterPath="$PROJECT_DIR$/home.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/includes/functions.inc.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/functions.inc.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/likeObjava.inc.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/likeObjava.inc.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/logout.inc.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/logout.inc.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/komentiraj.php" beforeDir="false" afterPath="$PROJECT_DIR$/komentiraj.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/odjava.php" beforeDir="false" afterPath="$PROJECT_DIR$/odjava.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/prijatelji.php" beforeDir="false" afterPath="$PROJECT_DIR$/prijatelji.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profil.php" beforeDir="false" afterPath="$PROJECT_DIR$/profil.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/regije.php" beforeDir="false" afterPath="$PROJECT_DIR$/regije.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/social.php" beforeDir="false" afterPath="$PROJECT_DIR$/social.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uporabnik.php" beforeDir="false" afterPath="$PROJECT_DIR$/uporabnik.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,6 +180,9 @@
       <workItem from="1652990062429" duration="440000" />
       <workItem from="1652990525768" duration="957000" />
       <workItem from="1654687759688" duration="21135000" />
+      <workItem from="1654939267030" duration="22340000" />
+      <workItem from="1654979879599" duration="1494000" />
+      <workItem from="1655029609559" duration="29904000" />
     </task>
     <task id="LOCAL-00001" summary="Commit2">
       <created>1650547148893</created>
@@ -237,7 +260,13 @@
       <option name="presentableId" value="LOCAL−00011" />
       <updated>1652992157708</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL−00012" summary="prijateljstva...">
+      <created>1654909723318</created>
+      <option name="number" value="LOCAL−00012" />
+      <option name="presentableId" value="LOCAL−00012" />
+      <updated>1654909723318</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -266,7 +295,8 @@
     <MESSAGE value="slike" />
     <MESSAGE value="node_module in loginv8 removed" />
     <MESSAGE value="test GitHub pc to laptop" />
-    <option name="LAST_COMMIT_MESSAGE" value="test GitHub pc to laptop" />
+    <MESSAGE value="prijateljstva..." />
+    <option name="LAST_COMMIT_MESSAGE" value="prijateljstva..." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

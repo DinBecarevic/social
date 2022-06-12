@@ -1,8 +1,8 @@
 <?php
-include_once 'header.php';
-session_abort();
-include_once 'includes/dbh.inc.php';
 include_once 'includes/functions.inc.php';
+session_abort();
+include_once 'header.php';
+include_once 'includes/dbh.inc.php';
 ?>
 <?php
 if (isset($_SESSION["S_userId"])) {
@@ -57,8 +57,14 @@ echo '<div class="home-background">
     <div id="prijatelji-container01">
         <div id="requesti-box01">';
             getFriendRequests($conn);
-        echo '</div>
-    </div>
+            echo '</div>
+                    <h3>Objave vaših prijateljev...</h3>
+                    <hr id="prijatelji-objave-separator">
+                  <div id="prijatelji-objave-box">';
+                    getFriendObjave($conn);
+        echo '    </div>
+            </div>';
+    echo '</div>
 </div>';
 }
 else {

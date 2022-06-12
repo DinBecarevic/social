@@ -1,5 +1,6 @@
 <?php
 session_start();
+include_once 'includes/cookiedata.inc.php';
 ?>
 <!DOCTYPE html>
 <html lang="sl">

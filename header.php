@@ -1,5 +1,6 @@
 <?php
 	session_start();
+    include_once 'includes/cookiedata.inc.php';
 ?>
 <!DOCTYPE html>
 <html lang="sl">
@@ -12,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="css/social.css">
     <link rel="stylesheet" type="text/css" href="css/uporabnik.css">
     <link rel="stylesheet" type="text/css" href="css/prijatelji.css">
+    <link rel="stylesheet" type="text/css" href="css/pogovori.css">
 	<link rel="stylesheet" type="text/css" href="css/header.css">
 	<link rel="stylesheet" type="text/css" href="css/footer.css">
 

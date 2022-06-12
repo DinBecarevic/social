@@ -5,10 +5,8 @@ include_once 'header.php';
 include_once 'includes/dbh.inc.php';
 ?>
 <?php
-if (isset($_COOKIE['C_userEmail']) AND ($_COOKIE['C_userPwd'])) {
-    if (isset($_GET['uporabnik'])) {
-        echo '
-<div class="home-background">
+if (isset($_SESSION["S_userId"])) {
+    echo '<div class="home-background">
     <div class="navigation">
         <div class="menuToggle"></div>
         <ul>
@@ -30,13 +28,13 @@ if (isset($_COOKIE['C_userEmail']) AND ($_COOKIE['C_userPwd'])) {
                     <span class="text">Regije</span>
                 </a>
             </li>
-            <li class="list active" style="--clr:#4b6cb7;">
+            <li class="list" style="--clr:#4b6cb7;">
                 <a href="#">
                     <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
                     <span class="text">Prijatelji</span>
                 </a>
             </li>
-            <li class="list" style="--clr:#4b6cb7;">
+            <li class="list active" style="--clr:#4b6cb7;">
                 <a href="#">
                     <span class="icon"><ion-icon name="chatbox-outline"></ion-icon></span>
                     <span class="text">Pogovori</span>
@@ -55,25 +53,27 @@ if (isset($_COOKIE['C_userEmail']) AND ($_COOKIE['C_userPwd'])) {
                 </a>
             </li>
         </ul>
-    </div>
-    <div id="uporabnik-container01">
-            <div id="uporabnik-box01">';
-        $user_username = $_GET['uporabnik'];
-        getUserProfile($conn, $user_username);
-        getUserObjave($conn, $user_username);
-        echo '</div>
-    </div>
-</div>';
-    }
-    else {
-        header('Location: home.php?uporabnik_neobstaja');
-        exit();
-    }
+        </div>
+        <div id="pogovori-container01">';
+            $S_userID = $_SESSION['S_userId'];
+            getFriends($conn, $S_userID);
+echo '  </div>
+    </div>';
 }
 else {
-    include_once 'niste-prijavljeni.php';
+    echo "<section class='banner'> ";
+    echo "	<div class='box2'> ";
+    echo "		<div class='content-profile'> ";
+    echo "			<div class='profilep'> ";
+    echo "				<p>Niste prijavljeni!</p>";
+    echo "				<p><a style='text-decoration: none; color: #3e849e;' href='index.php'>Prijavite se...</a></p>";
+    echo "			</div> ";
+    echo "		</div> ";
+    echo "	</div> ";
+    echo "</section>";
 }
 ?>
+
 <?php
 include_once 'footer.php';
 ?>

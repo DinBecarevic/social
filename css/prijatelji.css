@@ -24,5 +24,123 @@
     z-index: 1;
 }
 #requesti-box01 {
-    padding: 10vh 5vh 5vh 5vh;
+    padding: 5vh 5vh 2vh 5vh;
+}
+.firend-requesti-boxi {
+    display: inline-block;
+    margin: auto;
+    margin: 1vh 2vh;
+    height: 20vh;
+}
+.friend-request h4 {
+    font-size: 1.6em;
+    letter-spacing: 1px;
+    color: var(--bela);
+    text-transform: uppercase;
+}
+.friend-request hr {
+    margin: 5px 0px;
+    border: 2px solid var(--bela);
+    border-radius: 8px;
+}
+.friendrequest-usr-info {
+    position: relative;
+    width: 56%;
+    margin: 0 auto;
+    height: 5vh;
+    margin-top: 1vh;
+    background-color: var(--svetlo_modra);
+    padding: .4vh;
+    border-radius: 50px;
+}
+.friendrequest-usr-img {
+    width: 5vh;
+    height: 5vh;
+    border-radius: 50%;
+    display: inline-block;
+}
+.friend-request p {
+    position: absolute;
+    display: inline-block;
+    top: 15%;
+    text-align: center;
+    font-size: 1.4em;
+    font-weight: 400;
+    margin: 0 2vh;
+    color: var(--bela);
+}
+.friendrequest-usr-info .longUsername {
+    max-width: 24vh;
+    overflow: hidden;
+}
+.friend-request a:hover {
+    color: var(--hover_modra);
+    transition: .3s;
+}
+.friend-request a {
+    text-decoration: none;
+    font-size: 1.3em;
+    color: var(--bela);
+    transition: .3s;
+}
+.sprejmi-btn {
+    padding: 0 20px;
+    width: 8vw;
+    height: 1.8vw;
+    background-color: #86B049;
+    border-radius: 25px;
+    font-size: 15px;
+    color: var(--bela);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border: none;
+}
+.friendrequest-form {
+    position: relative;
+}
+.friendrequest-button-alignment {
+    position: absolute;
+    margin: 2vh auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+.reject-btn {
+    padding: 0 20px;
+    width: 8vw;
+    height: 1.8vw;
+    background-color: #F75151;
+    border-radius: 25px;
+    font-size: 15px;
+    color: var(--bela);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border: none;
+}
+.friend-request button {
+    position: relative;
+    margin: 0vh 1vh;
+    align-items: center;
+    cursor: pointer;
+}
+.friend-request button ion-icon {
+    font-size: 2em;
+    font-weight: 800;
+    position: absolute;
+    top: 2px;
+    left: 3px;
+}
+#prijatelji-container01 h3 {
+    font-size: 2em;
+    color: var(--bela);
+    letter-spacing: 1px;
+}
+#prijatelji-objave-separator {
+    border: 2px solid var(--bela);
+    margin: 1vh 0 2vh 0;
+    border-radius: 8px;
+}
+#prijatelji-objave-box {
+    background-color: var(--bela);
+    border-radius: 8px;
 }

@@ -1,0 +1,65 @@
+/*---------barve-----------*/
+:root {
+    --bela: #F1F1F1;
+    --crna: #2B2B2B;
+    --hover_modra: rgba(171, 190, 255, 0.68);
+    --svetlo_modra: #4b6cb7;
+    --temno_modra: #182848;
+    --gradient_modra: linear-gradient(253deg, #4b6cb7 0%, #182848 100%);
+}
+/*---------barve-----------*/
+#pogovori-container01 {
+    color: var(--crna);
+    background-color: transparent;
+    position: relative;
+    left: 290px;
+    margin-right: 50px;
+    display: inline-block;
+    margin-top: 20px;
+    width: 78vw;
+    padding: 10px 20px 10px 20px;
+    border-radius: 10px;
+    z-index: 1;
+}
+.pogovori-prijatel-box {
+    display: inline-block;
+    width: 45%;
+    margin: 1vh 2vh 1vh 0vh;
+    overflow: hidden;
+    border-radius: 80px;
+    background: rgba(241, 241, 241, 0.15);
+    transition: .3s;
+    position: relative;
+}
+.pogovori-prijatel-box:hover {
+    transition: .3s;
+    cursor: pointer;
+    background: rgba(241, 241, 241, 0.4);
+}
+.pogovori-prijatel-box img {
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.pogovori-prijatel-info {
+    display: inline-block;
+    position: absolute;
+    top: 20px;
+    left: 120px;
+    color: var(--bela);
+}
+.pogovori-prijatel-info h4 {
+    font-size: 2em;
+    letter-spacing: 1px;
+}
+.pogovori-prijatel-info p {
+    font-size: .8em;
+    opacity: .4;
+}
+.pogovori-prijateljstvo-hidden {
+    display: none;
+}
+.pogovori-prijatel-box-a {
+    text-decoration: none;
+}

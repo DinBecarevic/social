@@ -115,19 +115,30 @@ function loginUser($conn, $username, $pwd) {
     }
     else if ($checkPwd == true) {
         session_start();
-        $_SESSION['S_userId'] = $uidExists["id"];
-        $_SESSION['S_userUsername'] = $uidExists["username"];
-        $_SESSION['S_userFirstName'] = $uidExists["first_name"];
-        $_SESSION['S_userLastName'] = $uidExists["last_name"];
-        $_SESSION['S_userEmail'] = $uidExists["email"];
-        $_SESSION['S_userOpis'] = $uidExists["opis"];
-        $_SESSION['S_userRegija'] = $uidExists["regija"];
-        $_SESSION['S_userMesto'] = $uidExists["mesto_id"];
-        $_SESSION['S_userPronouns'] = $uidExists["pronouns"];
-        $_SESSION['S_userDatumRoj'] = $uidExists["datum_roj"];
+        $_SESSION['S_userId'] =                 $uidExists["id"];
+        $_SESSION['S_userUsername'] =           $uidExists["username"];
+        $_SESSION['S_userFirstName'] =          $uidExists["first_name"];
+        $_SESSION['S_userLastName'] =           $uidExists["last_name"];
+        $_SESSION['S_userEmail'] =              $uidExists["email"];
+        $_SESSION['S_userOpis'] =               $uidExists["opis"];
+        $_SESSION['S_userRegija'] =             $uidExists["regija"];
+        $_SESSION['S_userMesto'] =              $uidExists["mesto"];
+        $_SESSION['S_userPronouns'] =           $uidExists["pronouns"];
+        $_SESSION['S_userDatumRoj'] =           $uidExists["datum_roj"];
 
-        $_SESSION['S_userProfileBanner'] = $uidExists["banner_dir"];
-        $_SESSION['S_userProfileImg'] = $uidExists["img_dir"];
+        $_SESSION['S_userProfileBanner'] =      $uidExists["banner_dir"];
+        $_SESSION['S_userProfileImg'] =         $uidExists["img_dir"];
+
+        $_SESSION['S_userRegistracija_date'] =  $uidExists["registracija_date"];
+        $_SESSION['S_userUpdate_date'] =        $uidExists["update_date"];
+
+        // cookies
+        $expiration = time() + (7 * 24 * 60 * 60); // 1 teden
+
+        setcookie('C_userUsername', $uidExists["username"], $expiration, "/");
+        setcookie('C_userEmail', $uidExists["email"], $expiration, "/");
+        setcookie('C_userPwd', $uidExists["pwd"], $expiration, "/");
+
 
         header("location: ../profil.php?success=user_logged_in");
         exit();
@@ -152,19 +163,29 @@ function loginUser2($conn, $username, $pwd) {
     }
     else if ($checkPwd == true) {
         session_start();
-        $_SESSION['S_userId'] = $uidExists["id"];
-        $_SESSION['S_userUsername'] = $uidExists["username"];
-        $_SESSION['S_userFirstName'] = $uidExists["first_name"];
-        $_SESSION['S_userLastName'] = $uidExists["last_name"];
-        $_SESSION['S_userEmail'] = $uidExists["email"];
-        $_SESSION['S_userOpis'] = $uidExists["opis"];
-        $_SESSION['S_userRegija'] = $uidExists["regija"];
-        $_SESSION['S_userMesto'] = $uidExists["mesto_id"];
-        $_SESSION['S_userPronouns'] = $uidExists["pronouns"];
-        $_SESSION['S_userDatumRoj'] = $uidExists["datum_roj"];
+        $_SESSION['S_userId'] =                 $uidExists["id"];
+        $_SESSION['S_userUsername'] =           $uidExists["username"];
+        $_SESSION['S_userFirstName'] =          $uidExists["first_name"];
+        $_SESSION['S_userLastName'] =           $uidExists["last_name"];
+        $_SESSION['S_userEmail'] =              $uidExists["email"];
+        $_SESSION['S_userOpis'] =               $uidExists["opis"];
+        $_SESSION['S_userRegija'] =             $uidExists["regija"];
+        $_SESSION['S_userMesto'] =              $uidExists["mesto"];
+        $_SESSION['S_userPronouns'] =           $uidExists["pronouns"];
+        $_SESSION['S_userDatumRoj'] =           $uidExists["datum_roj"];
 
-        $_SESSION['S_userProfileBanner'] = $uidExists["banner_dir"];
-        $_SESSION['S_userProfileImg'] = $uidExists["img_dir"];
+        $_SESSION['S_userProfileBanner'] =      $uidExists["banner_dir"];
+        $_SESSION['S_userProfileImg'] =         $uidExists["img_dir"];
+
+        $_SESSION['S_userRegistracija_date'] =  $uidExists["registracija_date"];
+        $_SESSION['S_userUpdate_date'] =        $uidExists["update_date"];
+
+        // cookies
+        $expiration = time() + (7 * 24 * 60 * 60); // 1 teden
+
+        setcookie('C_userUsername', $uidExists["username"], $expiration, "/");
+        setcookie('C_userEmail', $uidExists["email"], $expiration, "/");
+        setcookie('C_userPwd', $uidExists["pwd"], $expiration, "/");
 
         header("location: ../../profil.php?success=user_logged_in");
         exit();
@@ -349,6 +370,11 @@ function objaviObjavo($conn, $vsebina, $regija, $is_image) {
 }
 
 function getComments($conn) {
+    //dobim ime datoteke v kateri se nahajam zaradi tega ker to funkcijo uporabljam večkrat in da vem kam morem redrectat v headeru :D
+    $current_url_path = "$_SERVER[SCRIPT_NAME]";
+    $break_url = explode('/', $current_url_path);
+    $pfile = $break_url[count($break_url) - 1];
+
     $sql = "SELECT id, uporabnik_id, vsebina, DATE_FORMAT(created_date,'%b %e, %Y | %H:%i'), regija, is_image, DATE_FORMAT(update_date,'%b %e, %Y | %H:%i'), is_edited FROM objave order by created_date DESC";
     $result = $conn->query($sql);
     while ($row = $result->fetch_assoc()) {
@@ -361,6 +387,7 @@ function getComments($conn) {
             $usr_img = $row2['img_dir'];
             $is_edited = $row['is_edited'];
             $refactored_date = $row["DATE_FORMAT(created_date,'%b %e, %Y | %H:%i')"];
+            $objava_uporabnik_username = $row2['username'];
 
             //preden izpišemo vsebino naredimo mysqli_real_escape_string in strip_tag da se znebimo borebitni nezačeleni vsebini...
             $vsebina = mysqli_real_escape_string($conn, htmlspecialchars($row['vsebina']));
@@ -370,7 +397,7 @@ function getComments($conn) {
             echo   "<img class='objava-user-image' src='$usr_img'></img>";
             echo    "<div class='comment-possision'>";
             echo        "<span class='comment-info'>";
-            echo            "<p class='username-color'>", $row2['username'], "</p>", '&nbsp;&nbsp;&nbsp;', $refactored_date."<br><br>";
+            echo            "<p class='username-color'><a href='uporabnik.php?uporabnik=$objava_uporabnik_username'>$objava_uporabnik_username</a></p>", '&nbsp;&nbsp;&nbsp;', $refactored_date."<br><br>";
             echo        "</span>";
             if ($is_edited > 0) {
                 $edited_time = $row["DATE_FORMAT(update_date,'%b %e, %Y | %H:%i')"];
@@ -398,6 +425,7 @@ function getComments($conn) {
             }
             echo "<div class='like-form-div'><form class='like-comment-form' method='POST' action='includes/likeObjava.inc.php'>";
             echo    "<input type='hidden' name='comment_id' value='".$row['id']."'>";
+            echo    "<input type='hidden' name='url_file' value='$pfile'>";
 
 //            dobimo podatke o vsecku da vidimo ce si ze lajku :D
             $id_objave = $row['id'];
@@ -460,11 +488,16 @@ function getComments($conn) {
 
 
 function getComment($conn, $objava_id) {
+    //dobim ime datoteke v kateri se nahajam zaradi tega ker to funkcijo uporabljam večkrat in da vem kam morem redrectat v headeru :D
+    $current_url_path = "$_SERVER[REQUEST_URI]";
+    $break_url = explode('/', $current_url_path);
+    $pfile = $break_url[count($break_url) - 1];
+
     $sql = "SELECT id, uporabnik_id, vsebina, DATE_FORMAT(created_date,'%b %e, %Y | %H:%i'), regija, is_image, DATE_FORMAT(update_date,'%b %e, %Y | %H:%i'), is_edited FROM objave WHERE id = ? ORDER BY created_date DESC ";
 
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location: social.php?error=stmtfailed");
+        header("location: ../social.php?error=stmtfailed");
         exit();
     }
 
@@ -484,7 +517,7 @@ function getComment($conn, $objava_id) {
             $usr_img = $row2['img_dir'];
             $is_edited = $row['is_edited'];
             $refactored_date = $row["DATE_FORMAT(created_date,'%b %e, %Y | %H:%i')"];
-
+            $objava_uporabnik_username = $row2['username'];
             //preden izpišemo vsebino naredimo mysqli_real_escape_string in strip_tag da se znebimo borebitni nezačeleni vsebini...
             $vsebina = mysqli_real_escape_string($conn, htmlspecialchars($row['vsebina']));
             $vsebina = str_replace(array("\\\\r\\\\n","\\r\\n"),"<br>",$vsebina);
@@ -494,7 +527,7 @@ function getComment($conn, $objava_id) {
             echo   "<img class='objava-user-image' src='$usr_img'></img>";
             echo    "<div class='comment-possision'>";
             echo        "<span class='comment-info'>";
-            echo            "<p class='username-color'>", $row2['username'], "</p>", '&nbsp;&nbsp;&nbsp;', $refactored_date."<br><br>";
+            echo            "<p class='username-color'><a href='uporabnik.php?uporabnik=$objava_uporabnik_username'>$objava_uporabnik_username</a></p>", '&nbsp;&nbsp;&nbsp;', $refactored_date."<br><br>";
             echo        "</span>";
             if ($is_edited > 0) {
                 $edited_time = $row["DATE_FORMAT(update_date,'%b %e, %Y | %H:%i')"];
@@ -512,14 +545,78 @@ function getComment($conn, $objava_id) {
                             <button class='delete-objava-btn' type='submit' name='komentar_odstrani'>Odstrani</button>
                         </form>
                         <!-- ----------------------------------------------------------------- -->
-                    	<form class='edit-comment-form' method='POST' action='editObjava.php'>
+                        <form class='edit-comment-form' method='POST' action='editObjava.php'>
                             <input type='hidden' name='id' value='".$row['id']."'>
                             <input type='hidden' name='sporocila' value='".$row['vsebina']."'>
                             <button class='edit-objava-btn' name='komentar_edit'>Uredi</button>
                         </form>";
+
                 }
             }
 
+            if ($pfile !== 'editObjava.php') {
+
+                echo "<div class='like-form-div'><form class='like-comment-form' method='POST' action='includes/likeObjava.inc.php'>";
+                echo "<input type='hidden' name='comment_id' value='" . $row['id'] . "'>";
+                echo "<input type='hidden' name='url_file' value='$pfile'>";
+            }
+//              dobimo podatke o vsecku da vidimo ce si ze lajku :D
+                $id_objave = $row['id'];
+                $userId = $_SESSION['S_userId'];
+
+                $sql3 = "SELECT * FROM vsecki WHERE (id_objave = ?) AND (id_uporabnika = ?)";
+                $stmt = mysqli_stmt_init($conn);
+                if (!mysqli_stmt_prepare($stmt, $sql3)) {
+                    header("location: ../social.php?error=stmtfailed");
+                    exit();
+                }
+
+                mysqli_stmt_bind_param($stmt, "ss", $id_objave, $userId);
+                mysqli_stmt_execute($stmt);
+
+                //dobimo podatke
+                $resultData3 = mysqli_stmt_get_result($stmt);
+
+                //če je uporabnik že vseckal je vsecek vizualno polen...
+                if ($pfile !== 'editObjava.php') {
+                    if ($row = mysqli_fetch_assoc($resultData3)) {
+                        echo "<button class='like-objava-btn' type='submit' name='komentar_like'><ion-icon name='heart'></ion-icon></button>";
+                    }
+                    //če je uporabnik že vseckal je vsecek vizualno prazen...
+                    else {
+                        echo "<button class='like-objava-btn' type='submit' name='komentar_like'><ion-icon name='heart-outline'></ion-icon></button>";
+                    }
+                }
+                mysqli_stmt_close($stmt);
+
+                //--------------------------------------------------------------------------------
+                // dobimo podatke o številu všečkov
+                $sql4 = "SELECT COUNT(*) FROM vsecki WHERE (id_objave = ?)";
+                $stmt = mysqli_stmt_init($conn);
+                if (!mysqli_stmt_prepare($stmt, $sql4)) {
+                    header("location: ../social.php?error=stmtfailed");
+                    exit();
+                }
+
+                mysqli_stmt_bind_param($stmt, "s", $id_objave);
+                mysqli_stmt_execute($stmt);
+
+                //dobimo podatke
+                $resultData4 = mysqli_stmt_get_result($stmt);
+                if ($row = mysqli_fetch_assoc($resultData4)) {
+                    $st_vseckov = $row['COUNT(*)'];
+                }
+                mysqli_stmt_close($stmt);
+
+                echo "      </form>";
+                if ($pfile !== 'editObjava.php') {
+                            echo "<span class='st_vsekov'>$st_vseckov</span>";
+                    }
+                        echo "</div>";
+
+                    echo "<div class='comment-form-div'>
+                        <a href='../social/komentiraj.php?id=$id_objave'><button class='comment-objava-btn'><ion-icon name='chatbox-outline'></ion-icon></button></a>
+                    </div>";
             echo "</div>";
         }
 
@@ -557,12 +654,12 @@ function getComentKomentarje($conn, $objava_id)
             //preden izpišemo vsebino naredimo mysqli_real_escape_string in strip_tag da se znebimo borebitni nezačeleni vsebini...
             $vsebina = mysqli_real_escape_string($conn, htmlspecialchars($row['vsebina']));
             $vsebina = str_replace(array("\\\\r\\\\n", "\\r\\n"), "<br>", $vsebina);
-
+            $objava_uporabnik_username = $row2['username'];
             echo "<div class='komentar-box'>";
             echo "<img class='komentar-user-image' src='$usr_img'></img>";
             echo "<div class='comment-possision'>";
             echo "<span class='comment-info'>";
-            echo "<p class='username-color'>", $row2['username'], "</p>", '&nbsp;&nbsp;&nbsp;', $refactored_date . "<br><br>";
+            echo "<p class='username-color'><a href='uporabnik.php?uporabnik=$objava_uporabnik_username'>$objava_uporabnik_username</a></p>", '&nbsp;&nbsp;&nbsp;', $refactored_date . "<br><br>";
             echo "</span>";
             echo "<p class='comment-paragraph'>";
             echo $vsebina;
@@ -685,6 +782,7 @@ function getUserProfile($conn, $user_username)
         $mesto = $row['mesto'];
         $pronouns = $row['pronouns'];
         $datum_roj = $row['datum_roj'];
+        $usernamelength = strlen($username);
 
         echo "
         <div class='uporabnik-card'>
@@ -692,13 +790,22 @@ function getUserProfile($conn, $user_username)
                 <img src='$img_dir' alt='uporabnik_profile-img'>
             </div>
             <div class='uporabnik-content'>
-                <div class='uporabnik-details'>
-                    <h2>$username<br><span>$firstname $lastname</span></h2>        
-                    <div class='uporabnik-data'>
-                        <h3>343<br><span>Objav</span></h3>
-                        <h3>343<br><span>Všečkov</span></h3>
-                        <h3>343<br><span>Sledilcev</span></h3>
-                        <h3>343<br><span>Sledi</span></h3>
+                <div class='uporabnik-details'>";
+        if ($usernamelength < 30) {
+            echo "<h2>$username<br><span>$firstname $lastname</span></h2>";
+        }
+        else {
+            $length = $usernamelength - 28;
+            $username2 = substr_replace($username, "", -$length);
+
+            echo "    <h2 id='uporabnikH2-longusername'>$username2...<br><span>$firstname $lastname</span></h2>";
+            echo "    <p id='uporabnikp-longusername-hidden'>$username</p>";
+        }
+                    echo "<div class='uporabnik-data'>
+                        <h3>";stevlioObjav($conn, $id);echo"<br><span>Objav</span></h3>
+                        <h3>";stevliovseckov($conn, $id);echo"<br><span>Všečkov</span></h3>
+                        <h3>";stevlioSledilcev($conn, $id);echo"<br><span>Sledilcev</span></h3>
+                        <h3>";stevlioSledi($conn, $id);echo"<br><span>Sledi</span></h3>
                     </div>    
                     <div class='uporabnik-actionBtn'>";
 
@@ -777,6 +884,10 @@ function getUserProfile($conn, $user_username)
                     </div>
                 </div>
             </div>
+                <!-- uporabnikov banner -->
+                <div id='uporabnik-bannerBx'>
+                    <img src='$banner_dir' alt='banner_uporabnika'>
+                </div>
             ";
             return $status;
         }
@@ -799,16 +910,39 @@ function getUserProfile($conn, $user_username)
                 </div>
             </div>
         </div>
+        <!-- uporabnikov banner -->
+                <div id='uporabnik-bannerBx'>
+                    <img src='$banner_dir' alt='banner_uporabnika'>
+                </div>
         ";
         // -------------------------------------------------
-
         mysqli_stmt_close($stmt);
     }
+}
+function getUserObjave($conn, $user_username) {
+    $sql = "SELECT * FROM objave WHERE uporabnik_id IN (SELECT id FROM uporabniki WHERE username = ?) ORDER BY created_date DESC";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../home.php?error=stmtfailed");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "s", $user_username);
+    mysqli_stmt_execute($stmt);
+
+    $result = mysqli_stmt_get_result($stmt);
+    echo "<div id='uporabnikove-objave-box02'>";
+    while ($row = $result->fetch_assoc()) {
+        $objava_id = $row['id'];
+        getComment($conn, $objava_id);
+        echo "<hr id='hr-box2'>";
+    }
+    echo "</div>";
 }
 
 
 function getFriendRequests($conn) {
-    $sql = "SELECT p.id, p.id_user, p.id_friend, p.status, DATE_FORMAT(p.added_date,'%b %e, %Y | %H:%i'), u.username FROM prijatelji p INNER JOIN uporabniki u ON p.id_user = u.id WHERE (p.id_friend = ?) AND (status = 'non-checked')";
+    $sql = "SELECT p.id, p.id_user, p.id_friend, p.status, DATE_FORMAT(p.added_date,'%b %e, %Y | %H:%i'), u.username, u.img_dir FROM prijatelji p INNER JOIN uporabniki u ON p.id_user = u.id WHERE (p.id_friend = ?) AND (status = 'non-checked') ORDER BY added_date DESC";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: ../home.php?error=stmtfailed");
@@ -828,24 +962,348 @@ function getFriendRequests($conn) {
         $status = $row['status'];
         $added_date = $row["DATE_FORMAT(p.added_date,'%b %e, %Y | %H:%i')"];
         $username = $row['username'];
+        $userImg_dir = $row['img_dir'];
+        $usernamelength = strlen($username);
 
         echo "<div class='firend-requesti-boxi'>";
-        if ($row = mysqli_fetch_assoc($result)) {
-            echo "";
-        }
-        else {
-            echo "<div class='friend-request'>
+        echo "<div class='friend-request'>
                     <h4>Imate novo prošnjo za prijateljstvo!</h4>
                     <hr>
-                    <p><a href='uporabnik.php?uporabnik=$username'>$username</a></p>
-                    <form action='includes/friendRequest.inc.php' method='post'>
+                    <div class='friendrequest-usr-info'>
+                        <img class='friendrequest-usr-img' src='$userImg_dir' alt='slika_uporabnika'>";
+                        if ($usernamelength < 16) {
+                            echo " <p><a href='uporabnik.php?uporabnik=$username'>$username</a></p>";
+                        }
+                        else {
+                            $length = $usernamelength - 15;
+                            $username2 = substr_replace($username, "", -$length);
+                            echo " <p class='longUsername'><a href='uporabnik.php?uporabnik=$username'>$username2</a>...</p>";
+                        }
+                    echo "</div>
+                    <form action='includes/friendRequest.inc.php' method='post' class='friendrequest-form'>
                         <input type='hidden' name='id' value='$id'>
-                        <button type='submit' name='friend-accept-btn'>Sprejmi</button>
-                        <button type='submit' name='friend-reject-btn'>Zavrni</button>
+                        <div class='friendrequest-button-alignment'>
+                            <button type='submit' name='friend-accept-btn' class='sprejmi-btn'>Sprejmi <ion-icon name='checkmark-circle-outline'</ion-icon> </button>
+                            <button type='submit' name='friend-reject-btn' class='reject-btn'>Zavrni <ion-icon name='close-circle-outline'></ion-icon> </button>
+                        </div>
                     </form>
                   </div>";
-        }
-        mysqli_stmt_close($stmt);
         echo "</div>";
     }
+}
+
+function getFriendObjave($conn) {
+    $sql = "SELECT o.*, DATE_FORMAT(o.created_date,'%b %e, %Y | %H:%i'), DATE_FORMAT(o.update_date,'%b %e, %Y | %H:%i') FROM objave o WHERE (o.uporabnik_id IN (SELECT p.id_user FROM prijatelji p WHERE (p.id_friend = ?) AND (status = 'accepted'))) OR (o.uporabnik_id IN (SELECT p.id_friend FROM prijatelji p WHERE (p.id_user = ?) AND (status = 'accepted'))) ORDER BY o.created_date DESC ";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../home.php?error=stmtfailed");
+        exit();
+    }
+
+    $userId = $_SESSION['S_userId'];
+    mysqli_stmt_bind_param($stmt, "ss", $userId, $userId);
+    mysqli_stmt_execute($stmt);
+
+    $result = mysqli_stmt_get_result($stmt);
+
+    while ($row = $result->fetch_assoc()) {
+        $upo_id = $row['uporabnik_id'];
+        $sql2 = "SELECT username, img_dir FROM uporabniki WHERE id='$upo_id'";
+        $result2 = $conn->query($sql2);
+
+
+        if ($row2 = $result2->fetch_assoc()) {
+            $usr_img = $row2['img_dir'];
+            $is_edited = $row['is_edited'];
+            $refactored_date = $row["DATE_FORMAT(o.created_date,'%b %e, %Y | %H:%i')"];
+            $objava_uporabnik_username = $row2['username'];
+
+            //preden izpišemo vsebino naredimo mysqli_real_escape_string in strip_tag da se znebimo borebitni nezačeleni vsebini...
+            $vsebina = mysqli_real_escape_string($conn, htmlspecialchars($row['vsebina']));
+            $vsebina = str_replace(array("\\\\r\\\\n","\\r\\n"),"<br>",$vsebina);
+
+            echo "<div class='comment-box'>";
+            echo   "<img class='objava-user-image' src='$usr_img'></img>";
+            echo    "<div class='comment-possision'>";
+            echo        "<span class='comment-info'>";
+            echo            "<p class='username-color'><a href='uporabnik.php?uporabnik=$objava_uporabnik_username'>$objava_uporabnik_username</a></p>", '&nbsp;&nbsp;&nbsp;', $refactored_date."<br><br>";
+            echo        "</span>";
+            if ($is_edited > 0) {
+                $edited_time = $row["DATE_FORMAT(o.update_date,'%b %e, %Y | %H:%i')"];
+                echo    "<p class='oznaka-urejeno'><ion-icon name='bookmark'></ion-icon>urejeno...</p>";
+                echo    "<p class='oznaka-urejeno2'>$edited_time</p>";
+            }
+            echo     "<p class='comment-paragraph'>";
+            echo        $vsebina;
+            echo    "</p>";
+            echo    "</div>";
+            echo    "<hr>";
+            if (isset($_SESSION['S_userId'])) {
+                if ($_SESSION['S_userId'] == $row['uporabnik_id']) {
+                    echo "<form class='delete-comment-form' method='POST' action='includes/deleteObjava.inc.php'>";
+                    echo    "<input type='hidden' name='comment_id' value='".$row['id']."'>
+                            <button class='delete-objava-btn' type='submit' name='komentar_odstrani'>Odstrani</button>
+                        </form>
+                        <!-- ----------------------------------------------------------------- -->
+                    	<form class='edit-comment-form' method='POST' action='editObjava.php'>
+                            <input type='hidden' name='id' value='".$row['id']."'>
+                            <input type='hidden' name='sporocila' value='".$row['vsebina']."'>
+                            <button class='edit-objava-btn' name='komentar_edit'>Uredi</button>
+                        </form>";
+                }
+            }
+            echo "<div class='like-form-div'><form class='like-comment-form' method='POST' action='includes/likeObjava.inc.php'>";
+            echo    "<input type='hidden' name='comment_id' value='".$row['id']."'>";
+
+//            dobimo podatke o vsecku da vidimo ce si ze lajku :D
+            $id_objave = $row['id'];
+            $userId = $_SESSION['S_userId'];
+
+            $sql3 = "SELECT * FROM vsecki WHERE (id_objave = ?) AND (id_uporabnika = ?)";
+            $stmt = mysqli_stmt_init($conn);
+            if (!mysqli_stmt_prepare($stmt, $sql3)) {
+                header("location: ../social.php?error=stmtfailed");
+                exit();
+            }
+
+            mysqli_stmt_bind_param($stmt, "ss", $id_objave, $userId);
+            mysqli_stmt_execute($stmt);
+
+            //dobimo podatke
+            $resultData3 = mysqli_stmt_get_result($stmt);
+
+            //če je uporabnik že vseckal je vsecek vizualno polen...
+            if ($row = mysqli_fetch_assoc($resultData3)) {
+                echo "<button class='like-objava-btn' type='submit' name='komentar_like'><ion-icon name='heart'></ion-icon></button>";
+            }
+            //če je uporabnik že vseckal je vsecek vizualno prazen...
+            else {
+                echo "<button class='like-objava-btn' type='submit' name='komentar_like'><ion-icon name='heart-outline'></ion-icon></button>";
+            }
+            mysqli_stmt_close($stmt);
+
+            //--------------------------------------------------------------------------------
+            // dobimo podatke o številu všečkov
+            $sql4 = "SELECT COUNT(*) FROM vsecki WHERE (id_objave = ?)";
+            $stmt = mysqli_stmt_init($conn);
+            if (!mysqli_stmt_prepare($stmt, $sql4)) {
+                header("location: ../social.php?error=stmtfailed");
+                exit();
+            }
+
+            mysqli_stmt_bind_param($stmt, "s", $id_objave);
+            mysqli_stmt_execute($stmt);
+
+            //dobimo podatke
+            $resultData4 = mysqli_stmt_get_result($stmt);
+            if ($row = mysqli_fetch_assoc($resultData4)) {
+                $st_vseckov = $row['COUNT(*)'];
+            }
+            mysqli_stmt_close($stmt);
+
+            echo "      </form>
+                        <span class='st_vsekov'>$st_vseckov</span>
+                    </div>
+                    <div class='comment-form-div'>
+                        <a href='../social/komentiraj.php?id=$id_objave'><button class='comment-objava-btn'><ion-icon name='chatbox-outline'></ion-icon></button></a>
+                    </div>";
+            echo "</div>";
+        }
+    }
+}
+function stevliovseckov($conn, $id) {
+    $sql = "SELECT COUNT(*) FROM vsecki WHERE id_objave IN (SELECT id FROM objave WHERE uporabnik_id = ?) ";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../index.php?error=stmtfailed");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "s", $id);
+    mysqli_stmt_execute($stmt);
+
+    $resultData = mysqli_stmt_get_result($stmt);
+
+    while ($row = $resultData->fetch_assoc()) {
+        $stevilo_vseckov = $row['COUNT(*)'];
+        echo $stevilo_vseckov;
+    }
+
+    mysqli_stmt_close($stmt);
+}
+function stevlioObjav($conn, $id) {
+    $sql = "SELECT COUNT(*) FROM objave WHERE uporabnik_id = ?";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../index.php?error=stmtfailed");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "s", $id);
+    mysqli_stmt_execute($stmt);
+
+    $resultData = mysqli_stmt_get_result($stmt);
+
+    while ($row = $resultData->fetch_assoc()) {
+        $stevilo_objav = $row['COUNT(*)'];
+        echo $stevilo_objav;
+    }
+
+    mysqli_stmt_close($stmt);
+}
+function stevlioSledilcev($conn, $id) {
+    $sql = "SELECT COUNT(*) FROM sledilci WHERE (uporabnik_id = ?)";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../index.php?error=stmtfailed");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "s", $id);
+    mysqli_stmt_execute($stmt);
+
+    $resultData = mysqli_stmt_get_result($stmt);
+
+    while ($row = $resultData->fetch_assoc()) {
+        $stevilo_sledilcev = $row['COUNT(*)'];
+        echo $stevilo_sledilcev;
+    }
+
+    mysqli_stmt_close($stmt);
+}
+function stevlioSledi($conn, $id) {
+    $sql = "SELECT COUNT(*) FROM sledilci WHERE (sledilec_id = ?)";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../index.php?error=stmtfailed");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "s", $id);
+    mysqli_stmt_execute($stmt);
+
+    $resultData = mysqli_stmt_get_result($stmt);
+
+    while ($row = $resultData->fetch_assoc()) {
+        $stevilo_sledi = $row['COUNT(*)'];
+        echo $stevilo_sledi;
+    }
+
+    mysqli_stmt_close($stmt);
+}
+
+function getFriends($conn, $S_userID) {
+    $sql = "SELECT * FROM uporabniki WHERE (id IN (SELECT id_user FROM prijatelji WHERE (id_friend = ?) AND (status = 'accepted'))) OR (id IN (SELECT id_friend FROM prijatelji WHERE (id_user = ?) AND (status = 'accepted'))) ";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: home.php?error=stmtfailed");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "ss", $S_userID, $S_userID);
+    mysqli_stmt_execute($stmt);
+
+    $resultData = mysqli_stmt_get_result($stmt);
+
+    while ($row = $resultData->fetch_assoc()) {
+        $id = $row['id'];
+        $username = $row['username'];
+        $img_dir = $row['img_dir'];
+        global $id_prijateljstva;
+
+        getIdPrijateljstva($conn, $id);
+
+        echo "<a class='pogovori-prijatel-box-a' href='chat.php?id=$id_prijateljstva'><div class='pogovori-prijatel-box'>
+                <img src='$img_dir' alt='prijatelj_img'>
+                <div class='pogovori-prijatel-info'>
+                    <h4>$username</h4>
+                    <p>Prijatelja že od: ";prijateljaZeOd($conn, $id);echo"</p>
+                </div>
+            </div>
+            </a>";
+    }
+
+    mysqli_stmt_close($stmt);
+}
+//
+function prijateljaZeOd($conn, $id) {
+    $S_userID = $_SESSION['S_userId'];
+    $sql = "SELECT DATE_FORMAT(added_date,'%b %e, %Y | %H:%i') FROM prijatelji WHERE ((id_user = ? AND id_friend = ?) OR (id_friend = ? AND id_user = ?)) AND (status = 'accepted') ";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: home.php?error=stmtfailed");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "ssss", $S_userID, $id, $S_userID, $id);
+    mysqli_stmt_execute($stmt);
+
+    $resultData = mysqli_stmt_get_result($stmt);
+
+    while ($row = $resultData->fetch_assoc()) {
+        $date_added = $row["DATE_FORMAT(added_date,'%b %e, %Y | %H:%i')"];
+        echo $date_added;
+    }
+
+    mysqli_stmt_close($stmt);
+}
+function getIdPrijateljstva($conn, $id) {
+    $S_userID = $_SESSION['S_userId'];
+    $sql = "SELECT id FROM prijatelji WHERE ((id_user = ? AND id_friend = ?) OR (id_friend = ? AND id_user = ?)) AND (status = 'accepted') ";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: home.php?error=stmtfailed");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "ssss", $S_userID, $id, $S_userID, $id);
+    mysqli_stmt_execute($stmt);
+
+    $resultData = mysqli_stmt_get_result($stmt);
+
+    while ($row = $resultData->fetch_assoc()) {
+        global $id_prijateljstva;
+        $id_prijateljstva = $row["id"];
+        return $id_prijateljstva;
+    }
+
+    mysqli_stmt_close($stmt);
+}
+
+function getChatBoxMesages($conn, $id_prijateljstva) {
+    $S_userID = $_SESSION['S_userId'];
+    $sql = "SELECT id_user, id_friend FROM prijatelji WHERE (id = ?) AND (status = 'accepted')";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: home.php?error=stmtfailed");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "s", $id_prijateljstva);
+    mysqli_stmt_execute($stmt);
+
+    $resultData = mysqli_stmt_get_result($stmt);
+
+    while ($row = mysqli_fetch_array($resultData)){
+        $id_user = $row['id_user'];
+        $id_friend = $row['id_friend'];
+
+        echo $S_userID;
+        echo "<br>";
+        echo $id_user." ".$id_friend;
+
+        if ($S_userID != $id_user){
+            if ($S_userID != $id_friend) {
+                header("location: pogovori.php?error=ni_prijateljstva");
+            }
+            else {
+                echo "<div id='chat-chat-container'>
+
+</div>";
+            }
+
+        }
+    }
+
+    mysqli_stmt_close($stmt);
 }

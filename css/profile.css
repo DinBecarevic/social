@@ -14,7 +14,14 @@ body {
 
 .outer-profile-container {
 }
-
+#profile_uporabnik_username {
+    color: var(--bela);
+    transition: .3s;
+    text-decoration: none;
+}
+#profile_uporabnik_username:hover {
+    color: var(--hover_modra);
+}
 .profile-left {
     width: 50%;
     height: 99vh;

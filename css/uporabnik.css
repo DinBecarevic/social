@@ -12,11 +12,11 @@
     color: var(--crna);
     background-color: transparent;
     position: relative;
-    left: 290px;
-    margin-right: 50px;
+    left: 220px;
+    margin-right: 10px;
     display: inline-block;
     margin-top: 20px;
-    width: 78vw;
+    width: 84vw;
     padding: 10px 20px 10px 20px;
     border-radius: 10px;
     z-index: 1;
@@ -24,7 +24,9 @@
 #uporabnik-box01 {
     padding: 10vh 5vh 5vh 5vh;
 }
+
 .uporabnik-card {
+    display: inline-block;
     position: relative;
     width: 350px;
     height: 190px;
@@ -32,9 +34,11 @@
     border-radius: 20px;
     box-shadow: 0 35px 80px rgba(0, 0, 0, 0.15);
     transition:0.5s;
+    transform: translateY(-15vh);
 }
 .uporabnik-card:hover {
     height:450px;
+    transform: translateY(-5px);
 }
 .uporabnik-imgBx {
     position: absolute;
@@ -137,11 +141,85 @@
     padding: 10px 10px;
 }
 
-
 #rejected-info {
     position: absolute;
     left: 0;
     color: var(--crna);
     opacity: .7;
     font-size: 0.9em;
+}
+#uporabnikp-longusername-hidden {
+    display: none;
+    position: absolute;
+    width: 300px;
+    top: -1vh;
+    font-size: .7em;
+    padding: 3px;
+    color: rgba(30, 30, 30, 0.6);
+    word-break: break-all;
+}
+#uporabnikH2-longusername:hover + #uporabnikp-longusername-hidden {
+    display: block;
+}
+/*-------------------------banner-uporabnika------------------------------*/
+
+#uporabnik-bannerBx {
+    display: inline-block;
+    height: 47vh;
+    width: 1150px;
+
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 20px;
+    opacity: 60%;
+}
+#uporabnik-bannerBx img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+@media only screen and (max-width: 1910px) {
+    #uporabnik-bannerBx {
+        width: 1000px;
+    }
+}
+@media only screen and (max-width: 1730px) {
+    #uporabnik-bannerBx {
+        width: 800px;
+    }
+}
+@media only screen and (max-width: 1488px) {
+    #uporabnik-bannerBx {
+        height: 35vh;
+        width: 600px;
+    }
+}
+@media only screen and (max-width: 1250px) {
+    #uporabnik-bannerBx {
+        height: 30vh;
+        width: 450px;
+    }
+}
+@media only screen and (max-width: 1150px) {
+    #uporabnik-bannerBx {
+        height: 30vh;
+        width: 400px;
+    }
+}
+@media only screen and (max-width: 990px) {
+    #uporabnik-bannerBx {
+        height: 30vh;
+        width: 300px;
+    }
+}
+/*-------------------------objave------------------------------*/
+#uporabnikove-objave-box02 {
+    background-color: var(--bela);
+    border-radius: 8px;
+}
+#uporabnikove-objave-box02 #hr-box2 {
+    border: 1px solid var(--svetlo_modra);
+    border-radius: 8px;
+    margin: -2vh 2vh 0vh 2vh;
 }

@@ -1,11 +1,13 @@
 <?php
-include_once 'header2.php';
+include_once 'includes/functions.inc.php';
+session_abort();
+include_once 'header.php';
+include_once 'includes/dbh.inc.php';
 ?>
 <?php
-include_once 'includes/dbh.inc.php';
 
 
-if (isset($_SESSION['S_userId'])) {
+if (isset($_COOKIE['C_userEmail']) AND ($_COOKIE['C_userPwd'])) {
     echo "  <div class='outer-profile-container'>
                 <div class='profile-left'>
                     <div id='profile-container-left'>";
@@ -107,8 +109,8 @@ if (isset($_SESSION['S_userId'])) {
                                                 
                                             }, 3000);
                                       </script>";
-
-    echo "              <h2 id='h2-profile'>" . $_SESSION['S_userUsername'] . "</h2>
+$profile_uporabnik_username = $_SESSION['S_userUsername'];
+    echo "              <a href='uporabnik.php?uporabnik=$profile_uporabnik_username' id='profile_uporabnik_username'><h2 id='h2-profile'>" . $_SESSION['S_userUsername'] . "</h2></a>
                         
                         <br>
                         <div class='profile-icon'>
@@ -316,16 +318,7 @@ if (isset($_SESSION['S_userId'])) {
 </div>";
 }
 else {
-    echo "<section class='banner'> ";
-    echo "	<div class='box2'> ";
-    echo "		<div class='content-profile'> ";
-    echo "			<div class='profilep'> ";
-    echo "				<p>Niste prijavljeni!</p>";
-    echo "				<p><a style='text-decoration: none; color: #3e849e;' href='index.php'>Prijavite se...</a></p>";
-    echo "			</div> ";
-    echo "		</div> ";
-    echo "	</div> ";
-    echo "</section>";
+    include_once 'niste-prijavljeni.php';
 }
 ?>
 <?php

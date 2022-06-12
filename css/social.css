@@ -190,6 +190,21 @@
     border-bottom: 1px solid var(--svetlo_modra);
     display: inline-block;
 }
+.comment-info a {
+    color: var(--svetlo_modra);
+    text-decoration: none;
+    transition: .3s;
+}
+.comment-info a:visited {
+    color: var(--svetlo_modra);
+    text-decoration: none;
+    transition: .3s;
+}
+.comment-info a:hover {
+    color: var(--hover_modra);
+    text-decoration: none;
+    transition: .3s;
+}
 .delete-objava-btn {
     display: block;
     padding: 0 10px;
@@ -203,6 +218,7 @@
     text-transform: uppercase;
     border: none;
     margin: 10px;
+    cursor: pointer;
 }
 .edit-objava-btn {
     display: block;
@@ -217,6 +233,7 @@
     text-transform: uppercase;
     border: none;
     margin: 10px;
+    cursor: pointer;
 }
 .edit-comment-form {
     position: absolute;
@@ -411,7 +428,7 @@
     display: inline-block;
     margin-top: 20px;
     width: 78vw;
-    height: 75vh;
+    height: 80vh;
     padding: 10px 20px 10px 20px;
     border-radius: 10px;
     z-index: 1;
