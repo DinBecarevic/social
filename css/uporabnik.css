@@ -1,6 +1,6 @@
 /*---------barve-----------*/
 :root {
-    --bela: #F1F1F1;
+    --bela: rgb(241, 241, 241);
     --crna: #2B2B2B;
     --hover_modra: rgba(171, 190, 255, 0.68);
     --svetlo_modra: #4b6cb7;

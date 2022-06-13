@@ -1288,28 +1288,43 @@ function getChatBoxMesages($conn, $id_prijateljstva) {
         $id_user = $row['id_user'];
         $id_friend = $row['id_friend'];
 
-        echo "moj ID: ".$S_userID;
-        echo "<br>";
-        echo "id_user: ".$id_user." <br> id_friend: ".$id_friend."<br><br>";
-
         if ($S_userID != $id_user){
             if ($S_userID != $id_friend) {
                 header("location: pogovori.php?error=ni_prijateljstva");
                 return 0;
             }
         }
-        echo "<div id='chat-chat-container'>";
+        echo "<div class='chat-chat-container'>";
         $id_userInfo = getUserInfoChatIdUser($conn, $id_user);
         $id_friendInfo = getUserInfoChatIdFriend($conn, $id_friend);
         getUserChatChat($conn, $id_user, $id_friend, $id_prijateljstva);
-        echo "    <div id='chat-inputBx'>
-                            <form action='includes/chat.inc.php' method='post'>
-                                <textarea id='chat-input-textarea' name='chat-textarea'></textarea>
+
+        //gledam kdo je friend in kdo je user zato da lahko v pravionem vstnem redu prikažem slike
+        $usr_img_dir = $id_userInfo["img_dir"];
+        $friend_img_dir = $id_friendInfo["img_dir"];
+
+        if(strpos($usr_img_dir, $_SESSION['S_userUsername']) !== false){
+            echo "    <div id='chat-inputBx'>
+                            <hr>
+                            <div id='chat-prijatelsvo-user-slike'>
+                                <img src='$friend_img_dir' alt='friend_img_dir'>
+                                <img src='$usr_img_dir' alt='friend_img_dir'>
+                            </div>";
+        } else{
+            echo "    <div id='chat-inputBx'>
+                            <hr>
+                            <div id='chat-prijatelsvo-user-slike'>
+                                <img src='$usr_img_dir' alt='friend_img_dir'>
+                                <img src='$friend_img_dir' alt='friend_img_dir'>
+                            </div>";
+        }
+                            echo "<form action='includes/chat.inc.php' method='post'>
                                 <input type='hidden' name='id_prijateljstva' value='$id_prijateljstva'>
-                                <button type='submit' name='chat-input-btn'>Pošlji</button>
+                                <textarea id='chat-input-textarea' name='chat-textarea' placeholder='Napiši...'></textarea>
+                                <button type='submit' name='chat-input-btn'><ion-icon name='send-outline'></ion-icon></button>
                             </form>
                           </div>
-                     </div>";
+              </div>";
     }
 
     mysqli_stmt_close($stmt);
@@ -1334,7 +1349,8 @@ function getUserInfoChatIdUser($conn, $id_user) {
 }
 function getUserChatChat($conn, $id_user, $id_friend, $id_prijateljstva) {
     // ---> objave uporabnika
-    $sql = "SELECT m.*, u.username, u.id AS user_id FROM messages m INNER JOIN uporabniki u ON u.id = m.sender_id WHERE ((m.sender_id = ?) OR (m.sender_id = ?)) AND (m.id_prijateljstva = ?) ORDER BY m.message_date DESC";
+    $S_userId = $_SESSION['S_userId'];
+    $sql = "SELECT m.*, DATE_FORMAT(m.message_date,'%b %e, %Y | %H:%i'), u.username, u.img_dir, u.id AS user_id FROM messages m INNER JOIN uporabniki u ON u.id = m.sender_id WHERE ((m.sender_id = ?) OR (m.sender_id = ?)) AND (m.id_prijateljstva = ?) ORDER BY m.message_date ASC";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: home.php?error=stmtfailed");
@@ -1346,17 +1362,50 @@ function getUserChatChat($conn, $id_user, $id_friend, $id_prijateljstva) {
 
     $resultData = mysqli_stmt_get_result($stmt);
 
+
     while ($row = mysqli_fetch_array($resultData)) {
+
+
         $message = $row['message'];
         $username = $row['username'];
-        $id = $row['id'];
+        $message_date = $row["DATE_FORMAT(m.message_date,'%b %e, %Y | %H:%i')"];
+        $id_message = $row['id'];
         $u_id = $row['user_id'];
+        $u_img_dir = $row['img_dir'];
 
-        echo "message id: ".$id."<br>";
-        echo "user id: ".$u_id."<br>";
-        echo "<div class='chat-message02'>";
-        echo $username.": ".$message."<br><br>";
+        //preden izpišemo vsebino naredimo mysqli_real_escape_string in strip_tag da se znebimo borebitni nezačeleni vsebini...
+        $message = mysqli_real_escape_string($conn, htmlspecialchars($message));
+        $message = str_replace(array("\\\\r\\\\n","\\r\\n"),"<br>",$message);
+
+        echo "<div class='chat-chat-content'>";
+                if ($u_id == $S_userId) {
+                    echo "
+                            <span class='chat-chat-info1'>
+                                <p>$message_date</p>
+                                <h4 class='chat-username'>$username</h4>
+                          </span><br>";
+
+                    echo "<div class='chat-message01'>
+                              <span class='chat-message-echo1'>
+                                <p>$message</p>
+                              </span>
+                          </div>";
+                }
+                else {
+                    echo "
+                            <span class='chat-chat-info2'>
+                                <h4 class='chat-username'>$username</h4>
+                                <p>$message_date</p>
+                          </span>";
+
+                    echo "<div class='chat-message02'>
+                              <span class='chat-message-echo2'>
+                                <p>$message</p>
+                              </span>
+                          </div>";
+                }
         echo "</div>";
+
     }
 }
 

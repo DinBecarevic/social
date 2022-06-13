@@ -65,8 +65,185 @@
 }
 
 /*----------------------------chat.php---------------------*/
+#chat-container01 {
+    color: var(--crna);
+    background-color: transparent;
+    position: relative;
+    left: 290px;
+    margin-right: 50px;
+    display: inline-block;
+    width: 78vw;
+    padding: 0px 20px 10px 20px;
+    border-radius: 10px;
+    z-index: 1;
+}
+.chat-chat-container {
+    padding-top: 10px;
+    min-height: 82vh;
+    max-height: 82vh;
+    overflow-y: auto;
 
-#chat-chat-container {
-    background: var(--bela);
-    background-opacity: 80%;
+    display: flex;
+    flex-direction: column-reverse;
+}
+.chat-chat-content {
+    margin: 20px 20px 20px 20px;
+    position: relative;
+}
+.chat-message01 {
+    text-align: right;
+    margin: 0px 0px 0px 38vw;
+    padding: 10px 20px 10px 10px;
+    border-radius: 50px;
+    background: rgba(241, 241, 241, 0.1);
+    overflow: hidden;
+    min-height: 4vh;
+    max-height: 50vh;
+    overflow-y: auto;
+
+    border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 50px;
+}
+.chat-message02 {
+    margin: 0px 38vw 0px 0px;
+    padding: 10px 10px 10px 10px;
+    background: rgba(241, 241, 241, 0.4);
+    overflow: hidden;
+    min-height: 4vh;
+    max-height: 50vh;
+    overflow-y: auto;
+
+    border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+    border-top-right-radius: 50px;
+    border-top-left-radius: 3px;
+}
+/*-------*/
+.chat-message-echo1 {
+    display: inline-block;
+    vertical-align: middle;
+}
+.chat-chat-info1 {
+    margin-bottom: 5px;
+    position: absolute;
+    top: -5px;
+    right: 0;
+}
+.chat-chat-info1 h4 {
+    display: inline-block;
+    text-align: right;
+    color: var(--bela);
+    letter-spacing: 1px;
+    font-size: 1.3em;
+}
+.chat-chat-info1 p {
+    display: inline-block;
+    text-align: right;
+    font-size: 0.8em;
+    color: rgba(241, 241, 241, 0.4);
+}
+/*---------------*/
+.chat-message-echo2 {
+    display: inline-block;
+    vertical-align: middle;
+}
+.chat-chat-info2 {
+    margin-left: 5px;
+    vertical-align: bottom;
+    margin-bottom: 5px;
+}
+.chat-chat-info2 h4 {
+    display: inline-block;
+    color: var(--bela);
+    letter-spacing: 1px;
+    font-size: 1.3em;
+}
+.chat-chat-info2 p {
+    align-items: right;
+    display: inline-block;
+    font-size: 0.8em;
+    color: rgba(241, 241, 241, 0.4);
+}
+/*---------------*/
+#chat-inputBx {
+    padding: 10px 10px 10px 10px;
+    position: relative;
+    text-align: right;
+    position: fixed;
+    bottom: 50px;
+    right: 100px;
+    width: 75vw;
+}
+#chat-inputBx hr {
+    border: 2px solid rgba(241, 241, 241, 0.25);
+    margin-bottom: 5px;
+    border-radius: 8px;
+    width: 100%;
+}
+#chat-inputBx button{
+    cursor: pointer;
+    padding: 8px 5px 3px 5px;
+    height: 80px;
+    background-color: var(--svetlo_modra);
+    border-radius: 25px;
+    font-size: 2em;
+    color: var(--bela);
+    border: none;
+
+    display: inline-block;
+    vertical-align: bottom;
+    transition: .3s;
+}
+#chat-inputBx button:hover {
+    background-color: var(--hover_modra);
+    color: #1E1E1EA3;
+    transition: .3s;
+}
+#chat-inputBx textarea {
+    font-size: 1em;
+    height: 3.2vw;
+    width: 34vw;
+    background: #ebebeb;
+    color: var(--temno_modra);
+    border-radius: 30px;
+    padding: 0.4vw 1.2vw 0.4vw 1.2vw;
+    resize: none;
+    outline: none;
+    border: none;
+
+    display: inline-block;
+    vertical-align: bottom;
+}
+#chat-prijatelsvo-user-slike img {
+    width: 90px;
+    height: 90px;
+    border-radius: 30%;
+    float: left;
+    margin-right: 10px;
+}
+
+
+/*------------------chat----scroll-bar-----------*/
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+.chat-chat-container {
+    scrollbar-width: auto;
+    scrollbar-color: rgba(171, 190, 255, 0.68) #ffffff;
+}
+
+/* Chrome, Edge, and Safari */
+.chat-chat-container::-webkit-scrollbar {
+    width: 16px;
+}
+
+.chat-chat-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.chat-chat-container::-webkit-scrollbar-thumb {
+    background-color: rgba(171, 190, 255, 0.68);
+    border-radius: 10px;
 }

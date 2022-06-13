@@ -3,6 +3,10 @@ include_once 'includes/functions.inc.php';
 session_abort();
 include_once 'header.php';
 include_once 'includes/dbh.inc.php';
+
+// $url1=$_SERVER['REQUEST_URI'];
+// header("Refresh: 10; URL=$url1");
+
 ?>
 <?php
 if (isset($_SESSION["S_userId"])) {
@@ -56,7 +60,7 @@ if (isset($_SESSION["S_userId"])) {
             </li>
         </ul>
         </div>
-        <div id="pogovori-container01">';
+        <div id="chat-container01">';
 
             $S_userID = $_SESSION['S_userId'];
             $id_prijateljstva = $_GET['id'];
