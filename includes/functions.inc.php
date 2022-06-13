@@ -942,10 +942,10 @@ function getUserObjave($conn, $user_username) {
 
 
 function getFriendRequests($conn) {
-    $sql = "SELECT p.id, p.id_user, p.id_friend, p.status, DATE_FORMAT(p.added_date,'%b %e, %Y | %H:%i'), u.username, u.img_dir FROM prijatelji p INNER JOIN uporabniki u ON p.id_user = u.id WHERE (p.id_friend = ?) AND (status = 'non-checked') ORDER BY added_date DESC";
+    $sql = "SELECT p.id, p.id_user, p.id_friend, p.status, DATE_FORMAT(p.added_date,'%b %e, %Y | %H:%i'), u.username, u.img_dir FROM prijatelji p INNER JOIN uporabniki u ON p.id_user = u.id WHERE (p.id_friend = ?) AND (status = 'non-checked') ORDER BY p.added_date DESC";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location: ../home.php?error=stmtfailed");
+        header("location: ../home.php?error=stmtfailed001");
         exit();
     }
 
@@ -996,7 +996,7 @@ function getFriendObjave($conn) {
     $sql = "SELECT o.*, DATE_FORMAT(o.created_date,'%b %e, %Y | %H:%i'), DATE_FORMAT(o.update_date,'%b %e, %Y | %H:%i') FROM objave o WHERE (o.uporabnik_id IN (SELECT p.id_user FROM prijatelji p WHERE (p.id_friend = ?) AND (status = 'accepted'))) OR (o.uporabnik_id IN (SELECT p.id_friend FROM prijatelji p WHERE (p.id_user = ?) AND (status = 'accepted'))) ORDER BY o.created_date DESC ";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location: ../home.php?error=stmtfailed");
+        header("location: ../home.php?error=stmtfailed01");
         exit();
     }
 
@@ -1062,7 +1062,7 @@ function getFriendObjave($conn) {
             $sql3 = "SELECT * FROM vsecki WHERE (id_objave = ?) AND (id_uporabnika = ?)";
             $stmt = mysqli_stmt_init($conn);
             if (!mysqli_stmt_prepare($stmt, $sql3)) {
-                header("location: ../social.php?error=stmtfailed");
+                header("location: ../social.php?error=stmtfailed02");
                 exit();
             }
 
@@ -1087,7 +1087,7 @@ function getFriendObjave($conn) {
             $sql4 = "SELECT COUNT(*) FROM vsecki WHERE (id_objave = ?)";
             $stmt = mysqli_stmt_init($conn);
             if (!mysqli_stmt_prepare($stmt, $sql4)) {
-                header("location: ../social.php?error=stmtfailed");
+                header("location: ../social.php?error=stmtfailed03");
                 exit();
             }
 
@@ -1288,22 +1288,95 @@ function getChatBoxMesages($conn, $id_prijateljstva) {
         $id_user = $row['id_user'];
         $id_friend = $row['id_friend'];
 
-        echo $S_userID;
+        echo "moj ID: ".$S_userID;
         echo "<br>";
-        echo $id_user." ".$id_friend;
+        echo "id_user: ".$id_user." <br> id_friend: ".$id_friend."<br><br>";
 
         if ($S_userID != $id_user){
             if ($S_userID != $id_friend) {
                 header("location: pogovori.php?error=ni_prijateljstva");
+                return 0;
             }
-            else {
-                echo "<div id='chat-chat-container'>
-
-</div>";
-            }
-
         }
+        echo "<div id='chat-chat-container'>";
+        $id_userInfo = getUserInfoChatIdUser($conn, $id_user);
+        $id_friendInfo = getUserInfoChatIdFriend($conn, $id_friend);
+        getUserChatChat($conn, $id_user, $id_friend, $id_prijateljstva);
+        echo "    <div id='chat-inputBx'>
+                            <form action='includes/chat.inc.php' method='post'>
+                                <textarea id='chat-input-textarea' name='chat-textarea'></textarea>
+                                <input type='hidden' name='id_prijateljstva' value='$id_prijateljstva'>
+                                <button type='submit' name='chat-input-btn'>Pošlji</button>
+                            </form>
+                          </div>
+                     </div>";
     }
 
     mysqli_stmt_close($stmt);
+}
+function getUserInfoChatIdUser($conn, $id_user) {
+    $sql = "SELECT * FROM uporabniki WHERE id = ?";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: home.php?error=stmtfailed");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "s", $id_user);
+    mysqli_stmt_execute($stmt);
+
+    $resultData = mysqli_stmt_get_result($stmt);
+
+    while ($row = mysqli_fetch_array($resultData)) {
+        return $row;
+    }
+    return 0;
+}
+function getUserChatChat($conn, $id_user, $id_friend, $id_prijateljstva) {
+    // ---> objave uporabnika
+    $sql = "SELECT m.*, u.username, u.id AS user_id FROM messages m INNER JOIN uporabniki u ON u.id = m.sender_id WHERE ((m.sender_id = ?) OR (m.sender_id = ?)) AND (m.id_prijateljstva = ?) ORDER BY m.message_date DESC";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: home.php?error=stmtfailed");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "sss", $id_user, $id_friend, $id_prijateljstva);
+    mysqli_stmt_execute($stmt);
+
+    $resultData = mysqli_stmt_get_result($stmt);
+
+    while ($row = mysqli_fetch_array($resultData)) {
+        $message = $row['message'];
+        $username = $row['username'];
+        $id = $row['id'];
+        $u_id = $row['user_id'];
+
+        echo "message id: ".$id."<br>";
+        echo "user id: ".$u_id."<br>";
+        echo "<div class='chat-message02'>";
+        echo $username.": ".$message."<br><br>";
+        echo "</div>";
+    }
+}
+
+
+
+function getUserInfoChatIdFriend($conn, $id_friend) {
+    $sql = "SELECT * FROM uporabniki WHERE id = ?";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: home.php?error=stmtfailed");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "s", $id_friend);
+    mysqli_stmt_execute($stmt);
+
+    $resultData = mysqli_stmt_get_result($stmt);
+
+    while ($row = mysqli_fetch_array($resultData)) {
+        return $row;
+    }
+    return 0;
 }

@@ -63,3 +63,10 @@
 .pogovori-prijatel-box-a {
     text-decoration: none;
 }
+
+/*----------------------------chat.php---------------------*/
+
+#chat-chat-container {
+    background: var(--bela);
+    background-opacity: 80%;
+}

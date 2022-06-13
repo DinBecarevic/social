@@ -51,7 +51,7 @@ if (isset($_POST['komentar_like'])) {
         mysqli_stmt_execute($stmt);
         mysqli_stmt_close($stmt);
         header("location: ../$url_file?objava-vseckana");
-        exit();
+        exit()  ;
     }
 
     mysqli_stmt_close($stmt);
