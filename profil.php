@@ -271,8 +271,9 @@ $profile_uporabnik_username = $_SESSION['S_userUsername'];
             ";
     echo "<div class='navigation'>
     <div class='menuToggle'></div>
-    <ul>
-        <li class='list' style='--clr:#4b6cb7;'>
+    <ul>";
+    include_once 'includes/admin-navidation.inc.php';
+    echo "<li class='list' style='--clr:#4b6cb7;'>
             <a href='#'>
                 <span class='icon'><ion-icon name='home-outline'></ion-icon></span>
                 <span class='text'>Home</span>

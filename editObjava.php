@@ -4,11 +4,16 @@ session_abort();
 include_once 'header.php';
 include_once 'includes/dbh.inc.php';
 ?>
+<?php
+if (isset($_SESSION["S_userId"])) {
+    echo '
 <div class="home-background">
     <div class="navigation">
         <div class="menuToggle"></div>
-        <ul>
-            <li class="list" style="--clr:#4b6cb7;">
+        <ul>';
+
+    include_once 'includes/admin-navidation.inc.php';
+            echo '<li class="list" style="--clr:#4b6cb7;">
                 <a href="#">
                     <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
                     <span class="text">Home</span>
@@ -56,28 +61,33 @@ include_once 'includes/dbh.inc.php';
         <div class="edit-comment-box">
             <div id="home-pozdrav">
                 <h3>Uredi svojo objavo...</h3>
-                <form action="includes/editObjava.inc.php" method="post" id="edit-old-objava">
-                    <?php
-                    $objava_id = $_POST['id'];
-                    $old_objava = $_POST['sporocila'];
+                <form action="includes/editObjava.inc.php" method="post" id="edit-old-objava">';
+
+                    $objava_id = $_POST["id"];
+                    $old_objava = $_POST["sporocila"];
 
                     $old_objava = mysqli_real_escape_string($conn, htmlspecialchars($old_objava));
                     $old_objava = str_replace(array("\\\\r\\\\n","\\r\\n"),"\r",$old_objava);
                     echo "
                         <textarea type='text' name='new-objava' class='edit-objava-texarea'>$old_objava</textarea>
                         <input type='hidden' name='objava_id' value='$objava_id'>";
-                    ?>
-                    <button type='submit' name='editObjava-btn' class="edit-objava-button">Uredi</button>
+
+                    echo '<button type="submit" name="editObjava-btn" class="edit-objava-button">Uredi</button>
                 </form>
-                <a href="social.php"><button type='button' class="edit-objava-button" id="nazaj-objava-button"><ion-icon name="return-down-back-outline"></ion-icon><p>Nazaj</p></button></a>
+                <a href="social.php"><button type="button" class="edit-objava-button" id="nazaj-objava-button"><ion-icon name="return-down-back-outline"></ion-icon><p>Nazaj</p></button></a>
             </div>
         </div>
-        <h4>Predogled</h4>
-        <?php
+        <h4>Predogled</h4> ';
+
         getComment($conn, $objava_id);
-        ?>
-    </div>
-</div>
+
+    echo '</div>
+</div>';
+}
+else {
+    include_once 'niste-prijavljeni.php';
+}
+?>
 
 
 <?php

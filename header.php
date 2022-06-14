@@ -14,6 +14,7 @@
     <link rel="stylesheet" type="text/css" href="css/uporabnik.css">
     <link rel="stylesheet" type="text/css" href="css/prijatelji.css">
     <link rel="stylesheet" type="text/css" href="css/pogovori.css">
+    <link rel="stylesheet" type="text/css" href="css/admin.css">
 	<link rel="stylesheet" type="text/css" href="css/header.css">
 	<link rel="stylesheet" type="text/css" href="css/footer.css">
 

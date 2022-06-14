@@ -2,11 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="70b05b2b-f615-450f-9c45-1346b83dc681" name="Changes" comment="uporabnik in friend request">
+      <change afterPath="$PROJECT_DIR$/admin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/css/admin.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/includes/admin-navidation.inc.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chat.php" beforeDir="false" afterPath="$PROJECT_DIR$/chat.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/pogovori.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/pogovori.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/uporabnik.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/uporabnik.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/editObjava.php" beforeDir="false" afterPath="$PROJECT_DIR$/editObjava.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home.php" beforeDir="false" afterPath="$PROJECT_DIR$/home.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/cookiedata.inc.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/cookiedata.inc.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/includes/functions.inc.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/functions.inc.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/komentiraj.php" beforeDir="false" afterPath="$PROJECT_DIR$/komentiraj.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pogovori.php" beforeDir="false" afterPath="$PROJECT_DIR$/pogovori.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/prijatelji.php" beforeDir="false" afterPath="$PROJECT_DIR$/prijatelji.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profil.php" beforeDir="false" afterPath="$PROJECT_DIR$/profil.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/regije.php" beforeDir="false" afterPath="$PROJECT_DIR$/regije.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/slike/banner/woolendeka_banner.png" beforeDir="false" afterPath="$PROJECT_DIR$/slike/banner/woolendeka_banner.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/social.php" beforeDir="false" afterPath="$PROJECT_DIR$/social.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uporabnik.php" beforeDir="false" afterPath="$PROJECT_DIR$/uporabnik.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

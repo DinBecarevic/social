@@ -1,0 +1,120 @@
+/*---------barve-----------*/
+:root {
+    --bela: #F1F1F1;
+    --crna: #2B2B2B;
+    --hover_modra: rgba(171, 190, 255, 0.68);
+    --svetlo_modra: #4b6cb7;
+    --temno_modra: #182848;
+    --gradient_modra: linear-gradient(253deg, #4b6cb7 0%, #182848 100%);
+}
+/*---------barve-----------*/
+
+.admin-container {
+    color: var(--crna);
+    background-color: var(--bela);
+    position: relative;
+    left: 290px;
+    margin-right: 50px;
+    display: inline-block;
+    margin-top: 20px;
+    width: 78vw;
+    padding: 10px 20px 10px 20px;
+    border-radius: 10px;
+    z-index: 1;
+
+    overflow-wrap: break-word;
+    overflow-x: auto;
+}
+table.GeneratedTable {
+    width: 30%;
+    background-color: var(--bela);
+    border-collapse: collapse;
+    border-width: 2px;
+    border-color: var(--svetlo_modra);
+    border-style: solid;
+    color: var(--crna);
+}
+
+table.GeneratedTable td, table.GeneratedTable th {
+    border-width: 2px;
+    border-color: var(--svetlo_modra);
+    border-style: solid;
+    padding: 3px;
+    min-width: 5vw;
+    max-width: 12vw;
+}
+
+table.GeneratedTable thead {
+    background-color: var(--svetlo_modra);
+}
+#admin-users-box {
+    margin: 10px;
+    display: inline-block;
+}
+#search-user-from {
+    margin-bottom: 50px;
+}
+#search-user-container {
+    display: inline-block;
+    vertical-align:top;
+
+    margin: 0px 10px 10px 10px;
+    padding: 10px;
+    width: 40vw;
+}
+#search-user-box td input {
+    font-size: 1em;
+    position: relative;
+    height: 1.2vw;
+    width: 20vw;
+    background: #ebebeb;
+    border-radius: 8px;
+    padding: 0.2vw .8vw 0.2vw .8vw;
+    margin-top: 0.4vw;
+    outline: none;
+    border: 1px solid var(--svetlo_modra);
+}
+#search-user-box td input:hover {
+    border: 1px solid var(--hover_modra);
+}
+#search-user-box td textarea {
+    font-size: 1em;
+    position: relative;
+    height: 3.2vw;
+    width: 20vw;
+    background: #ebebeb;
+    border-radius: 8px;
+    padding: 0.1vw .8vw 0.1vw .8vw;
+    margin-top: 0.4vw;
+    resize: none;
+    outline: none;
+    border: 1px solid var(--svetlo_modra);
+}
+#search-user-box td textarea:hover {
+    border: 1px solid var(--hover_modra);
+}
+.search-user-box-opomba {
+    font-size: .9em;
+    opacity: 60%;
+    margin: 5px 5px 5px 0px;
+}
+#search-user-box-opomba-hr {
+    width: 30%;
+}
+.search-user-box-opomba2 {
+    font-size: .8em;
+    opacity: 50%;
+    margin: 5px 5px 5px 0px;
+}
+#search-user-box button {
+    padding: 0 20px;
+    width: 75%;
+    height: 1.2vw;
+    background-color: var(--svetlo_modra);
+    border-radius: 25px;
+    font-size: 15px;
+    color: var(--bela);
+    text-transform: uppercase;
+    border: none;
+}
+

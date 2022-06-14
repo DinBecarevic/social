@@ -15,8 +15,10 @@ if (isset($_SESSION["S_userId"])) {
     echo '<div class="home-background">
     <div class="navigation">
         <div class="menuToggle"></div>
-        <ul>
-            <li class="list" style="--clr:#4b6cb7;">
+        <ul>';
+
+        include_once 'includes/admin-navidation.inc.php';
+        echo '    <li class="list" style="--clr:#4b6cb7;">
                 <a href="#">
                     <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
                     <span class="text">Home</span>
@@ -74,16 +76,7 @@ if (isset($_SESSION["S_userId"])) {
     }
 }
 else {
-    echo "<section class='banner'> ";
-    echo "	<div class='box2'> ";
-    echo "		<div class='content-profile'> ";
-    echo "			<div class='profilep'> ";
-    echo "				<p>Niste prijavljeni!</p>";
-    echo "				<p><a style='text-decoration: none; color: #3e849e;' href='index.php'>Prijavite se...</a></p>";
-    echo "			</div> ";
-    echo "		</div> ";
-    echo "	</div> ";
-    echo "</section>";
+    include_once 'niste-prijavljeni.php';
 }
 ?>
 

@@ -4,11 +4,17 @@ session_abort();
 include_once 'header.php';
 include_once 'includes/dbh.inc.php';
 ?>
+<?php
+if (isset($_SESSION["S_userId"])) {
+if(isset($_GET["id"])) {
+
+echo '
 <div class="home-background">
     <div class="navigation">
         <div class="menuToggle"></div>
-        <ul>
-            <li class="list" style="--clr:#4b6cb7;">
+        <ul>';
+include_once 'includes/admin-navidation.inc.php';
+           echo ' <li class="list" style="--clr:#4b6cb7;">
                 <a href="#">
                     <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
                     <span class="text">Home</span>
@@ -52,10 +58,11 @@ include_once 'includes/dbh.inc.php';
             </li>
         </ul>
     </div>
-    <div class="komentarji-container">
-        <?php
+    <div class="komentarji-container">';
+
         $objava_id = $_GET['id'];
         getComment($conn, $objava_id);
+
         echo "<hr id='komentar-hr'>
             <div id='komentirajObjavo-div'>
                 <form action='includes/komentirajObjavo.inc.php' method='post' id='komentirajObjavoId'>
@@ -64,18 +71,22 @@ include_once 'includes/dbh.inc.php';
                     <textarea name='komentar_vsebina' cols='80' rows='5' placeholder='Komentiraj...'></textarea>
                     <input type='hidden' name='url' value='$objava_id'>
                 </form>
-            </div>"
-        ?>
-        <?php
+            </div>";
+
         $objava_id = $_GET['id'];
         echo "<div id='izpis-komantarjev-box'>";
         getComentKomentarje($conn, $objava_id);
-        echo "</div>";
-        ?>
+        echo "</div>
+        
     </div>
     </div>
-</div>
-
+</div>";
+}
+}
+else {
+    include_once 'niste-prijavljeni.php';
+}
+?>
 
 <?php
 include_once 'footer.php';

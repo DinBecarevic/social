@@ -132,8 +132,15 @@ function loginUser($conn, $username, $pwd) {
         $_SESSION['S_userRegistracija_date'] =  $uidExists["registracija_date"];
         $_SESSION['S_userUpdate_date'] =        $uidExists["update_date"];
 
+        $_SESSION['status'] = $uidExists["status_user"];
+
         // cookies
         $expiration = time() + (7 * 24 * 60 * 60); // 1 teden
+
+        if ($uidExists['is_admin'] == 1) {
+            $_SESSION['is_admin'] = $uidExists["is_admin"];
+            setcookie('C_userIs_admin', $uidExists["is_admin"], $expiration, "/");
+        }
 
         setcookie('C_userUsername', $uidExists["username"], $expiration, "/");
         setcookie('C_userEmail', $uidExists["email"], $expiration, "/");
@@ -180,9 +187,13 @@ function loginUser2($conn, $username, $pwd) {
         $_SESSION['S_userRegistracija_date'] =  $uidExists["registracija_date"];
         $_SESSION['S_userUpdate_date'] =        $uidExists["update_date"];
 
+        $_SESSION['status'] = $uidExists["status_user"];
+
         // cookies
         $expiration = time() + (7 * 24 * 60 * 60); // 1 teden
-
+        if ($uidExists['is_admin'] == 1) {
+            $_SESSION['is_admin'] = $uidExists["is_admin"];
+        }
         setcookie('C_userUsername', $uidExists["username"], $expiration, "/");
         setcookie('C_userEmail', $uidExists["email"], $expiration, "/");
         setcookie('C_userPwd', $uidExists["pwd"], $expiration, "/");
@@ -1350,7 +1361,7 @@ function getUserInfoChatIdUser($conn, $id_user) {
 function getUserChatChat($conn, $id_user, $id_friend, $id_prijateljstva) {
     // ---> objave uporabnika
     $S_userId = $_SESSION['S_userId'];
-    $sql = "SELECT m.*, DATE_FORMAT(m.message_date,'%b %e, %Y | %H:%i'), u.username, u.img_dir, u.id AS user_id FROM messages m INNER JOIN uporabniki u ON u.id = m.sender_id WHERE ((m.sender_id = ?) OR (m.sender_id = ?)) AND (m.id_prijateljstva = ?) ORDER BY m.message_date ASC";
+    $sql = "SELECT m.*, DATE_FORMAT(m.message_date,'%b %e, %Y | %H:%i'), u.username, u.img_dir, u.id AS user_id FROM messages m INNER JOIN uporabniki u ON u.id = m.sender_id WHERE ((m.sender_id = ?) OR (m.sender_id = ?)) AND (m.id_prijateljstva = ?) ORDER BY m.message_date DESC";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: home.php?error=stmtfailed");
@@ -1408,9 +1419,6 @@ function getUserChatChat($conn, $id_user, $id_friend, $id_prijateljstva) {
 
     }
 }
-
-
-
 function getUserInfoChatIdFriend($conn, $id_friend) {
     $sql = "SELECT * FROM uporabniki WHERE id = ?";
     $stmt = mysqli_stmt_init($conn);
@@ -1427,5 +1435,198 @@ function getUserInfoChatIdFriend($conn, $id_friend) {
     while ($row = mysqli_fetch_array($resultData)) {
         return $row;
     }
+    return 0;
+}
+
+
+function getAdminContainer($conn) {
+    $sql = "SELECT * FROM uporabniki WHERE id != ?";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: home.php?error=stmtfailed");
+        exit();
+    }
+    $S_userId = $_SESSION['S_userId'];
+    mysqli_stmt_bind_param($stmt, "s", $S_userId);
+    mysqli_stmt_execute($stmt);
+
+    $resultData = mysqli_stmt_get_result($stmt);
+
+    echo '<div id="admin-users-box">
+             <table class="GeneratedTable">';
+    echo '<thead>
+                  <tr>
+                    <th>id</th>
+                    <th>username</th>';
+    echo '</tr>
+                </thead>
+                <tbody>';
+
+
+    while ($row = mysqli_fetch_array($resultData)) {
+        $id = $row['id'];
+        $username = $row['username'];
+
+        echo '<tr>
+                  <td>';echo $id; echo '</td>
+                  <td>';echo $username; echo '</td>
+              </tr>';
+    }
+    echo '</tbody>
+            </table>
+        </div>';
+
+    echo '<div id="search-user-container">
+            <div id="search-user-from">
+                <form action="" method="post">
+                    <input type="text" name="id" placeholder="id...">
+                    <input type="text" name="username" placeholder="username...">
+                    <button type="submit" name="isci-upo-btn">Išči</button>
+                </form>     
+            </div>';
+
+    if(isset($_POST['isci-upo-btn'])) {
+        echo "<div id='search-user-box'>";
+        $id = $_POST['id'];
+        $username2 = $_POST['username'];
+
+        if (empty($id)) {
+            $sql = "SELECT * FROM uporabniki WHERE username = ?";
+            $stmt = mysqli_stmt_init($conn);
+            if (!mysqli_stmt_prepare($stmt, $sql)) {
+                header("location: home.php?error=stmtfailed");
+                exit();
+            }
+            mysqli_stmt_bind_param($stmt, "s", $username2);
+        }
+        else if (empty($username2)){
+            $sql = "SELECT * FROM uporabniki WHERE id = ?";
+            $stmt = mysqli_stmt_init($conn);
+            if (!mysqli_stmt_prepare($stmt, $sql)) {
+                header("location: home.php?error=stmtfailed");
+                exit();
+            }
+            mysqli_stmt_bind_param($stmt, "s", $id);
+        }
+        else {
+            $sql = "SELECT * FROM uporabniki WHERE (id = ?) AND (username = ?)";
+            $stmt = mysqli_stmt_init($conn);
+            if (!mysqli_stmt_prepare($stmt, $sql)) {
+                header("location: home.php?error=stmtfailed");
+                exit();
+            }
+            mysqli_stmt_bind_param($stmt, "ss", $id, $username2);
+
+        }
+        mysqli_stmt_execute($stmt);
+
+        $resultData2 = mysqli_stmt_get_result($stmt);
+
+        while ($row = mysqli_fetch_array($resultData2)) {
+            $id =                   $row['id'];
+            $username =             $row['username'];
+            $firstname =            $row['first_name'];
+            $lastname =             $row['last_name'];
+            $email =                $row['email'];
+            $registracija_date =    $row['registracija_date'];
+            $update_date =          $row['update_date'];
+            $opis =                 $row['opis'];
+            $img_dir =              $row['img_dir'];
+            $banner_dir =           $row['banner_dir'];
+            $regija =               $row['regija'];
+            $mesto =                $row['mesto'];
+            $pronouns =             $row['pronouns'];
+            $datum_roj =            $row['datum_roj'];
+            $status_user =          $row['status_user'];
+            $is_admin =             $row['is_admin'];
+
+            echo "<form method='post' action='includes/adminUpdateUser.inc.php'>
+
+                    <table class='GeneratedTable2'>
+                            <tbody>
+                              <tr>
+                                <td>*id:</td>
+                                <td><input type='text' name='id' value='$id' disabled></td>
+                              </tr>
+                              <tr>
+                                <td>username:</td>
+                                <td><input type='text' name='username' value='$username'></td>
+                              </tr>
+                              <tr>
+                                <td>Ime:</td>
+                                <td><input type='text' name='first_name' value='$firstname'></td>
+                              </tr>
+                              <tr>
+                                <td>Priimek:</td>
+                                <td><input type='text' name='lastname_name' value='$lastname'></td>
+                              </tr>
+                              <tr>
+                                <td>Email:</td>
+                                <td><input type='text' name='email' value='$email'></td>
+                              </tr>
+                              <tr>
+                                <td>Datum rojstva:</td>
+                                <td><input type='text' name='email' value='$datum_roj'></td>
+                              </tr>
+                              <tr>
+                                <td>Datum registracije: </td>
+                                <td><input type='text' name='first_name' value='$registracija_date'></td>
+                              </tr>
+                              <tr>
+                                <td>Datum posodobitve:  </td>
+                                <td><input type='text' name='first_name' value='$update_date'></td>
+                              </tr>
+                              <tr>
+                                <td>Opis:</td>
+                                <td><textarea type='text' name='first_name'>$opis</textarea></td>
+                              </tr>
+                              <tr>
+                                <td>img_dir:</td>
+                                <td><input type='text' name='first_name' value='$img_dir'></td>
+                              </tr>
+                              <tr>
+                                <td>banner_dir:</td>
+                                <td><input type='text' name='first_name' value='$banner_dir'></td>
+                              </tr>
+                              <tr>
+                                <td>pronoun:</td>
+                                <td><input type='text' name='first_name' value='$pronouns'></td>
+                              </tr>
+                              <tr>
+                                <td>Regija:</td>
+                                <td><input type='text' name='first_name' value='$regija'></td>
+                              </tr>
+                              <tr>
+                                <td>Mesto:</td>
+                                <td><input type='text' name='first_name' value='$mesto'></td>
+                              </tr>
+                              <tr>
+                                <td>Status:</td>
+                                <td><input type='text' name='first_name' value='$status_user'></td>
+                              </tr>
+                              <tr>
+                                <td>is_admin:</td>
+                                <td><input type='text' name='first_name' value='$is_admin'></td>
+                              </tr>
+                            </tbody>
+                       </table>
+                    <br>
+                    
+                    <button type='submit' name='update-upo-btn'>Uredi</button><br><br>
+                    <hr>
+                    <p class='search-user-box-opomba'>Prostori z oznako * se ne morejo oz. ne smejo urejati...</p><br>
+                    <p class='search-user-box-opomba'>Legenda:</p>
+                    <hr id='search-user-box-opomba-hr'>
+                    <p class='search-user-box-opomba2'>BAN USER: nastavi staus na \"banned\"</p>
+                    <p class='search-user-box-opomba2'>ADMIN UPORABNIK: nastavi is_admin na \"1\"</p>
+                </form>";
+        }
+        echo "</div>";
+    }
+        echo '</div>';
+
+
+
+
     return 0;
 }

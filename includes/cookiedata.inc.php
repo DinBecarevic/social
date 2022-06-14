@@ -35,6 +35,11 @@ if (isset($_COOKIE['C_userEmail']) AND ($_COOKIE['C_userPwd'])) {
         $_SESSION['S_userRegistracija_date'] =  $row["registracija_date"];
         $_SESSION['S_userUpdate_date'] =        $row["update_date"];
 
+        $_SESSION['status'] = $row["status_user"];
+
+        if ($row["is_admin"] == 1) {
+            $_SESSION['is_admin'] = $row["is_admin"];
+        }
     }
 
     mysqli_stmt_close($stmt);

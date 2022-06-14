@@ -4,11 +4,16 @@ session_abort();
 include_once 'header.php';
 include_once 'includes/dbh.inc.php';
 ?>
+<?php
+if (isset($_SESSION["S_userId"])) {
+    echo '
 <div class="home-background">
 <div class="navigation">
     <div class="menuToggle"></div>
-    <ul>
-        <li class="list active" style="--clr:#4b6cb7;">
+    <ul>';
+
+    include_once 'includes/admin-navidation.inc.php';
+       echo '<li class="list active" style="--clr:#4b6cb7;">
             <a href="#">
                 <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
                 <span class="text">Home</span>
@@ -81,8 +86,12 @@ include_once 'includes/dbh.inc.php';
 
 
 </div>
-</div>
-
+</div>';
+}
+else {
+    include_once 'niste-prijavljeni.php';
+}
+?>
 
 <?php
 include_once 'footer.php';
