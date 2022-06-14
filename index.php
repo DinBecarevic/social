@@ -1,6 +1,9 @@
 <?php
     include 'header.php';
 ?>
+<?php
+if (!isset($_SESSION["S_userId"])) {
+    echo '
     <!-- -------------------------LEVO----------------------- -->
 <div class="container">
     <div class="levo">
@@ -195,9 +198,7 @@
                     <p class="switchbox_link">A še nimaš racuna? <a href="#" onclick="switchbox()" id="switchbox-prijava-link">Registriraj se...</a></p>
                 </div>
             </div>
-        </div>
-
-            <?php
+        </div>';
             if (isset($_GET['error'])) {
                 $path = $_SERVER['REQUEST_URI'];
                 //primer: localhost:8080/social2/index.php?error=emptyinput_login
@@ -261,12 +262,16 @@
                     
                     }, 3000);
                   </script>";
-            ?>
 
-        </div>
+        echo '</div>
     </div>
-</div>
+</div>';
 
+}
+else {
+    header("location: social.php");
+}
+?>
 <!-- -------------------------javascript-------------------------->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="js/main.js"></script>

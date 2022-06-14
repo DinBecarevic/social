@@ -1,11 +1,13 @@
 <?php
 	session_start();
     include_once 'includes/cookiedata.inc.php';
-    if ($_SESSION['status'] == 'banned') {
-        $buttun_status = 'disabled';
-    }
-    else {
-        $buttun_status = 'enabled';
+    if (isset($_SESSION['status'])) {
+        if ($_SESSION['status'] == 'banned') {
+            $buttun_status = 'disabled';
+        }
+        else {
+            $buttun_status = 'enabled';
+        }
     }
 ?>
 <!DOCTYPE html>
