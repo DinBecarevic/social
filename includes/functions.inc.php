@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 function emptyInputSignup($username, $email, $pwd, $pwdRepeat) {
     $result;
     if (empty($username) || empty($email) || empty($pwd) || empty($pwdRepeat)) {
@@ -55,7 +54,6 @@ function userExists($conn, $username, $email) {
         $result = false;
         return $result;
     }
-
     mysqli_stmt_close($stmt);
 }
 
@@ -133,14 +131,10 @@ function loginUser($conn, $username, $pwd) {
         $_SESSION['S_userUpdate_date'] =        $uidExists["update_date"];
 
         $_SESSION['status'] = $uidExists["status_user"];
+        $_SESSION['is_admin'] = $uidExists["is_admin"];
 
         // cookies
         $expiration = time() + (7 * 24 * 60 * 60); // 1 teden
-
-        if ($uidExists['is_admin'] == 1) {
-            $_SESSION['is_admin'] = $uidExists["is_admin"];
-            setcookie('C_userIs_admin', $uidExists["is_admin"], $expiration, "/");
-        }
 
         setcookie('C_userUsername', $uidExists["username"], $expiration, "/");
         setcookie('C_userEmail', $uidExists["email"], $expiration, "/");
@@ -188,12 +182,11 @@ function loginUser2($conn, $username, $pwd) {
         $_SESSION['S_userUpdate_date'] =        $uidExists["update_date"];
 
         $_SESSION['status'] = $uidExists["status_user"];
+        $_SESSION['is_admin'] = $uidExists["is_admin"];
 
         // cookies
         $expiration = time() + (7 * 24 * 60 * 60); // 1 teden
-        if ($uidExists['is_admin'] == 1) {
-            $_SESSION['is_admin'] = $uidExists["is_admin"];
-        }
+
         setcookie('C_userUsername', $uidExists["username"], $expiration, "/");
         setcookie('C_userEmail', $uidExists["email"], $expiration, "/");
         setcookie('C_userPwd', $uidExists["pwd"], $expiration, "/");
@@ -214,9 +207,13 @@ function emptyInputEdit($username, $email) {
     return $result;
 }
 
-function userExistsProfile($conn, $username, $email) {
+function userExistsProfile($conn, $username, $email, $old_username, $old_email) {
     $oldusername = $_SESSION['S_userUsername'];
     $oldemail = $_SESSION['S_userEmail'];
+    if ($_SESSION['is_admin'] == 1) {
+        $oldusername = $old_username;
+        $oldemail = $old_email;
+    }
     $sql = "SELECT * FROM uporabniki WHERE (username = ? OR email = ?) AND (username != ? OR email != ?);";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -421,9 +418,10 @@ function getComments($conn) {
             echo    "</div>";
             echo    "<hr>";
             if (isset($_SESSION['S_userId'])) {
-                if ($_SESSION['S_userId'] == $row['uporabnik_id']) {
+                if (($_SESSION['S_userId'] == $row['uporabnik_id']) or ($_SESSION['is_admin'] == 1)) {
                     echo "<form class='delete-comment-form' method='POST' action='includes/deleteObjava.inc.php'>";
                     echo    "<input type='hidden' name='comment_id' value='".$row['id']."'>
+                             <input type='hidden' name='back_url' value='$pfile'>
                             <button class='delete-objava-btn' type='submit' name='komentar_odstrani'>Odstrani</button>
                         </form>
                         <!-- ----------------------------------------------------------------- -->
@@ -488,7 +486,7 @@ function getComments($conn) {
                         <span class='st_vsekov'>$st_vseckov</span>
                     </div>
                     <div class='comment-form-div'>
-                        <a href='../social/komentiraj.php?id=$id_objave'><button class='comment-objava-btn'><ion-icon name='chatbox-outline'></ion-icon></button></a>
+                        <a href='komentiraj.php?id=$id_objave'><button class='comment-objava-btn'><ion-icon name='chatbox-outline'></ion-icon></button></a>
                     </div>";
             echo "</div>";
         }
@@ -550,9 +548,10 @@ function getComment($conn, $objava_id) {
             echo    "</p>";
             echo    "</div>";
             if (isset($_SESSION['S_userId'])) {
-                if ($_SESSION['S_userId'] == $row['uporabnik_id']) {
+                if (($_SESSION['S_userId'] == $row['uporabnik_id']) or ($_SESSION['is_admin'] == 1)) {
                     echo "<form class='delete-comment-form' method='POST' action='includes/deleteObjava.inc.php'>";
                     echo    "<input type='hidden' name='comment_id' value='".$row['id']."'>
+                            <input type='hidden' name='back_url' value='$pfile'>
                             <button class='delete-objava-btn' type='submit' name='komentar_odstrani'>Odstrani</button>
                         </form>
                         <!-- ----------------------------------------------------------------- -->
@@ -626,7 +625,7 @@ function getComment($conn, $objava_id) {
                         echo "</div>";
 
                     echo "<div class='comment-form-div'>
-                        <a href='../social/komentiraj.php?id=$id_objave'><button class='comment-objava-btn'><ion-icon name='chatbox-outline'></ion-icon></button></a>
+                        <a href='komentiraj.php?id=$id_objave'><button class='comment-objava-btn'><ion-icon name='chatbox-outline'></ion-icon></button></a>
                     </div>";
             echo "</div>";
         }
@@ -677,7 +676,7 @@ function getComentKomentarje($conn, $objava_id)
             echo "</p>";
             echo "</div><hr class='komentar-small-hr'>";
             if (isset($_SESSION['S_userId'])) {
-                if ($_SESSION['S_userId'] == $row['user_id']) {
+                if (($_SESSION['S_userId'] == $row['user_id']) or ($_SESSION['is_admin'] == 1))  {
                     echo "<form class='delete-comment-form' method='POST' action='includes/deleteKomentar.inc.php'>";
                     echo "<input type='hidden' name='komentar_id' value='" . $row['id'] . "'>
                           <input type='hidden' name='url' value='".$row['objava_id']."'>
@@ -1059,7 +1058,7 @@ function getFriendObjave($conn) {
                     	<form class='edit-comment-form' method='POST' action='editObjava.php'>
                             <input type='hidden' name='id' value='".$row['id']."'>
                             <input type='hidden' name='sporocila' value='".$row['vsebina']."'>
-                            <button class='edit-objava-btn' name='komentar_edit'>Uredi</button>
+                            <buttonclass='edit-objava-btn' name='komentar_edit'>Uredi</button>
                         </form>";
                 }
             }
@@ -1116,7 +1115,7 @@ function getFriendObjave($conn) {
                         <span class='st_vsekov'>$st_vseckov</span>
                     </div>
                     <div class='comment-form-div'>
-                        <a href='../social/komentiraj.php?id=$id_objave'><button class='comment-objava-btn'><ion-icon name='chatbox-outline'></ion-icon></button></a>
+                        <a href='komentiraj.php?id=$id_objave'><button class='comment-objava-btn'><ion-icon name='chatbox-outline'></ion-icon></button></a>
                     </div>";
             echo "</div>";
         }
@@ -1135,7 +1134,7 @@ function stevliovseckov($conn, $id) {
 
     $resultData = mysqli_stmt_get_result($stmt);
 
-    while ($row = $resultData->fetch_assoc()) {
+    while ($row = mysqli_fetch_array($resultData)) {
         $stevilo_vseckov = $row['COUNT(*)'];
         echo $stevilo_vseckov;
     }
@@ -1155,7 +1154,7 @@ function stevlioObjav($conn, $id) {
 
     $resultData = mysqli_stmt_get_result($stmt);
 
-    while ($row = $resultData->fetch_assoc()) {
+    while ($row = mysqli_fetch_array($resultData)) {
         $stevilo_objav = $row['COUNT(*)'];
         echo $stevilo_objav;
     }
@@ -1175,7 +1174,7 @@ function stevlioSledilcev($conn, $id) {
 
     $resultData = mysqli_stmt_get_result($stmt);
 
-    while ($row = $resultData->fetch_assoc()) {
+    while ($row = mysqli_fetch_array($resultData)) {
         $stevilo_sledilcev = $row['COUNT(*)'];
         echo $stevilo_sledilcev;
     }
@@ -1195,7 +1194,7 @@ function stevlioSledi($conn, $id) {
 
     $resultData = mysqli_stmt_get_result($stmt);
 
-    while ($row = $resultData->fetch_assoc()) {
+    while ($row = mysqli_fetch_array($resultData)) {
         $stevilo_sledi = $row['COUNT(*)'];
         echo $stevilo_sledi;
     }
@@ -1216,7 +1215,7 @@ function getFriends($conn, $S_userID) {
 
     $resultData = mysqli_stmt_get_result($stmt);
 
-    while ($row = $resultData->fetch_assoc()) {
+    while ($row = mysqli_fetch_array($resultData)) {
         $id = $row['id'];
         $username = $row['username'];
         $img_dir = $row['img_dir'];
@@ -1251,7 +1250,7 @@ function prijateljaZeOd($conn, $id) {
 
     $resultData = mysqli_stmt_get_result($stmt);
 
-    while ($row = $resultData->fetch_assoc()) {
+    while ($row = mysqli_fetch_array($resultData)) {
         $date_added = $row["DATE_FORMAT(added_date,'%b %e, %Y | %H:%i')"];
         echo $date_added;
     }
@@ -1272,7 +1271,7 @@ function getIdPrijateljstva($conn, $id) {
 
     $resultData = mysqli_stmt_get_result($stmt);
 
-    while ($row = $resultData->fetch_assoc()) {
+    while ($row = mysqli_fetch_array($resultData)) {
         global $id_prijateljstva;
         $id_prijateljstva = $row["id"];
         return $id_prijateljstva;
@@ -1469,7 +1468,7 @@ function getAdminContainer($conn) {
 
         echo '<tr>
                   <td>';echo $id; echo '</td>
-                  <td>';echo $username; echo '</td>
+                  <td>';echo "<a href='admin.php?username=$username&isci-upo-btn='>$username</a>"; echo '</td>
               </tr>';
     }
     echo '</tbody>
@@ -1478,46 +1477,23 @@ function getAdminContainer($conn) {
 
     echo '<div id="search-user-container">
             <div id="search-user-from">
-                <form action="" method="post">
-                    <input type="text" name="id" placeholder="id...">
+                <form action="" method="get">
                     <input type="text" name="username" placeholder="username...">
-                    <button type="submit" name="isci-upo-btn">Išči</button>
+                    <button type="submit" name="isci-upo-btn"><ion-icon name="search-outline"></ion-icon></button>
                 </form>     
             </div>';
 
-    if(isset($_POST['isci-upo-btn'])) {
+    if(isset($_GET['isci-upo-btn'])) {
         echo "<div id='search-user-box'>";
-        $id = $_POST['id'];
-        $username2 = $_POST['username'];
+        $username2 = mysqli_real_escape_string($conn, $_GET['username']);
 
-        if (empty($id)) {
-            $sql = "SELECT * FROM uporabniki WHERE username = ?";
-            $stmt = mysqli_stmt_init($conn);
-            if (!mysqli_stmt_prepare($stmt, $sql)) {
-                header("location: home.php?error=stmtfailed");
-                exit();
-            }
-            mysqli_stmt_bind_param($stmt, "s", $username2);
+        $sql = "SELECT * FROM uporabniki WHERE username = ?";
+        $stmt = mysqli_stmt_init($conn);
+        if (!mysqli_stmt_prepare($stmt, $sql)) {
+            header("location: home.php?error=stmtfailed");
+            exit();
         }
-        else if (empty($username2)){
-            $sql = "SELECT * FROM uporabniki WHERE id = ?";
-            $stmt = mysqli_stmt_init($conn);
-            if (!mysqli_stmt_prepare($stmt, $sql)) {
-                header("location: home.php?error=stmtfailed");
-                exit();
-            }
-            mysqli_stmt_bind_param($stmt, "s", $id);
-        }
-        else {
-            $sql = "SELECT * FROM uporabniki WHERE (id = ?) AND (username = ?)";
-            $stmt = mysqli_stmt_init($conn);
-            if (!mysqli_stmt_prepare($stmt, $sql)) {
-                header("location: home.php?error=stmtfailed");
-                exit();
-            }
-            mysqli_stmt_bind_param($stmt, "ss", $id, $username2);
-
-        }
+        mysqli_stmt_bind_param($stmt, "s", $username2);
         mysqli_stmt_execute($stmt);
 
         $resultData2 = mysqli_stmt_get_result($stmt);
@@ -1528,6 +1504,7 @@ function getAdminContainer($conn) {
             $firstname =            $row['first_name'];
             $lastname =             $row['last_name'];
             $email =                $row['email'];
+            $pass =                $row['pwd'];
             $registracija_date =    $row['registracija_date'];
             $update_date =          $row['update_date'];
             $opis =                 $row['opis'];
@@ -1540,13 +1517,19 @@ function getAdminContainer($conn) {
             $status_user =          $row['status_user'];
             $is_admin =             $row['is_admin'];
 
-            echo "<form method='post' action='includes/adminUpdateUser.inc.php'>
+            //preden izpišemo vsebino naredimo mysqli_real_escape_string in strip_tag da se znebimo borebitni nezačeleni vsebini...
+            $opis = mysqli_real_escape_string($conn, htmlspecialchars($opis));
+            $opis = str_replace(array("\\\\r\\\\n","\\r\\n")," ",$opis);
 
+            echo "<form method='post' action='includes/adminUpdateUser.inc.php'>
+                        <input type='hidden' name='id_u' value='$id'>
+                        <input type='hidden' name='old_username' value='$username'>
+                        <input type='hidden' name='old_email' value='$email'>
                     <table class='GeneratedTable2'>
                             <tbody>
                               <tr>
                                 <td>*id:</td>
-                                <td><input type='text' name='id' value='$id' disabled></td>
+                                <td><input type='text' name='' value='$id' disabled></td>
                               </tr>
                               <tr>
                                 <td>username:</td>
@@ -1562,51 +1545,90 @@ function getAdminContainer($conn) {
                               </tr>
                               <tr>
                                 <td>Email:</td>
-                                <td><input type='text' name='email' value='$email'></td>
+                                <td><input type='email' name='email' value='$email'></td>
+                              </tr>
+                              <tr>
+                                <td>Geslo:</td>
+                                <td><input type='password' name='pass' value='$pass'></td>
                               </tr>
                               <tr>
                                 <td>Datum rojstva:</td>
-                                <td><input type='text' name='email' value='$datum_roj'></td>
+                                <td><input type='date' name='datum_roj' value='$datum_roj'></td>
                               </tr>
                               <tr>
                                 <td>Datum registracije: </td>
-                                <td><input type='text' name='first_name' value='$registracija_date'></td>
+                                <td><input type='text' name='datum_reg' value='$registracija_date'></td>
                               </tr>
                               <tr>
-                                <td>Datum posodobitve:  </td>
-                                <td><input type='text' name='first_name' value='$update_date'></td>
+                                <td>*Datum posodobitve:  </td>
+                                <td><input type='text' name='datum_pos' value='$update_date' disabled></td>
                               </tr>
                               <tr>
                                 <td>Opis:</td>
-                                <td><textarea type='text' name='first_name'>$opis</textarea></td>
+                                <td><textarea type='text' name='opis'>$opis</textarea></td>
                               </tr>
                               <tr>
                                 <td>img_dir:</td>
-                                <td><input type='text' name='first_name' value='$img_dir'></td>
+                                <td>
+                                    <select name='img_dir'>
+                                        <option value='$img_dir'>$img_dir</option>
+                                        <option value='default.png'>slike/img/default.png</option>
+                                        <option value='banned.png'>slike/img/banned.png</option>
+                                    </select>
+                                </td>
                               </tr>
                               <tr>
                                 <td>banner_dir:</td>
-                                <td><input type='text' name='first_name' value='$banner_dir'></td>
+                                <td>
+                                    <select name='banner_dir'>
+                                        <option value='$banner_dir'>$banner_dir</option>
+                                        <option value='default.png'>slike/banner/default.png</option>
+                                        <option value='banned.png'>slike/banner/banned.png</option>
+                                    </select>
+                                </td>
                               </tr>
                               <tr>
-                                <td>pronoun:</td>
-                                <td><input type='text' name='first_name' value='$pronouns'></td>
+                                <td>pronouns:</td>
+                                <td><input type='text' name='pronouns' value='$pronouns'></td>
                               </tr>
                               <tr>
                                 <td>Regija:</td>
-                                <td><input type='text' name='first_name' value='$regija'></td>
+                                <td>
+                                    <select name='Regija'>
+                                        <option value='$regija'>$regija</option>
+                                        <option value='Slovenija'>Slovenija</option>
+                                        <option value='Pomurska'>Pomurska</option>
+                                        <option value='Podravska'>Podravska</option>
+                                        <option value='Koroska'>Koroska</option>
+                                        <option value='Savinjska'>Savinjska</option>
+                                        <option value='Zasavska'>Zasavska</option>
+                                        <option value='Jugo-Vzhodna Slo'>Jugo-Vzhodna Slo</option>
+                                        <option value='Primorsko-Notranjska'>Primorsko-Notranjska</option>
+                                        <option value='Goriska'>Goriska</option>
+                                        <option value='Obalno-Kraška'>Obalno-Kraška</option>
+                                        <option value='Gorenjska'>Gorenjska</option>
+                                        <option value='Osrednje-Slovenska'>Osrednje-Slovenska</option>
+                                    </select>
+                                </td>
                               </tr>
                               <tr>
                                 <td>Mesto:</td>
-                                <td><input type='text' name='first_name' value='$mesto'></td>
+                                <td><input type='text' name='Mesto' value='$mesto'></td>
                               </tr>
                               <tr>
                                 <td>Status:</td>
-                                <td><input type='text' name='first_name' value='$status_user'></td>
+                                <td>
+                                    <select name='Status'>
+                                        <option value='$status_user'>$status_user</option>
+                                        <option value='active'>active</option>
+                                        <option value='innactive'>innactive</option>
+                                        <option value='banned'>banned</option>
+                                    </select>
+                                </td>
                               </tr>
                               <tr>
                                 <td>is_admin:</td>
-                                <td><input type='text' name='first_name' value='$is_admin'></td>
+                                <td><input type='number' name='is_admin' value='$is_admin'></td>
                               </tr>
                             </tbody>
                        </table>

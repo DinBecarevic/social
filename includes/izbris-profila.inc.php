@@ -1,7 +1,7 @@
 <?php
 
 if (isset($_POST['izbris-profila-submit'])) {
-
+    if($_SESSION['status'] =! 'banned') {
     require_once 'dbh.inc.php';
     require_once 'functions.inc.php';
 
@@ -13,6 +13,10 @@ if (isset($_POST['izbris-profila-submit'])) {
     else {
         header("location: ../profil.php?success=selected_ne");
         exit();
+    }
+    }
+    else {
+        header("location: ../profil.php?error=uporabnik_banned");
     }
 }
 else {

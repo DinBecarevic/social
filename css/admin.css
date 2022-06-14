@@ -47,6 +47,15 @@ table.GeneratedTable td, table.GeneratedTable th {
 table.GeneratedTable thead {
     background-color: var(--svetlo_modra);
 }
+.GeneratedTable a{
+    color: var(--temno_modra);
+    text-decoration: none;
+    transition: .3s;
+}
+.GeneratedTable a:hover{
+    color: var(--svetlo_modra);
+    transition: .3s;
+}
 #admin-users-box {
     margin: 10px;
     display: inline-block;
@@ -73,9 +82,12 @@ table.GeneratedTable thead {
     margin-top: 0.4vw;
     outline: none;
     border: 1px solid var(--svetlo_modra);
+    transition: .3s;
 }
 #search-user-box td input:hover {
+    background: #cecece;
     border: 1px solid var(--hover_modra);
+    transition: .3s;
 }
 #search-user-box td textarea {
     font-size: 1em;
@@ -89,9 +101,12 @@ table.GeneratedTable thead {
     resize: none;
     outline: none;
     border: 1px solid var(--svetlo_modra);
+    transition: .3s;
 }
 #search-user-box td textarea:hover {
+    background: #cecece;
     border: 1px solid var(--hover_modra);
+    transition: .3s;
 }
 .search-user-box-opomba {
     font-size: .9em;
@@ -116,5 +131,55 @@ table.GeneratedTable thead {
     color: var(--bela);
     text-transform: uppercase;
     border: none;
+}
+#search-user-from input{
+    font-size: 1em;
+    position: relative;
+    height: 1.6vw;
+    width: 20vw;
+    background: #ebebeb;
+    border-radius: 8px;
+    padding: 0.2vw .8vw 0.2vw .8vw;
+    margin-top: 0.4vw;
+    outline: none;
+    border: 1px solid var(--svetlo_modra);
+}
+#search-user-from button {
+    cursor: pointer;
+    font-size: 1.6em;
+    width: 40px;
+    height: 40px;
+    background: var(--svetlo_modra);
+    border: 1px solid var(--temno_modra);
+    border-radius: 8px;
+    padding: 0.2vw;
+    transition: .3s;
+    vertical-align: bottom;
+}
+#search-user-from button:hover {
+    background: var(--hover_modra);
+    border: 1px solid var(--svetlo_modra);
+    transition: .3s;
+}
+#search-user-from button ion-icon {
+    font-weight: 1000;
+    font-size: 1em;
+}
+#search-user-box select {
+    font-size: 1em;
+    position: relative;
+    height: 1.6vw;
+    width: 20vw;
+    background: #ebebeb;
+    border-radius: 8px;
+    padding: 0.2vw .8vw 0.2vw .8vw;
+    margin-top: 0.4vw;
+    outline: none;
+    border: 1px solid var(--svetlo_modra);
+}
+#search-user-box select:hover {
+    background: #cecece;
+    border: 1px solid var(--hover_modra);
+    transition: .3s;
 }
 

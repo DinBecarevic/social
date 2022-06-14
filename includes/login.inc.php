@@ -1,6 +1,5 @@
 <?php
 if (isset($_POST['submit_login'])) {
-
         $email = $_POST['email'];
         $pwd = $_POST['pass'];
 
@@ -13,6 +12,7 @@ if (isset($_POST['submit_login'])) {
         }
         loginUser($conn, $email, $pwd);
     }
+
     else {
         header("location: ../index.php?error=fail");
         exit();

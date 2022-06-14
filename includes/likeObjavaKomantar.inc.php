@@ -1,6 +1,7 @@
 <?php
 
 if (isset($_POST['komentar_like'])) {
+    if($_SESSION['status'] =! 'banned') {
     session_start();
     require_once 'dbh.inc.php';
 
@@ -55,6 +56,10 @@ if (isset($_POST['komentar_like'])) {
     }
 
     mysqli_stmt_close($stmt);
+    }
+    else {
+        header("location: ../profil.php?error=uporabnik_banned");
+    }
 }
 else {
     header("location: ../social.php");

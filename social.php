@@ -86,7 +86,7 @@ echo '          <div id="objava-textarea">
                         </select>
                     </span>
                 </div>
-                <button type="submit" name="objava-submit" id="objava-button">objavi</button>
+                <button type="submit" name="objava-submit" id="objava-button" >objavi</button>
                 </form>
 
             </div>

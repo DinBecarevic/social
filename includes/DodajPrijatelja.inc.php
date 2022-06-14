@@ -1,6 +1,7 @@
 <?php
 
 if (isset($_POST['DodajPrijatelja-btn'])) {
+    if($_SESSION['status'] =! 'banned') {
     session_start();
     require_once 'dbh.inc.php';
 
@@ -20,6 +21,10 @@ if (isset($_POST['DodajPrijatelja-btn'])) {
     mysqli_stmt_close($stmt);
     header("location: ../uporabnik.php?uporabnik=$url_username&dodan");
     exit();
+    }
+    else {
+        header("location: ../profil.php?error=uporabnik_banned");
+    }
 }
 else {
     header("location: ../social.php");

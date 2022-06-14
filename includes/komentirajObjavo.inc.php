@@ -1,7 +1,7 @@
 <?php
 
 if (isset($_POST['komentirajObjavo-btn'])) {
-
+    if($_SESSION['status'] =! 'banned') {
     require_once 'dbh.inc.php';
     require_once 'functions.inc.php';
 
@@ -13,6 +13,10 @@ if (isset($_POST['komentirajObjavo-btn'])) {
         exit();
     }
     KomentirajObjavo($conn, $vsebina, $url);
+    }
+    else {
+        header("location: ../profil.php?error=uporabnik_banned");
+    }
 }
 else {
     header("location: ../social.php?error=fail");

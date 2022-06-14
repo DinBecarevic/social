@@ -1,7 +1,16 @@
 <footer>
     <div class="footer animate__animated animate__fadeIn">
-        <p><a href="#">Registracija</a></p>
-        <p><a href="#">Prijava</a></p>
+        <?php
+        if (isset($_SESSION['S_userUsername'])) {
+            $username = $_SESSION['S_userUsername'];
+            echo '<p><a href="#">Prijavljen: ';echo $username; echo '</a></p>
+                  <p>|</p>';
+        }
+        else {
+            echo '  <p><a href="index.php">Registracija</a></p>
+                    <p><a href="index.php">Prijava</a></p>';
+        }
+        ?>
         <p><a href="#">Pomoc</a></p>
         <p><a href="#">O nas</a></p>
         <p><a href="#">Pravila uporabe</a></p>

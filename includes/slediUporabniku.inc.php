@@ -1,6 +1,7 @@
 <?php
 
 if (isset($_POST['slediUporabniku-btn'])) {
+    if($_SESSION['status'] =! 'banned') {
     session_start();
     require_once 'dbh.inc.php';
 
@@ -21,6 +22,10 @@ if (isset($_POST['slediUporabniku-btn'])) {
     mysqli_stmt_close($stmt);
     header("location: ../uporabnik.php?uporabnik=$url_username&followed");
     exit();
+    }
+    else {
+        header("location: ../profil.php?uporabnik_banned");
+    }
 }
 else {
     header("location: ../social.php");

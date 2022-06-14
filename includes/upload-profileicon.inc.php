@@ -2,7 +2,7 @@
 
 
 if (isset($_POST['iconSubmit'])) {
-
+    if($_SESSION['status'] =! 'banned') {
     session_start();
 
     require_once 'dbh.inc.php';
@@ -46,6 +46,10 @@ if (isset($_POST['iconSubmit'])) {
         }
     } else {
         header("location: ../profil.php?error=FileNotSupported");
+    }
+    }
+    else {
+        header("location: ../profil.php?error=uporabnik_banned");
     }
 } else {
     header("location: ../profil.php?error=fail");

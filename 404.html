@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<style type="text/css">
+    /*---------barve-----------*/
+    :root {
+        --bela: #F1F1F1;
+        --crna: #2B2B2B;
+        --hover_modra: rgba(171, 190, 255, 0.68);
+        --svetlo_modra: #4b6cb7;
+        --temno_modra: #182848;
+        --gradient_modra: linear-gradient(253deg, #4b6cb7 0%, #182848 100%);
+    }
+    /*---------barve-----------*/
+    *
+    {
+        box-sizing: border-box;
+        font-family: "Roboto", sans-serif;
+    }
+    body
+    {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #1e1e1e;
+        margin: 0;
+        height: 100%;
+        overflow: hidden;
+        bottom: 8vw;
+    }
+    .container69
+    {
+        width: 20vw;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    .container69 .btn
+    {
+        position: relative;
+        width: 15vw;
+        height: 5vw;
+    }
+    .container69 .btn a
+    {
+        position: absolute;
+        font-size: 2vw;
+        text-decoration: none;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        background: rgba(255, 255, 255, 0.1);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+        border-radius: 60px;
+        color: #fff;
+        z-index: 1;
+        font-weight: 400;
+        letter-spacing: 1px;
+        overflow: hidden;
+        transition: 0.5s;
+        backdrop-filter: blur(15px);
+    }
+    .container69 .btn:hover a
+    {
+        letter-spacing: 0.5vw;
+    }
+    .container69 .btn::before
+    {
+        content: '';
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -0.5vw;
+        width: 3vw;
+        height: 1vw;
+        background: #4b6cb7;
+        border-radius: 1vw;
+        transition: 0.5s;
+        transition-delay: 0s;
+    }
+    .container69 .btn:hover::before
+    {
+        bottom: 0;
+        height: 50%;
+        width: 80%;
+        border-radius: 60px;
+        transition-delay: 0.1s;
+    }
+    .container69 .btn::after
+    {
+        content: '';
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: -0.5vw;
+        width: 3vw;
+        height: 1vw;
+        background: #4b6cb7;
+        border-radius: 1vw;
+        transition: 0.5s;
+        transition-delay: 0s;
+    }
+    .container69 .btn:hover::after
+    {
+        top: 0;
+        height: 50%;
+        width: 80%;
+        border-radius: 60px;
+        transition-delay: 0.1s;
+    }
+    .container69 .btn:nth-child(1)::before,
+    .container69 .btn:nth-child(1)::after
+    {
+        background: #4b6cb7,;
+        box-shadow: 0 0 5px #4b6cb7,
+
+        0 0 15px #4b6cb7,
+        0 0 30px #4b6cb7,
+        0 0 60px #4b6cb7;
+    }
+
+    h1{
+        font-family: consolas;
+        background-image: url(media/noise123.gif);
+        background-repeat: repeat;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    p{font-family: consolas;}
+
+</style>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>404 napaka</title>
+    <link rel="stylesheet" type="text/css" href="staro/css/404.css">
+</head>
+<body>
+<div style="text-align: center;">
+
+
+
+    <h1 style="font-size: 8vW;">404 napaka</h1>
+    <p style="font-size: 2vw; color: white; position: relative; bottom: 4.3vw; opacity: 50%">{Dostop do datoteke ni mogoč.}</p>
+
+    <center><div class="container69">
+        <div class="btn">
+            <a href="index.php">Domov</a>
+        </div>
+    </div></center>
+
+</div>
+</body>
+</html>

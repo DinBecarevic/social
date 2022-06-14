@@ -1,6 +1,7 @@
 <?php
 // sprejem
 if (isset($_POST['friend-accept-btn'])) {
+    if($_SESSION['status'] =! 'banned') {
     session_start();
     require_once 'dbh.inc.php';
 
@@ -38,6 +39,10 @@ else if (isset($_POST['friend-reject-btn'])) {
     mysqli_stmt_close($stmt);
     header("location: ../prijatelji.php?uporabnik_zavrnjen");
     exit();
+}
+else {
+    header("location: ../profil.php?error=uporabnik_banned");
+}
 }
 else {
     header("location: ../prijatelji.php");

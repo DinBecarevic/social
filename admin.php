@@ -64,9 +64,9 @@ if (isset($_SESSION["S_userId"])) {
                     echo '</div>
             </div>';
         }
-    }
-    else {
-        header('location: home.php?nisi_admin');
+        else {
+            header('location: home.php?nisi_admin');
+        }
     }
 }
 else {

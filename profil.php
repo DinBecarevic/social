@@ -51,6 +51,9 @@ if (isset($_COOKIE['C_userEmail']) AND ($_COOKIE['C_userPwd'])) {
                             else if ($_GET['error'] == 'emptyinput') {
                                 echo "<p class='error-message'>Polja so prazna...</p>";
                             }
+                            else if ($_GET['error'] == 'uporabnik_banned') {
+                                echo "<p class='error-message'>Ta profil je BANNED!...</p>";
+                            }
                         }
                         if (isset($_GET['success'])) {
                             if ($_GET['success'] == 'user_logged_in') {
@@ -92,6 +95,10 @@ if (isset($_COOKIE['C_userEmail']) AND ($_COOKIE['C_userPwd'])) {
                                                 try {
                                                     errors[6].style.opacity = '0';
                                                 } catch (e) {}
+                                                try {
+                                                    errors[7].style.opacity = '0';
+                                                } catch (e) {}
+                                                
                                                 //success messages :D
                                                 try {
                                                     success[0].style.opacity = '0';
@@ -165,7 +172,7 @@ $profile_uporabnik_username = $_SESSION['S_userUsername'];
                                     <div class='osebni-block'>
                                         <label>*Uporabniško ime</label><br>
                                         <input type='text' name='username' value='" . $_SESSION['S_userUsername'] . "' class='username-input'>
-                                    </div><br>
+                                    </div><br><br><br>
                                     <div class='osebni-block'>
                                         <label>*Email</label><br>
                                         <input type='email' name='email' value='" . $_SESSION['S_userEmail'] . "' class='username-input'>

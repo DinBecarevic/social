@@ -5,7 +5,13 @@ include_once 'header.php';
 include_once 'includes/dbh.inc.php';
 ?>
 <?php
+//dobim ime datoteke v kateri se nahajam zaradi tega ker to funkcijo uporabljam večkrat in da vem kam morem redrectat v headeru :D
+$current_url_path = "$_SERVER[REQUEST_URI]";
+$break_url = explode('/', $current_url_path);
+$pfile = $break_url[count($break_url) - 1];
+
 if (isset($_SESSION["S_userId"])) {
+    if (isset($_POST['komentar_edit'])) {
     echo '
 <div class="home-background">
     <div class="navigation">
@@ -59,22 +65,24 @@ if (isset($_SESSION["S_userId"])) {
     </div>
     <div id="edit-container">
         <div class="edit-comment-box">
-            <div id="home-pozdrav">
-                <h3>Uredi svojo objavo...</h3>
+            <div id="home-pozdrav">';
+                echo '<h3>Uredi svojo objavo...</h3>
                 <form action="includes/editObjava.inc.php" method="post" id="edit-old-objava">';
 
-                    $objava_id = $_POST["id"];
+                    $objava_id = mysqli_real_escape_string($conn,$_POST["id"]);
                     $old_objava = $_POST["sporocila"];
 
                     $old_objava = mysqli_real_escape_string($conn, htmlspecialchars($old_objava));
                     $old_objava = str_replace(array("\\\\r\\\\n","\\r\\n"),"\r",$old_objava);
                     echo "
                         <textarea type='text' name='new-objava' class='edit-objava-texarea'>$old_objava</textarea>
-                        <input type='hidden' name='objava_id' value='$objava_id'>";
+                        <input type='hidden' name='objava_id' value='$objava_id'>
+                        <input type='hidden' name='back_url' value='$pfile'>";
+
 
                     echo '<button type="submit" name="editObjava-btn" class="edit-objava-button">Uredi</button>
-                </form>
-                <a href="social.php"><button type="button" class="edit-objava-button" id="nazaj-objava-button"><ion-icon name="return-down-back-outline"></ion-icon><p>Nazaj</p></button></a>
+                </form>';
+                echo '<a href="social.php"><button type="button" class="edit-objava-button" id="nazaj-objava-button"><ion-icon name="return-down-back-outline"></ion-icon><p>Nazaj</p></button></a>
             </div>
         </div>
         <h4>Predogled</h4> ';
@@ -83,6 +91,11 @@ if (isset($_SESSION["S_userId"])) {
 
     echo '</div>
 </div>';
+
+    }
+    else {
+        header("location: social.php");
+    }
 }
 else {
     include_once 'niste-prijavljeni.php';

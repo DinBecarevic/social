@@ -1,7 +1,7 @@
 <?php
 
 if (isset($_POST['objava-submit'])) {
-
+    if($_SESSION['status'] =! 'banned') {
     require_once 'dbh.inc.php';
     require_once 'functions.inc.php';
 
@@ -14,6 +14,10 @@ if (isset($_POST['objava-submit'])) {
         exit();
     }
     objaviObjavo($conn, $vsebina, $regija, $is_image);
+    }
+    else {
+        header("location: ../profil.php?error=uporabnik_banned");
+    }
 }
 else {
     header("location: ../social.php?error=fail");
