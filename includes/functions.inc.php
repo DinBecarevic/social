@@ -1571,8 +1571,8 @@ function getAdminContainer($conn) {
                                 <td>
                                     <select name='img_dir'>
                                         <option value='$img_dir'>$img_dir</option>
-                                        <option value='default.png'>slike/img/default.png</option>
-                                        <option value='banned.png'>slike/img/banned.png</option>
+                                        <option value='slike/img/default.png'>slike/img/default.png</option>
+                                        <option value='slike/img/banned.png'>slike/img/banned.png</option>
                                     </select>
                                 </td>
                               </tr>
@@ -1581,8 +1581,8 @@ function getAdminContainer($conn) {
                                 <td>
                                     <select name='banner_dir'>
                                         <option value='$banner_dir'>$banner_dir</option>
-                                        <option value='default.png'>slike/banner/default.png</option>
-                                        <option value='banned.png'>slike/banner/banned.png</option>
+                                        <option value='slike/banner/default.png'>slike/banner/default.png</option>
+                                        <option value='slike/banner/banned.png'>slike/banner/banned.png</option>
                                     </select>
                                 </td>
                               </tr>
