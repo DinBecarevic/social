@@ -486,12 +486,29 @@ function getComments($conn) {
                         <span class='st_vsekov'>$st_vseckov</span>
                     </div>
                     <div class='comment-form-div'>
-                        <a href='komentiraj.php?id=$id_objave'><button class='comment-objava-btn'><ion-icon name='chatbox-outline'></ion-icon></button></a>
+                        <a href='komentiraj.php?id=$id_objave'><button class='comment-objava-btn'><ion-icon name='chatbox-outline'></ion-icon><span class='st_komentarjev'>";getObjavaKomentarCount($conn, $id_objave);echo"</span></button></a>
                     </div>";
             echo "</div>";
         }
 
 
+    }
+}
+function getObjavaKomentarCount($conn, $id_objave) {
+    $sql4 = "SELECT COUNT(*) FROM  objave_komentarji WHERE (objava_id = ?)";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql4)) {
+        header("location: social.php?error=stmtfailed");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "s", $id_objave);
+    mysqli_stmt_execute($stmt);
+
+    //dobimo podatke
+    $resultData4 = mysqli_stmt_get_result($stmt);
+    if ($row = mysqli_fetch_assoc($resultData4)) {
+        echo $row['COUNT(*)'];
     }
 }
 
