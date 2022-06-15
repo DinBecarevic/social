@@ -1,8 +1,10 @@
 <?php
 
 if (isset($_POST['chat-input-btn'])) {
-    if($_SESSION['status'] =! 'banned') {
-        session_start();
+
+    session_start();
+
+    if($_SESSION['S_userStatus'] !== 'banned') {
         require_once 'dbh.inc.php';
         $S_userID = $_SESSION['S_userId'];
         $id_prijateljstva = mysqli_real_escape_string($conn, $_POST['id_prijateljstva']);
@@ -33,7 +35,7 @@ if (isset($_POST['chat-input-btn'])) {
         exit();
     }
     else {
-        header("location: ../profil.php?error=uporabnik_banned");
+        header("location: ../profil.php?error=uporabnik_banned_ses");
     }
 }
 else {

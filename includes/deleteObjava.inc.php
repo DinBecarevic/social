@@ -3,11 +3,8 @@ echo "<p>serbus</p>";
 
 global $url;
 if (isset($_POST['komentar_odstrani'])) {
-    if($_SESSION['status'] = 'banned') {
-        header("location: ../profil.php?error=uporabnik_banned");
-    }
-    else {
-        session_start();
+    session_start();
+    if($_SESSION['S_userStatus'] !== 'banned') {
         require_once 'dbh.inc.php';
 
         $userUsername = $_SESSION['S_userId'];
@@ -40,6 +37,9 @@ if (isset($_POST['komentar_odstrani'])) {
         mysqli_stmt_close($stmt);
         header("location: ../$url?objava-zbrisana");
         exit();
+    }
+    else {
+        header("location: ../profil.php?error=uporabnik_banned");
     }
 }
 else {

@@ -2,8 +2,8 @@
 
 
 if (isset($_POST['iconSubmit'])) {
-    if($_SESSION['status'] =! 'banned') {
     session_start();
+    if($_SESSION['S_userStatus'] !== 'banned') {
 
     require_once 'dbh.inc.php';
     require_once 'functions.inc.php';

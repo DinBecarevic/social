@@ -130,7 +130,7 @@ function loginUser($conn, $username, $pwd) {
         $_SESSION['S_userRegistracija_date'] =  $uidExists["registracija_date"];
         $_SESSION['S_userUpdate_date'] =        $uidExists["update_date"];
 
-        $_SESSION['status'] = $uidExists["status_user"];
+        $_SESSION['S_userStatus'] = $uidExists["status_user"];
         $_SESSION['is_admin'] = $uidExists["is_admin"];
 
         // cookies
@@ -181,7 +181,7 @@ function loginUser2($conn, $username, $pwd) {
         $_SESSION['S_userRegistracija_date'] =  $uidExists["registracija_date"];
         $_SESSION['S_userUpdate_date'] =        $uidExists["update_date"];
 
-        $_SESSION['status'] = $uidExists["status_user"];
+        $_SESSION['S_userStatus'] = $uidExists["status_user"];
         $_SESSION['is_admin'] = $uidExists["is_admin"];
 
         // cookies
@@ -777,7 +777,6 @@ function getUserProfile($conn, $user_username)
     mysqli_stmt_execute($stmt);
 
     $result = mysqli_stmt_get_result($stmt);
-
     while ($row = $result->fetch_assoc()) {
         $id = $row['id'];
         $username = $row['username'];

@@ -35,7 +35,7 @@ if (isset($_COOKIE['C_userEmail']) AND ($_COOKIE['C_userPwd'])) {
         $_SESSION['S_userRegistracija_date'] =  $row["registracija_date"];
         $_SESSION['S_userUpdate_date'] =        $row["update_date"];
 
-        $_SESSION['status'] = $row["status_user"];
+        $_SESSION['S_userStatus'] = $row["status_user"];
         $_SESSION['is_admin'] = $row["is_admin"];
     }
 

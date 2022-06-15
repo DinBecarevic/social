@@ -1,8 +1,8 @@
 <?php
 // sprejem
 if (isset($_POST['friend-accept-btn'])) {
-    if($_SESSION['status'] =! 'banned') {
     session_start();
+    if($_SESSION['S_userStatus'] !== 'banned') {
     require_once 'dbh.inc.php';
 
     $id = mysqli_real_escape_string($conn, $_POST['id']);

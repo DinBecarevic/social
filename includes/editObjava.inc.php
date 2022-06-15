@@ -1,7 +1,7 @@
 <?php
 if (isset($_POST['editObjava-btn'])) {
-    if($_SESSION['status'] =! 'banned') {
-        session_start();
+    session_start();
+    if($_SESSION['S_userStatus'] !== 'banned') {
         include_once 'dbh.inc.php';
 
         $userId = $_SESSION['S_userId'];

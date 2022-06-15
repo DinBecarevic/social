@@ -1,8 +1,8 @@
 <?php
 
 if (isset($_POST['DodajPrijatelja-btn'])) {
-    if($_SESSION['status'] =! 'banned') {
     session_start();
+    if($_SESSION['S_userStatus'] !== 'banned') {
     require_once 'dbh.inc.php';
 
     $userId = $_SESSION['S_userId'];
